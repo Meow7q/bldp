@@ -198,7 +198,7 @@
       <workItem from="1624326656286" duration="16681000" />
       <workItem from="1624432218923" duration="19124000" />
       <workItem from="1624500578960" duration="12765000" />
-      <workItem from="1624523493524" duration="1237000" />
+      <workItem from="1624523493524" duration="2040000" />
     </task>
     <servers />
   </component>
@@ -215,10 +215,10 @@
     </state>
     <state x="458" y="212" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.900@0.0.1440.900" timestamp="1624523804291" />
     <state x="458" y="209" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.788@0.23.1440.788" timestamp="1624452324144" />
-    <state x="446" y="183" key="NewPhpClassDialog" timestamp="1624451954324">
-      <screen x="0" y="23" width="1440" height="788" />
+    <state x="446" y="183" key="NewPhpClassDialog" timestamp="1624526167145">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="446" y="183" key="NewPhpClassDialog/0.0.1440.900@0.0.1440.900" timestamp="1624329090583" />
+    <state x="446" y="183" key="NewPhpClassDialog/0.0.1440.900@0.0.1440.900" timestamp="1624526167145" />
     <state x="446" y="182" key="NewPhpClassDialog/0.23.1440.783@0.23.1440.783" timestamp="1624434730052" />
     <state x="446" y="183" key="NewPhpClassDialog/0.23.1440.788@0.23.1440.788" timestamp="1624451954324" />
     <state x="450" y="200" width="540" height="524" key="StructurePopup" timestamp="1624331838303">

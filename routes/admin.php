@@ -17,7 +17,8 @@ Route::namespace('Admin')->group(function (){
     Route::get('auth', 'AuthController@auth');
 });
 
-Route::namespace('Admin')->middleware('jwt.cauth')->group(function (){
+Route::namespace('Admin')->group(function (){
+//Route::namespace('Admin')->middleware('jwt.cauth')->group(function (){
     Route::post('upload', 'UploadController@upload');
     Route::get('read', 'UploadController@read');
 });
