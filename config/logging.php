@@ -54,6 +54,14 @@ return [
             'days' => 14,
         ],
 
+        'test' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/test.log'),
+            'level' => 'debug',
+            'days' => 14,
+            'permission' => 0777
+        ],
+
         'slack' => [
             'driver' => 'slack',
             'url' => env('LOG_SLACK_WEBHOOK_URL'),
