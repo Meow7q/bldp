@@ -15,13 +15,14 @@ class AuthController extends Controller
     public function auth(Request $request){
         $validated = $this->validate($request, ['staffcode' => 'required']);
         $user = User::where('staffcode', $validated['staffcode'])
-            ->select(['staffcode', 'avatar', 'nickname', 'permission'])
+            ->select(['id', 'staffcode', 'avatar', 'nickname', 'permission'])
             ->first();
         if(!$user){
             throw new UnauthorizedHttpException('未授权！');
         }
         $token = auth('backend')->login($user);
         return $this->success([
+            'userinfo' => $user->toArray(),
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth('backend')->factory()->getTTL() * 60

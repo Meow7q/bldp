@@ -17,8 +17,11 @@ Route::namespace('Admin')->group(function (){
     Route::get('auth', 'AuthController@auth');
 });
 
-Route::namespace('Admin')->group(function (){
-//Route::namespace('Admin')->middleware('jwt.cauth')->group(function (){
+//Route::namespace('Admin')->group(function (){
+Route::namespace('Admin')->middleware('jwt.cauth')->group(function (){
     Route::post('upload', 'UploadController@upload');
     Route::get('read', 'UploadController@read');
+    Route::post('file/add', 'FileController@add');
+    Route::get('file/list', 'FileController@fileList');
+    Route::post('file/audit_status', 'FileController@updateAuditStatus');
 });

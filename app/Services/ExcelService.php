@@ -6,12 +6,15 @@ namespace App\Services;
 
 use App\Enum\DkzlFxType2;
 use App\Enum\Area;
+use App\Enum\ImportStatus;
 use App\Models\ImportData\Dkzlfx;
 use App\Models\ImportData\Dqtx;
+use App\Models\ImportData\FileBldp;
 use App\Models\ImportData\Fyztqk;
 use App\Models\ImportData\Jyzl;
 use App\Models\ImportData\Zjbl;
 use App\Models\ImportData\Zqzch;
+use Illuminate\Support\Facades\DB;
 use Rap2hpoutre\FastExcel\FastExcel;
 
 class ExcelService
@@ -45,10 +48,15 @@ class ExcelService
 
     protected $year = null;
 
-    public function import()
+    protected $id = null;
+
+    public function import($id, $year, $path)
     {
-        $collection = (new FastExcel())->import(public_path('static/test.xlsx'));
-        $this->year = 2021;
+        $this->year = $year;
+
+        $this->id = $id;
+
+        $collection = (new FastExcel())->import(public_path($path));
         foreach ($collection as $k => $line) {
             //0到5列是"经营质量数据"
             if ($k <= 5) {
@@ -95,14 +103,29 @@ class ExcelService
             }
 
         }
-        $this->getJyzlData();
-        $this->getFyztqkData($this->fyztqk_data_nj, Area::AREA_NANJING);
-        $this->getDkzlfxData($this->dkzlfx_nj, Area::AREA_NANJING);
-        $this->getFyztqkData($this->fyztqk_data_sz, Area::AREA_SUZHOU);
-        $this->getDkzlfxData($this->dkzlfx_sz, Area::AREA_SUZHOU);
-        $this->getZjblData();
-        $this->getZqzchData();
-        $this->getDqtx();
+        try {
+            DB::beginTransaction();
+            $this->getJyzlData();
+            $this->getFyztqkData($this->fyztqk_data_nj, Area::AREA_NANJING);
+            $this->getDkzlfxData($this->dkzlfx_nj, Area::AREA_NANJING);
+            $this->getFyztqkData($this->fyztqk_data_sz, Area::AREA_SUZHOU);
+            $this->getDkzlfxData($this->dkzlfx_sz, Area::AREA_SUZHOU);
+            $this->getZjblData();
+            $this->getZqzchData();
+            $this->getDqtx();
+            FileBldp::where('id',$this->id)
+                ->update([
+                    'import_status' => ImportStatus::STATUS_SUCCESS
+                ]);
+            DB::commit();
+        }catch (\Exception $e){
+            DB::rollBack();
+            FileBldp::where('id', $this->import())
+                ->update([
+                    'import_status' => ImportStatus::STATUS_FAIL
+                ]);
+        }
+
     }
 
     /**

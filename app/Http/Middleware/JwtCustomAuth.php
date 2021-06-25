@@ -6,6 +6,7 @@ use App\Services\ApiResponse;
 use Closure;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
+use Tymon\JWTAuth\JWTAuth;
 
 class JwtCustomAuth
 {

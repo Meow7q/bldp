@@ -37,12 +37,13 @@ class UploadController extends Controller
             'public'
         );
         return $this->success([
-            'path' => asset('upload/'.$path),
+            //'path' => asset('upload/'.$path),
+            'path' => '/upload/'.$path,
             'origin_name' => $file->getClientOriginalName()
         ]);
     }
 
     public function read(){
-        (new ExcelService())->import();
+        (new ExcelService())->import(1, 2021, '/upload/2021-06-25/74a31ddc4101d35ed1f64ea399dbb02b.xlsx');
     }
 }
