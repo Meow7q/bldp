@@ -81,7 +81,7 @@ class DataService
         switch ($type){
             case 'm':
                 $rs = Jyzl::where('year', $this->y)
-                    ->select(['year', 'month', 'tfl'])
+                    ->select(['month', 'tfl'])
                     ->orderBy('month', 'asc')
                     ->get();
                 break;
