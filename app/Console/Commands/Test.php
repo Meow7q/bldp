@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Services\ExcelService;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
@@ -41,5 +42,6 @@ class Test extends Command
     {
         //
         Log::channel('test')->info(time());
+        (new ExcelService())->import(1, 2021, '/upload/2021-06-25/74a31ddc4101d35ed1f64ea399dbb02b.xlsx');
     }
 }
