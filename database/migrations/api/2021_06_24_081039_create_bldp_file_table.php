@@ -22,6 +22,9 @@ class CreateBldpFileTable extends Migration
             $table->string('title')->nullable()->comment('标题');
             $table->string('audit_status')->nullable()->comment('审核状态');
             $table->string('import_status')->nullable()->comment('导入状态');
+            $table->string('comment')->nullable()->comment('审核意见');
+            $table->string('auditor')->nullable()->comment('审核人名称');
+            $table->string('auditor_id')->nullable()->comment('审核人id');
             $table->timestamps();
         });
     }

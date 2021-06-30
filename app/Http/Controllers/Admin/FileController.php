@@ -53,11 +53,12 @@ class FileController extends Controller
     }
 
     public function updateAuditStatus(Request $request){
-        $validated = $this->validate($request, ['id'=>'required', 'audit_status'=>'required|in:1,2']);
+        $user = $request->user;
+        $validated = $this->validate($request, ['id'=>'required', 'audit_status'=>'required|in:1,2',  'comment'=>'']);
         if($request->user->permission != AdminRoleType::ROLE_AUDIT){
             return $this->fail('权限不足!');
         }
-        $rs = $this->file_service->updateStatus($validated['id'], $validated['audit_status']);
+        $rs = $this->file_service->updateStatus($user, $validated['id'], $validated['audit_status'], $validated['comment']??'');
         return $this->message('操作成功!');
     }
 }

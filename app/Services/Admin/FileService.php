@@ -19,13 +19,16 @@ class FileService
         return FileBldp::when($year ?: false, function ($query) use($year){
             $query->where('year', $year);
         })
-            ->select(['id', 'user_id', 'year', 'month', 'file_url', 'title', 'audit_status', 'import_status', 'created_at']);
+            ->select(['id', 'user_id', 'year', 'month', 'file_url', 'title', 'audit_status', 'import_status','comment','auditor', 'auditor_id', 'created_at']);
     }
 
-    public function updateStatus($id, $status){
+    public function updateStatus($user, $id, $status, $comment){
        return FileBldp::where('id', $id)
             ->update([
-                'audit_status' => $status
+                'audit_status' => $status,
+                'comment' => $comment,
+                'auditor' => $user->nickname,
+                'auditor_id' => $user->staffcode,
             ]);
     }
 }
