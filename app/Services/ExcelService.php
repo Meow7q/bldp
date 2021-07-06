@@ -147,7 +147,8 @@ class ExcelService
             }
         }
         foreach ($jyzl_per_month as $k => $per_month) {
-            Jyzl::updateOrCreate(['year' => $this->year, 'month' => $k], $per_month);
+            Jyzl::firstOrCreate(['year' => $this->year, 'month' => $k], $per_month);
+            //Jyzl::updateOrCreate(['year' => $this->year, 'month' => $k], $per_month);
         }
     }
 
@@ -171,7 +172,7 @@ class ExcelService
             }
         }
         foreach ($fyztqk_per_month as $k => $per_month) {
-            Fyztqk::updateOrCreate(['area_id' => $area_id,'year' => $this->year, 'month' => $k], $per_month);
+            Fyztqk::firstOrCreate(['area_id' => $area_id,'year' => $this->year, 'month' => $k], $per_month);
         }
     }
 

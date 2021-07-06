@@ -21,9 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3e08bbc1-bad0-47d5-9c0a-6d50afee08ce" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/FileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/FileController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Admin/FileService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Admin/FileService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/api/2021_06_24_081039_create_bldp_file_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/api/2021_06_24_081039_create_bldp_file_table.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -225,7 +222,8 @@
       <workItem from="1624587764999" duration="5668000" />
       <workItem from="1624604794106" duration="2059000" />
       <workItem from="1624934893749" duration="1039000" />
-      <workItem from="1625018947981" duration="354000" />
+      <workItem from="1625018947981" duration="1528000" />
+      <workItem from="1625121642352" duration="265000" />
     </task>
     <servers />
   </component>
