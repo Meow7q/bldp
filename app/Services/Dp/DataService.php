@@ -53,7 +53,7 @@ class DataService
             case 'm':
                 $rs = Jyzl::where('year', $this->y)
                     //->where('month', $this->m)
-                    ->where('month', $this->sub_m)
+                    ->where('month', $this->m)
                     ->select(['ljtf', 'yue', 'sxsr', 'sxlr', 'zyzjzb'])
                     ->first();
                 break;
@@ -163,7 +163,7 @@ class DataService
             ->where(function ($query) use ($type){
                 switch ($type){
                     case 'm':
-                        $query->where('month', $this->sub_m);
+                        $query->where('month', $this->m);
                         break;
                     case 'q':
                         $query->where('month', '>=', $this->sub_q);
@@ -292,7 +292,7 @@ class DataService
     public function zjblData(){
         $month_data = Zjbl::where('year', $this->y)
             //->where('month', $this->m)
-            ->where('month', $this->sub_m)
+            ->where('month', $this->m)
             ->select(['year', 'month', 'ypjlr', 'zpjlr', 'dysr', 'zsr'])
             ->first();
         $month_data = $month_data?$month_data->toArray():[
