@@ -20,7 +20,7 @@ use Rap2hpoutre\FastExcel\FastExcel;
 class ExcelService
 {
     //
-    protected $cell_len = 12;
+    protected $cell_len = 1;
 
     //经营质量数据
     protected $jyzl_data = [];
@@ -50,20 +50,33 @@ class ExcelService
 
     protected $id = null;
 
-    public function import($id, $year, $path)
+    protected $month = null;
+
+    /**
+     * @param $id
+     * @param $year
+     * @param $month
+     * @param $path
+     * @throws \Box\Spout\Common\Exception\IOException
+     * @throws \Box\Spout\Common\Exception\UnsupportedTypeException
+     * @throws \Box\Spout\Reader\Exception\ReaderNotOpenedException
+     */
+    public function import($id, $year, $month, $path)
     {
         $this->year = $year;
 
         $this->id = $id;
 
+        $this->month = $month;
+
         $collection = (new FastExcel())->import(public_path($path));
         foreach ($collection as $k => $line) {
-            //0到5列是"经营质量数据"
+            //0到5行是"经营质量数据"
             if ($k <= 5) {
                array_push($this->jyzl_data, $line);
                 continue;
             }
-            //6到18列是"房押总体情况介绍（南京）"
+            //6到18行是"房押总体情况介绍（南京）"
             if ($k <= 18) {
                 array_push($this->fyztqk_data_nj, $line);
                 continue;
@@ -120,7 +133,7 @@ class ExcelService
             DB::commit();
         }catch (\Exception $e){
             DB::rollBack();
-            FileBldp::where('id', $this->import())
+            FileBldp::where('id', $this->id)
                 ->update([
                     'import_status' => ImportStatus::STATUS_FAIL
                 ]);
@@ -147,15 +160,15 @@ class ExcelService
             }
         }
         foreach ($jyzl_per_month as $k => $per_month) {
-            Jyzl::firstOrCreate(['year' => $this->year, 'month' => $k], $per_month);
+            Jyzl::firstOrCreate(['year' => $this->year, 'month' => $this->month], $per_month);
             //Jyzl::updateOrCreate(['year' => $this->year, 'month' => $k], $per_month);
         }
     }
 
     /**
      * 房押总体情况
-     * @param $data 数据
-     * @param $area_id 区域id
+     * @param $data
+     * @param $area_id
      */
     public function getFyztqkData($data, $area_id){
         //房押总体情况所包含的字段
@@ -172,13 +185,13 @@ class ExcelService
             }
         }
         foreach ($fyztqk_per_month as $k => $per_month) {
-            Fyztqk::firstOrCreate(['area_id' => $area_id,'year' => $this->year, 'month' => $k], $per_month);
+            Fyztqk::firstOrCreate(['area_id' => $area_id,'year' => $this->year, 'month' => $this->month], $per_month);
         }
     }
 
     /**
-     * 贷款质量分析
-     * @param $data 数据
+     * @param $data
+     * @param $area_id
      */
     public function getDkzlfxData($data, $area_id){
         //贷款质量分析字段
@@ -197,7 +210,7 @@ class ExcelService
                     $dkzlfx_per_month[$type['id']][$c_field] = $v1?:0;
                     $dkzlfx_per_month[$type['id']]['area_id'] = $area_id;
                     $dkzlfx_per_month[$type['id']]['year'] = $this->year;
-                    $dkzlfx_per_month[$type['id']]['month'] = $i;
+                    $dkzlfx_per_month[$type['id']]['month'] = $this->month;
                     $dkzlfx_per_month[$type['id']]['type1'] = $type['pid'];
                     $dkzlfx_per_month[$type['id']]['type1_name'] = $type['p_name'];
                     $dkzlfx_per_month[$type['id']]['type2'] = $type['id'];
@@ -237,7 +250,7 @@ class ExcelService
             }
         }
         foreach ($zjbl_per_month as $k => $per_month) {
-            Zjbl::firstOrCreate(['year' => $this->year, 'month' => $k], $per_month);
+            Zjbl::firstOrCreate(['year' => $this->year, 'month' => $this->month], $per_month);
         }
     }
 
@@ -283,7 +296,7 @@ class ExcelService
             }
         }
         foreach ($dqtx_per_month as $k => $per_month) {
-            Dqtx::firstOrCreate(['year' => $this->year, 'month' => $k], $per_month);
+            Dqtx::firstOrCreate(['year' => $this->year, 'month' => $this->month], $per_month);
         }
     }
 }

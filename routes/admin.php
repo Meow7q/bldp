@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 
 Route::namespace('Admin')->group(function (){
     Route::get('auth', 'AuthController@auth');
+    Route::get('vefiry_code', 'AuthController@createVerifyCode');
 });
 
 //Route::namespace('Admin')->group(function (){

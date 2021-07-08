@@ -11,6 +11,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/instantiator" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/lexer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dragonmantank/cron-expression" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/easyswoole/spl" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/easyswoole/verifycode" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/easywechat-composer/easywechat-composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/egulias/email-validator" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/ezyang/htmlpurifier" />

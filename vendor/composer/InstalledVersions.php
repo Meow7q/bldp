@@ -24,12 +24,12 @@ class InstalledVersions
 private static $installed = array (
   'root' => 
   array (
-    'pretty_version' => '1.0.0+no-version-set',
-    'version' => '1.0.0.0',
+    'pretty_version' => 'dev-master',
+    'version' => 'dev-master',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => 'bb52040b6afe0330d73d580dadbcc20c3d2c20c4',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -92,6 +92,24 @@ private static $installed = array (
       array (
       ),
       'reference' => '65b2d8ee1f10915efb3b55597da3404f096acba2',
+    ),
+    'easyswoole/spl' => 
+    array (
+      'pretty_version' => '1.4.0',
+      'version' => '1.4.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '5549de955cee82a9c7edd8ea34d4df4d14b51b38',
+    ),
+    'easyswoole/verifycode' => 
+    array (
+      'pretty_version' => '3.0.2',
+      'version' => '3.0.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'd79497dc1b1c7bbaeceb0c62fea6a9a96f7957cb',
     ),
     'easywechat-composer/easywechat-composer' => 
     array (
@@ -447,12 +465,12 @@ private static $installed = array (
     ),
     'laravel/laravel' => 
     array (
-      'pretty_version' => '1.0.0+no-version-set',
-      'version' => '1.0.0.0',
+      'pretty_version' => 'dev-master',
+      'version' => 'dev-master',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => 'bb52040b6afe0330d73d580dadbcc20c3d2c20c4',
     ),
     'laravel/tinker' => 
     array (

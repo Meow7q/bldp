@@ -47,7 +47,7 @@ class ImportToDb extends Command
             ->where('import_status', ImportStatus::STATUS_WAITING)
             ->get()->toArray();
         foreach ($list as $k => $v){
-            (new ExcelService())->import($v['id'], $v['year'], $v['file_url']);
+            (new ExcelService())->import($v['id'], $v['year'], $v['month'], $v['file_url']);
         }
     }
 }
