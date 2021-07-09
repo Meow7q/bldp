@@ -318,14 +318,13 @@ class DataService
      * @return array
      */
     public function zjblData(){
-        $month_data = Zjbl::where('year', $this->y)
-            //->where('month', $this->m)
-            ->where('month', $this->m)
+        $month_data = Zjbl::where('year', $this->sub_m_year)
+            ->where('month', $this->sub_m)
             ->select(['year', 'month', 'ypjlr', 'zpjlr', 'dysr', 'zsr'])
             ->first();
         $month_data = $month_data?$month_data->toArray():[
-            'year' => $this->y,
-            'month' => $this->m,
+            'year' => $this->sub_m_year,
+            'month' => $this->sub_m,
             'ypjlr' =>0,
             'zpjlr' => 0,
             'dysr' => 0,
