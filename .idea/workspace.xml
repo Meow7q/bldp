@@ -172,7 +172,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
@@ -233,6 +233,7 @@
       <workItem from="1625649845944" duration="4306000" />
       <workItem from="1625740534787" duration="731000" />
       <workItem from="1625795311238" duration="6216000" />
+      <workItem from="1625809957740" duration="603000" />
     </task>
     <servers />
   </component>
@@ -252,15 +253,19 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="320" y="115" key="#Deployment" timestamp="1625810367448">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="320" y="115" key="#Deployment/0.0.1440.900@0.0.1440.900" timestamp="1625810367448" />
     <state x="298" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1624588799427">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="298" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1440.900@0.0.1440.900" timestamp="1624588799427" />
     <state x="554" y="155" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1440.788@0.23.1440.788" timestamp="1624446261936" />
-    <state x="458" y="212" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1624947643049">
+    <state x="458" y="212" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1625810105108">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="458" y="212" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.900@0.0.1440.900" timestamp="1624947643049" />
+    <state x="458" y="212" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.900@0.0.1440.900" timestamp="1625810105108" />
     <state x="458" y="209" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.788@0.23.1440.788" timestamp="1624452324144" />
     <state x="446" y="183" key="NewPhpClassDialog" timestamp="1624590070585">
       <screen x="0" y="0" width="1440" height="900" />
@@ -282,9 +287,10 @@
     <state width="562" height="445" key="SwitcherDM/0.0.1440.900@0.0.1440.900" timestamp="1624947632839" />
     <state width="562" height="400" key="SwitcherDM/0.23.1440.783@0.23.1440.783" timestamp="1624434561929" />
     <state width="562" height="403" key="SwitcherDM/0.23.1440.788@0.23.1440.788" timestamp="1624451421777" />
-    <state x="556" y="320" key="WebDeployment.AddServerDialog.v.1" timestamp="1624435092425">
-      <screen x="0" y="23" width="1440" height="788" />
+    <state x="556" y="339" key="WebDeployment.AddServerDialog.v.1" timestamp="1625810363353">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state x="556" y="339" key="WebDeployment.AddServerDialog.v.1/0.0.1440.900@0.0.1440.900" timestamp="1625810363353" />
     <state x="556" y="320" key="WebDeployment.AddServerDialog.v.1/0.23.1440.788@0.23.1440.788" timestamp="1624435092425" />
     <state x="100" y="100" width="1240" height="700" key="dock-window-1" timestamp="1624269386704">
       <screen x="0" y="0" width="1440" height="900" />
