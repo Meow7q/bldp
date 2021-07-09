@@ -69,6 +69,7 @@ class DataService
                     ->where('month', '<=', $this->q_end)
                     ->selectRaw('sum(ljtf) as ljtf, sum(yue) as yue, sum(sxsr) as sxsr, sum(sxlr) as sxlr, avg(zyzjzb) as zyzjzb')
                     ->first();
+
                 break;
             case 'y':
                 $rs = Jyzl::where('year', $this->y)
