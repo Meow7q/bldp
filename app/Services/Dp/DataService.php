@@ -221,6 +221,7 @@ class DataService
                 $rs = Fyztqk::when($area_id!=0, function ($query) use ($area_id){
                     $query->where('area_id', $area_id);
                 })
+                    ->where('year', $this->y)
                     ->selectRaw('month, sum(tfl) as tfl')
                     ->groupBy('month')
                     ->get();
