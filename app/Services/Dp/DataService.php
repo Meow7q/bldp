@@ -22,6 +22,12 @@ class DataService
     protected $m;
 
     protected $sub_m;
+    protected $sub_m_year;
+
+
+    protected $sub_sub_m;
+    protected $sub_sub_m_year;
+
 
     //季
     protected $q;
@@ -39,10 +45,16 @@ class DataService
     public function __construct()
     {
         $this->m = Carbon::now()->month;
+        $this->sub_m_year = Carbon::now()->subMonth()->year;
+
+        $this->sub_m = Carbon::now()->subMonth()->month;
+        $this->sub_sub_m = Carbon::now()->subMonth()->subMonth()->month;
+        $this->sub_sub_m_year = Carbon::now()->subMonth()->subMonth()->year;
+
+
         $this->q = Carbon::now()->firstOfQuarter()->month;
         $this->q_end = Carbon::now()->lastOfQuarter()->month;
         $this->y = Carbon::now()->year;
-        $this->sub_m = Carbon::now()->subMonth()->month;
         $this->sub_q = Carbon::now()->subQuarter()->firstOfQuarter()->month;
         $this->sub_q_end = Carbon::now()->subQuarter()->lastOfQuarter()->month;
         $this->sub_q_year = Carbon::now()->subQuarter()->lastOfQuarter()->year;
@@ -58,8 +70,8 @@ class DataService
     public function jyzlMainData($type){
         switch ($type){
             case 'm':
-                $rs = Jyzl::where('year', $this->y)
-                    ->where('month', $this->m)
+                $rs = Jyzl::where('year', $this->sub_m_year)
+                    ->where('month', $this->sub_m)
                     ->select(['ljtf', 'yue', 'sxsr', 'sxlr', 'zyzjzb'])
                     ->first();
                 break;
@@ -150,8 +162,8 @@ class DataService
             ->where(function ($query) use ($type){
                 switch ($type){
                     case 'm':
-                        $query->where('year', $this->y)
-                            ->where('month', $this->m);
+                        $query->where('year', $this->sub_m_year)
+                            ->where('month', $this->sub_m);
                         break;
                     case 'q':
                         $query->where('year', $this->y)
@@ -177,7 +189,8 @@ class DataService
             ->where(function ($query) use ($type){
                 switch ($type){
                     case 'm':
-                        $query->where('month', $this->sub_m);
+                        $query->where('year', $this->sub_sub_m_year)
+                            ->where('month', $this->sub_sub_m);
                         break;
                     case 'q':
                         $query->where('year', $this->sub_q_year)
