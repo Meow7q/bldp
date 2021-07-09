@@ -25,8 +25,11 @@ class DataService
 
     //季
     protected $q;
+    protected $q_end;
 
     protected $sub_q;
+    protected $sub_q_end;
+    protected $sub_q_year;
 
     //年
     protected $y;
@@ -37,9 +40,13 @@ class DataService
     {
         $this->m = Carbon::now()->month;
         $this->q = Carbon::now()->firstOfQuarter()->month;
+        $this->q_end = Carbon::now()->lastOfQuarter()->month;
         $this->y = Carbon::now()->year;
         $this->sub_m = Carbon::now()->subMonth()->month;
         $this->sub_q = Carbon::now()->subQuarter()->firstOfQuarter()->month;
+        $this->sub_q_end = Carbon::now()->subQuarter()->lastOfQuarter()->month;
+        $this->sub_q_year = Carbon::now()->subQuarter()->lastOfQuarter()->year;
+
         $this->sub_y = Carbon::now()->subYear()->year;
     }
 
@@ -52,7 +59,6 @@ class DataService
         switch ($type){
             case 'm':
                 $rs = Jyzl::where('year', $this->y)
-                    //->where('month', $this->m)
                     ->where('month', $this->m)
                     ->select(['ljtf', 'yue', 'sxsr', 'sxlr', 'zyzjzb'])
                     ->first();
@@ -60,17 +66,23 @@ class DataService
             case 'q':
                 $rs = Jyzl::where('year', $this->y)
                     ->where('month', '>=', $this->q)
+                    ->where('month', '<=', $this->q_end)
                     ->selectRaw('sum(ljtf) as ljtf, sum(yue) as yue, sum(sxsr) as sxsr, sum(sxlr) as sxlr, avg(zyzjzb) as zyzjzb')
                     ->first();
                 break;
             case 'y':
                 $rs = Jyzl::where('year', $this->y)
-                    ->where('month', '<=', $this->q)
                     ->selectRaw('sum(ljtf) as ljtf, sum(yue) as yue, sum(sxsr) as sxsr, sum(sxlr) as sxlr, avg(zyzjzb) as zyzjzb')
                     ->first();
                 break;
         }
-        return $rs?$rs->toArray():[];
+        return $rs?$rs->toArray():[
+            'ljtf' => 0,
+            'yue' => 0,
+            'sxsr' => 0,
+            'sxlr' => 0,
+            'zyzjzb' => 0,
+        ];
     }
 
     /**
@@ -108,9 +120,7 @@ class DataService
                 return $per_q_data;
                 break;
             case 'y':
-                $rs = Jyzl::where('year', $this->y)
-                    ->where('month', '<=', $this->q)
-                    ->selectRaw('year, sum(tfl) as tfl')
+                $rs = Jyzl::selectRaw('year, sum(tfl) as tfl')
                     ->groupBy('year')
                     ->get();
                 break;
@@ -139,10 +149,13 @@ class DataService
             ->where(function ($query) use ($type){
                 switch ($type){
                     case 'm':
-                        $query->where('month', $this->m);
+                        $query->where('year', $this->y)
+                            ->where('month', $this->m);
                         break;
                     case 'q':
-                        $query->where('month', '>=', $this->q);
+                        $query->where('year', $this->y)
+                            ->where('month', '>=', $this->q)
+                            ->where('month', '<=', $this->q_end);
                         break;
                     case 'y':
                         $query->where('year', $this->y);
@@ -163,11 +176,12 @@ class DataService
             ->where(function ($query) use ($type){
                 switch ($type){
                     case 'm':
-                        $query->where('month', $this->m);
+                        $query->where('month', $this->sub_m);
                         break;
                     case 'q':
-                        $query->where('month', '>=', $this->sub_q);
-                        $query->where('month', '<=', $this->q);
+                        $query->where('year', $this->sub_q_year)
+                            ->where('month', '>=', $this->sub_q)
+                            ->where('month', '<=', $this->sub_q_end);
                         break;
                     case 'y':
                         $query->where('year', $this->sub_y);
@@ -209,7 +223,7 @@ class DataService
                 foreach ($q_arr as $v){
                     $q = Fyztqk::when($area_id!=0, function ($query) use ($area_id){
                         $query->where('area_id', $area_id);
-                    })
+                    })  ->where('year', $this->y)
                         ->where('month', '>=', $v[0])
                         ->where('month', '<=', $v[1])
                         ->selectRaw('sum(tfl) as tfl')

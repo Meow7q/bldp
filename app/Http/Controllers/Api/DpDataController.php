@@ -26,6 +26,7 @@ class DpDataController extends Controller
     public function getJyzlMainData(Request $request){
         $validated = $this->validate($request, ['type' => 'in:m,q,y']);
         $data = $this->data_service->jyzlMainData($validated['type']??'m');
+        $this->dataProcessing($data);
         return $this->success($data);
     }
 
@@ -38,8 +39,8 @@ class DpDataController extends Controller
     public function getJyzlTflData(Request $request){
         $validated = $this->validate($request, ['type' => 'in:m,q,y']);
         $data = $this->data_service->jyzlTflData($validated['type']??'m');
-        return $this->success($data);
-    }
+        $this->dataProcessing($data);
+        return $this->success($data);    }
 
     /**
      * 房押整体情况
@@ -50,8 +51,8 @@ class DpDataController extends Controller
     public function getFyztqkData(Request $request){
         $validated = $this->validate($request, ['area_id' => 'in:0,1,2','type' => 'in:m,q,y']);
         $data = $this->data_service->fyztqkData($validated['area_id']??0, $validated['type']??'m');
-        return $this->success($data);
-    }
+        $this->dataProcessing($data);
+        return $this->success($data);    }
 
     /**
      * 贷款质量分析
@@ -61,8 +62,8 @@ class DpDataController extends Controller
     public function getDkzlFx(Request $request){
         $validated = $this->validate($request, ['type' => 'in:1,2,3,4,5', 'area_id' => 'in:0,1,2']);
         $data = $this->data_service->dkzlfxData($validated['type']??1, $validated['area_id']??0);
-        return $this->success($data);
-    }
+        $this->dataProcessing($data);
+        return $this->success($data);    }
 
     /**
      * @param Request $request
@@ -70,8 +71,8 @@ class DpDataController extends Controller
      */
     public function getDqtx(Request $request){
         $data = $this->data_service->dqtxData();
-        return $this->success($data);
-    }
+        $this->dataProcessing($data);
+        return $this->success($data);    }
 
     /**
      * 资金保理
@@ -80,8 +81,8 @@ class DpDataController extends Controller
      */
     public function getZjbl(Request $request){
         $data = $this->data_service->zjblData();
-        return $this->success($data);
-    }
+        $this->dataProcessing($data);
+        return $this->success($data);    }
 
 
     /**
@@ -90,6 +91,16 @@ class DpDataController extends Controller
      */
     public function getZqzch(){
         $data = $this->data_service->zqzchData();
+        $this->dataProcessing($data);
         return $this->success($data);
+    }
+
+    /**
+     * @param $data
+     */
+    public function dataProcessing(&$data){
+        foreach ($data as $k => &$v){
+            $v = empty($v)?0:$v;
+        }
     }
 }
