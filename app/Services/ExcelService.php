@@ -15,6 +15,7 @@ use App\Models\ImportData\Jyzl;
 use App\Models\ImportData\Zjbl;
 use App\Models\ImportData\Zqzch;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Rap2hpoutre\FastExcel\FastExcel;
 
 class ExcelService
@@ -131,8 +132,10 @@ class ExcelService
                     'import_status' => ImportStatus::STATUS_SUCCESS
                 ]);
             DB::commit();
+            Log::channel('parsing')->info($this->id.':解析成功！');
         }catch (\Exception $e){
             DB::rollBack();
+            Log::channel('parsing')->info($this->id.':失败，'.$e->getMessage());
             FileBldp::where('id', $this->id)
                 ->update([
                     'import_status' => ImportStatus::STATUS_FAIL

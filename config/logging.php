@@ -61,6 +61,13 @@ return [
             'days' => 14,
             'permission' => 0777
         ],
+        'parsing' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/parsing.log'),
+            'level' => 'debug',
+            'days' => 14,
+            'permission' => 0777
+        ],
 
         'slack' => [
             'driver' => 'slack',

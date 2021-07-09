@@ -8,6 +8,8 @@ use App\Models\ImportData\FileBldp;
 use App\Services\Dp\DataService;
 use App\Services\ExcelService;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
+use Monolog\Logger;
 
 class ImportToDb extends Command
 {
@@ -46,6 +48,7 @@ class ImportToDb extends Command
         $list = FileBldp::where('audit_status', AuditStatus::STATUS_PASS)
             ->where('import_status', ImportStatus::STATUS_WAITING)
             ->get()->toArray();
+        Log::channel('parsing')->info(json_encode($list));
         foreach ($list as $k => $v){
             (new ExcelService())->import($v['id'], $v['year'], $v['month'], $v['file_url']);
         }
