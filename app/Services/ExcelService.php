@@ -151,7 +151,8 @@ class ExcelService
         //每个月的上方字段的数据
         $jyzl_per_month = [];
         for ($i = 1; $i <= $this->cell_len; $i++) {
-            $month_data = array_column($this->jyzl_data, $i, null);
+            //$month_data = array_column($this->jyzl_data, $i, null);
+            $month_data = array_column($this->jyzl_data, $this->month, null);
             if (!$month_data) {
                 continue;
             }
@@ -176,7 +177,8 @@ class ExcelService
         //每个月的上方字段的数据
         $fyztqk_per_month = [];
         for ($i = 1; $i <= $this->cell_len; $i++) {
-            $month_data = array_column($data, $i, null);
+            //$month_data = array_column($data, $i, null);
+            $month_data = array_column($data, $this->month, null);
             if (!$month_data) {
                 continue;
             }
@@ -198,7 +200,8 @@ class ExcelService
         $field = ['tfbs', 'bszb', 'fkje', 'jezb', 'eybl'];
         foreach ($this->dkzlfx_nj as $k => $line){
             for ($i = 1; $i <= $this->cell_len; $i++) {
-                $month_data = array_column($data, $i, null);
+                //$month_data = array_column($data, $i, null);
+                $month_data = array_column($data, $this->month, null);
                 if (!$month_data) {
                     continue;
                 }
@@ -241,7 +244,8 @@ class ExcelService
         //每个月的上方字段的数据
         $zjbl_per_month = [];
         for ($i = 1; $i <= $this->cell_len; $i++) {
-            $month_data = array_column($this->zjbl_data, $i, null);
+            //$month_data = array_column($this->zjbl_data, $i, null);
+            $month_data = array_column($this->zjbl_data, $this->month, null);
             if (!$month_data) {
                 continue;
             }
@@ -261,7 +265,7 @@ class ExcelService
         //证券资产化数据所包含的字段
         $field = ['zgm', 'xmmc', 'hxqy', 'glgm', 'll', 'fxbs', 'jhglr', 'jycs'];
         $zqzch_per_project = [];
-        for ($i = 1; $i <= $this->cell_len; $i++) {
+        for ($i = 1; $i <= 99; $i++) {
             $per_project = array_column($this->zqzch_data, $i, null);
             if (!$per_project) {
                 continue;
@@ -287,7 +291,7 @@ class ExcelService
         //每个月的上方字段的数据
         $dqtx_per_month = [];
         for ($i = 1; $i <= $this->cell_len; $i++) {
-            $month_data = array_column($this->dqtx_data, $i, null);
+            $month_data = array_column($this->dqtx_data, $this->month, null);
             if (!$month_data) {
                 continue;
             }
