@@ -50,7 +50,8 @@ class ImportToDb extends Command
             ->get()->toArray();
         Log::channel('parsing')->info(json_encode($list));
         foreach ($list as $k => $v){
-            (new ExcelService())->import($v['id'], $v['year'], $v['month'], $v['file_url']);
+            $file_url = str_replace(env('APP_URL'), '',$v['file_url']);
+            (new ExcelService())->import($v['id'], $v['year'], $v['month'], $file_url);
         }
     }
 }
