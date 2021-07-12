@@ -71,6 +71,14 @@ class ExcelService
         $this->month = $month;
 
         $collection = (new FastExcel())->import(public_path($path));
+        if(count($collection) != 187){
+            FileBldp::where('id', $this->id)
+                ->update([
+                    'import_status' => ImportStatus::STATUS_FAIL
+                ]);
+            return;
+        }
+
         foreach ($collection as $k => $line) {
             //0到5行是"经营质量数据"
             if ($k <= 5) {
