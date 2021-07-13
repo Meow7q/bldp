@@ -48,7 +48,7 @@ class FileController extends Controller
     public function fileList(Request $request){
         $validated = $this->validate($request, ['keyword' => '']);
         $query = $this->file_service->fileList($validated['keyword']??0);
-        $list = $query->simplePaginate(\request('per_page'), 15)->toArray();
+        $list = $query->paginate(\request('per_page'), 15)->toArray();
         return $this->success($list);
     }
 
