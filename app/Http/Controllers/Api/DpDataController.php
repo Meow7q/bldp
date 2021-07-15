@@ -92,6 +92,10 @@ class DpDataController extends Controller
     public function getZqzch(){
         $data = $this->data_service->zqzchData();
         $this->dataProcessing($data);
+        $data = [
+            'data' => $data,
+            'zgm_total' => array_sum(array_column($data, 'zgm', null))
+        ];
         return $this->success($data);
     }
 
