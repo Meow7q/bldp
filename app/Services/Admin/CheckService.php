@@ -412,8 +412,10 @@ class CheckService
         }
 
         if($table_name == 'lnzc'){
-            $field_arr1 = ['yxwzc', 'cwfy', 'gz', 'pgzxf', 'zj', 'bgf', 'ywzdf', 'clf', 'qtywcb', 'kgqt',];
-            $field_arr2 = [ 'ggsjf','sds', 'ctqt',];
+            $field_arr1 = [['yxwzc', '营业外支出(捐赠等)'], ['cwfy', '财务费用'], ['gz', '管理费用\工资'], ['pgzxf', '管理费用\评估咨询费'],
+                ['zj', '管理费用\折旧'], ['bgf', '管理费用\办公费'], ['ywzdf', '管理费用\业务招待费'],
+                ['clf', '管理费用\差旅费x`'], ['qtywcb', '其他业务成本'], ['kgqt', '其他']];
+            $field_arr2 = [['ggsjf', '管理费用\广告设计费'],['sds', '所得税费用'], ['ctqt', '其他']];
             $lnzc_data = [];
             $data1 = $this->lnzcData($field_arr1);
             $data2 = $this->lnzcData($field_arr2);
@@ -435,9 +437,9 @@ class CheckService
     protected function lnzcData($field_arr){
         $data = [];
         foreach ($field_arr as $k => $v){
-            $data1 = Lnzc::select(["{$v} as fee", 'year'])->orderBy('year', 'desc')->get()->toArray();
+            $data1 = Lnzc::select(["{$v[0]} as fee", 'year'])->orderBy('year', 'desc')->get()->toArray();
             $data_temp1 = [
-                $v => $data1
+                $v[1] => $data1
             ];
             array_push($data, $data_temp1);
         }
