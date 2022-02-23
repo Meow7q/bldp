@@ -5,8 +5,12 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Models\PCompanyCheck\Kjbb;
+use App\Models\PCompanyCheck\Lnzc;
+use App\Models\PCompanyCheck\Zbqk;
 use App\Services\Admin\CheckService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PCompanyCheckController extends Controller
 {
@@ -17,6 +21,14 @@ class PCompanyCheckController extends Controller
         $this->service = $service;
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @throws \Box\Spout\Common\Exception\IOException
+     * @throws \Box\Spout\Common\Exception\UnsupportedTypeException
+     * @throws \Box\Spout\Reader\Exception\ReaderNotOpenedException
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function import(Request $request){
         //上传文件
         $validated =  $this->validate($request, ['table_name' => 'required']);
@@ -55,5 +67,72 @@ class PCompanyCheckController extends Controller
         $validated = $this->validate($request, ['table_name' => 'required']);
         $list = $this->service->show($validated['table_name']);
         return $this->success($list);
+    }
+
+    public function statisticsLnzcxq(Request $request){
+        $fee_kg = Lnzc::select(DB::raw("SUM(yxwzc)+SUM(cwfy)+SUM(gz)+SUM(pgzxf)+SUM(zj)+SUM(bgf)+SUM(ywzdf)+SUM(clf)+SUM(qtywcb)+SUM(kgqt) as fee"))
+            ->first();
+        $fee_ct = Lnzc::select(DB::raw("SUM(ggsjf)+SUM(sds)+SUM(ctqt) as fee"))
+            ->first();
+        $data = [
+            'fee_kg' => $fee_kg->fee,
+            'fee_ct' => $fee_ct->fee,
+            'fee_total' => $fee_kg->fee + $fee_ct->fee,
+        ];
+        return $this->success($data);
+    }
+
+    /**
+     * 资本情况
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
+    public function statisticsZbqk(){
+
+        //自有资金
+        $fee_kg_zyzj = Zbqk::query()->where('type','控股')->sum('zyzj');
+        $fee_ct_zyzj = Zbqk::query()->where('type','城投')->sum('zyzj');
+
+        //外部融资
+        $fee_kg_wbrz = Zbqk::query()->where('type','控股')->selectRaw('SUM(rzbj)+SUM(rzpjcb) as fee')->first();
+        $fee_ct_wbrz = Zbqk::query()->where('type','城投')->selectRaw('SUM(rzbj)+SUM(rzpjcb) as fee')->first();
+
+        //占用产业资金
+        $fee_kg_zycyzj = Zbqk::query()->where('type','控股')->sum('zycyzj');
+        $fee_ct_zycyzj = Zbqk::query()->where('type','城投')->sum('zycyzj');
+
+        //合计投入
+        $fee_kg_hjtr = Zbqk::query()->where('type','控股')->sum('hjtr');
+        $fee_ct_hjtr = Zbqk::query()->where('type','城投')->sum('hjtr');
+
+        //历年费用支出
+        $fee_kg_lnfyzc = Zbqk::query()->where('type','控股')->sum('lnfyzc');
+        $fee_ct_lnfyzc = Zbqk::query()->where('type','城投')->sum('lnfyzc');
+
+        //形成资产
+        $fee_kg_xczc = Zbqk::query()->where('type','控股')->selectRaw('SUM(zyzj)+SUM(cqgqtz)+SUM(gdzc) as fee')->first();
+        $fee_ct_xczc = Zbqk::query()->where('type','城投')->selectRaw('SUM(rzbj)+SUM(cqgqtz)+SUM(gdzc) as fee')->first();
+
+        $data = [
+            '控股' => [
+                'zyzj' => $fee_kg_zyzj,
+                'wbrz' => $fee_kg_wbrz->fee,
+                'zycyzj' => $fee_kg_zycyzj,
+                'hjtr' => $fee_kg_hjtr,
+                'lnfyzc' => $fee_kg_lnfyzc,
+                'xczc' => $fee_kg_xczc->fee,
+            ],
+            '城投' => [
+                'zyzj' => $fee_ct_zyzj,
+                'wbrz' => $fee_ct_wbrz->fee,
+                'zycyzj' => $fee_ct_zycyzj,
+                'hjtr' => $fee_ct_hjtr,
+                'lnfyzc' => $fee_ct_lnfyzc,
+                'xczc' => $fee_ct_xczc->fee,
+            ]
+        ];
+        return $this->success($data);
+    }
+
+    public function statisticsKjbbqk(){
     }
 }

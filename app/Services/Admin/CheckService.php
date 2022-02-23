@@ -45,7 +45,7 @@ class CheckService
             case 'fhmx':
                 $this->fhmx($collection);
                 break;
-                    case 'ysbmb':
+            case 'ysbmb':
                 $this->ysbmb($collection);
                 break;
             case 'ysjlcb':
@@ -83,6 +83,7 @@ class CheckService
         //clf 差旅费
         //qtywcb 其他业务成本
         //kgqt 控股其他
+
         //ggsjf 广告设计费
         //sds 所得税费用
         //ctqt 城投其他
@@ -339,7 +340,8 @@ class CheckService
      * @param $data
      * @throws \Exception
      */
-    protected function xjlbsj($data){
+    protected function xjlbsj($data)
+    {
         try {
             DB::beginTransaction();
             Xjlbsj::truncate();
@@ -357,7 +359,8 @@ class CheckService
         }
     }
 
-    protected function xjlbyg($data){
+    protected function xjlbyg($data)
+    {
         try {
             DB::beginTransaction();
             Xjlbyg::truncate();
@@ -389,16 +392,17 @@ class CheckService
      * @param $table_name
      * @return mixeda
      */
-    public function show($table_name){
-        if($table_name == 'fhmx'){
+    public function show($table_name)
+    {
+        if ($table_name == 'fhmx') {
             $fhmx_data = [];
             $company = Fhmx::distinct()->pluck('company')->toArray();
-            foreach ($company as $k => $v){
+            foreach ($company as $k => $v) {
                 $data = Fhmx::where('company', $v)->select(['*'])->orderBy('year', 'desc')->get()->toArray();
                 $data_temp = [];
                 $data_temp['unit'] = $data[0]['unit'];
                 $data_temp['company'] = $data[0]['company'];
-                foreach ($data as $v){
+                foreach ($data as $v) {
                     $data_temp[$v['year']] = $v['fee'];
                 }
                 $data_temp['remark'] = $data[0]['remark'];
@@ -407,8 +411,46 @@ class CheckService
             return $fhmx_data;
         }
 
-        $class = 'App\Models\PCompanyCheck\\'.ucfirst($table_name);;
+        if($table_name == 'lnzc'){
+            $field_arr1 = ['yxwzc', 'cwfy', 'gz', 'pgzxf', 'zj', 'bgf', 'ywzdf', 'clf', 'qtywcb', 'kgqt',];
+            $field_arr2 = [ 'ggsjf','sds', 'ctqt',];
+
+            $lnzc_data = [];
+            $this->lnzcData($lnzc_data, $field_arr1, '控股');
+            $this->lnzcData($lnzc_data, $field_arr2, '城投');
+            return $lnzc_data;
+        }
+
+        $class = 'App\Models\PCompanyCheck\\' . ucfirst($table_name);;
         $table = new $class();
         return $table->query()->select(['*'])->get()->toArray();
+    }
+
+    protected function lnzcData(&$lnzc_data, $field_arr, $name){
+        foreach ($field_arr as $k => $v){
+            $data1 = Lnzc::select([$v, 'year'])->orderBy('year', 'desc')->get()->toArray();
+            $data_temp1 = [
+                'name' => $name,
+                'projectLength' => count($field_arr),
+                'project' => $v,
+                'data' => $data1
+            ];
+            array_push($lnzc_data, $data_temp1);
+        }
+    }
+
+
+    public function dataStatistics($type){
+        switch ($type){
+            case 'lnzcxq':
+                return $this->getLjzcxq();
+            break;
+        }
+    }
+
+    protected function getLjzcxq(){
+        $field_kg = ['yxwzc', 'cwfy', 'gz', 'pgzxf', 'zj','bgf', 'ywzdf', 'clf', 'qtywcb', 'kgqt'];
+        $field_ct = ['ggsjf', 'sds', 'ctqt'];
+
     }
 }
