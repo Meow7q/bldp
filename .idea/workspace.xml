@@ -19,7 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e08bbc1-bad0-47d5-9c0a-6d50afee08ce" name="Default Changelist" comment="" />
+    <list default="true" id="3e08bbc1-bad0-47d5-9c0a-6d50afee08ce" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/Admin/CheckService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Admin/CheckService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/template/kjbb.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/template/kjbb.xlsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -243,7 +247,7 @@
       <workItem from="1630034190377" duration="1000" />
       <workItem from="1635834114958" duration="506000" />
       <workItem from="1645167825972" duration="10726000" />
-      <workItem from="1645493384944" duration="34690000" />
+      <workItem from="1645493384944" duration="36745000" />
     </task>
     <servers />
   </component>
@@ -272,6 +276,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="227" y="172" key="NewPhpClassDialog/0.0.1440.900@0.0.1440.900" timestamp="1645521241694" />
+    <state x="450" y="159" width="549" height="524" key="StructurePopup" timestamp="1645610242593">
+      <screen x="0" y="23" width="1440" height="798" />
+    </state>
+    <state x="450" y="159" width="549" height="524" key="StructurePopup/0.23.1440.798@0.23.1440.798" timestamp="1645610242593" />
     <state width="520" height="445" key="SwitcherDM" timestamp="1645581294963">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

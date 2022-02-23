@@ -424,6 +424,38 @@ class CheckService
             return $lnzc_data;
         }
 
+        if($table_name == 'kjbb'){
+            $field_arr = [
+                ['yysr', '营业收入'],
+                ['tzss', '投资收益'],
+                ['qtsy', '其他收益'],
+                ['yywsr', '营业外收入'],
+                ['glfy', '管理费用'],
+                ['cwfy', '财务费用'],
+                ['sjjfj', '税金及附加'],
+                ['yywjqtzc', '营业外及其他支出'],
+                ['sds', '所得税'],
+                ['dnjlr', '当年净利润'],
+                ['qmwfplr', '期末未分配利润'],
+            ];
+            $kjbb_data = collect($field_arr)->map(function ($v, $k){
+                $data = Kjbb::select("{$v[0]} as fee")->orderBy('type', 'desc')
+                    ->orderBy('year', 'desc')->get()->map(function ($v){
+                        return $v->fee;
+                    })->values()->all();
+                return [
+                    'name' => $v[1],
+                    '控股2022' => $data[0],
+                    '控股2021' => $data[1],
+                    '同比1' => round($data[0]-$data[1]/$data[1],2)*100,
+                    '城投2022' => $data[2],
+                    '城投2021' => $data[3],
+                    '同比2' => round($data[2]-$data[3]/$data[3],2)*100,
+                ];
+            })->values()->all();
+            return $kjbb_data;
+        }
+
         $class = 'App\Models\PCompanyCheck\\' . ucfirst($table_name);;
         $table = new $class();
         return $table->query()->select(['*'])->get()->toArray();
