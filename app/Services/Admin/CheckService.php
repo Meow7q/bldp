@@ -439,7 +439,8 @@ class CheckService
         foreach ($field_arr as $k => $v){
             $data1 = Lnzc::select(["{$v[0]} as fee", 'year'])->orderBy('year', 'desc')->get()->toArray();
             $data_temp1 = [
-                $v[1] => $data1
+                'name' => $v[1],
+                'data' => $data1,
             ];
             array_push($data, $data_temp1);
         }
