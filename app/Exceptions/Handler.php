@@ -69,7 +69,6 @@ class Handler extends ExceptionHandler
             return $this->fail('Unauthorized!', 401, 401);
         }
 
-
         return parent::render($request, $e);
     }
 }
