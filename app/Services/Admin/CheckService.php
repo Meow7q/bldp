@@ -198,8 +198,9 @@ class CheckService
      */
     protected function srhz($data)
     {
-        $field_arr = ['dbfdw', 'lx', 'glf', 'fh',
-            'tzly', 'ssjl', 'gpdx', 'zj'
+        $field_arr = [
+            'dbfdw', 'lx', 'glf', 'fh', 'tzly', 'ssjl', 'gpdx', 'zj',
+            'dbfdw', 'lx', 'glf', 'fh', 'tzly', 'ssjl', 'gpdx', 'zj'
         ];
         try {
             DB::beginTransaction();
@@ -210,7 +211,9 @@ class CheckService
                     if (empty($year)) {
                         continue;
                     }
-                    Srhz::updateOrCreate(['year' => $year], [
+                    $type = $k1 > 7 ? '城投' : '控股';
+                    Srhz::updateOrCreate(['year' => $year, 'type' => $type], [
+                        'type' => $type,
                         'year' => $year,
                         $field_arr[$k1] => $v
                     ]);
@@ -390,7 +393,7 @@ class CheckService
 
     /**
      * @param $table_name
-     * @return mixeda
+     * @return array
      */
     public function show($table_name)
     {
@@ -411,11 +414,11 @@ class CheckService
             return $fhmx_data;
         }
 
-        if($table_name == 'lnzc'){
+        if ($table_name == 'lnzc') {
             $field_arr1 = [['yxwzc', '营业外支出(捐赠等)'], ['cwfy', '财务费用'], ['gz', '管理费用-工资'], ['pgzxf', '管理费用-评估咨询费'],
                 ['zj', '管理费用-折旧'], ['bgf', '管理费用-办公费'], ['ywzdf', '管理费用-业务招待费'],
                 ['clf', '管理费用-差旅费`'], ['qtywcb', '其他业务成本'], ['kgqt', '其他']];
-            $field_arr2 = [['ggsjf', '管理费用-广告设计费'],['sds', '所得税费用'], ['ctqt', '其他']];
+            $field_arr2 = [['ggsjf', '管理费用-广告设计费'], ['sds', '所得税费用'], ['ctqt', '其他']];
             $lnzc_data = [];
             $data1 = $this->lnzcData($field_arr1);
             $data2 = $this->lnzcData($field_arr2);
@@ -424,7 +427,7 @@ class CheckService
             return $lnzc_data;
         }
 
-        if($table_name == 'kjbb'){
+        if ($table_name == 'kjbb') {
             $field_arr = [
                 ['yysr', '营业收入'],
                 ['tzss', '投资收益'],
@@ -438,22 +441,40 @@ class CheckService
                 ['dnjlr', '当年净利润'],
                 ['qmwfplr', '期末未分配利润'],
             ];
-            $kjbb_data = collect($field_arr)->map(function ($v, $k){
+            $kjbb_data = collect($field_arr)->map(function ($v, $k) {
                 $data = Kjbb::select("{$v[0]} as fee")->orderBy('type', 'desc')
-                    ->orderBy('year', 'desc')->get()->map(function ($v){
+                    ->orderBy('year', 'desc')->get()->map(function ($v) {
                         return $v->fee;
                     })->values()->all();
                 return [
                     'name' => $v[1],
                     '控股2022' => $data[0],
                     '控股2021' => $data[1],
-                    '城投同比' => (round($data[0]-$data[1]/$data[1],2)*100).'%',
+                    '城投同比' => (round(($data[0] - $data[1]) / $data[1], 2) * 100) . '%',
                     '城投2022' => $data[2],
                     '城投2021' => $data[3],
-                    '控股同比' => (round($data[2]-$data[3]/$data[3],2)*100).'%',
+                    '控股同比' => (round(($data[2] - $data[3]) / $data[3], 2) * 100) . '%',
                 ];
             })->values()->all();
             return $kjbb_data;
+        }
+
+        if ($table_name == 'srhz') {
+            $raw1 = "year, SUM(dbfdw) as dbfdw, SUM(lx) as lx, SUM(glf) as glf, SUM(fh) as fh, SUM(tzly) as tzly, SUM(ssjl) as ssjl, SUM(gpdx) as gpdx, SUM(zj) as zj";
+            $data1 = Srhz::selectRaw($raw1)->groupBy('year')->orderBy('year', 'desc')->get()->toArray();
+            $hj_data = $this->srhzBuild($data1);
+
+            $data2 = Srhz::select(['*'])->where('type', '控股')->orderBy('year', 'desc')->get()->toArray();
+            $kg_data = $this->srhzBuild($data2);
+
+            $data3 = Srhz::select(['*'])->where('type', '城投')->orderBy('year', 'desc')->get()->toArray();
+            $ct_data = $this->srhzBuild($data3);
+
+            return [
+                $hj_data,
+                $kg_data,
+                $ct_data
+            ];
         }
 
         $class = 'App\Models\PCompanyCheck\\' . ucfirst($table_name);;
@@ -461,14 +482,48 @@ class CheckService
         return $table->query()->select(['*'])->get()->toArray();
     }
 
+    protected function srhzBuild($data)
+    {
+//        $raw = "year, SUM(dbfdw) as dbfdw, SUM(lx) as lx, SUM(glf) as glf, SUM(fh) as fh, SUM(tzly) as tzly, SUM(ssjl) as ssjl, SUM(gpdx) as gpdx, SUM(zj) as zj";
+//        $data = Srhz::selectRaw($raw)->groupBy('year')->orderBy('year', 'desc')->get()->toArray();
+        $field_arr = [
+            ['key' => 'dbfdw', 'name' => '营业收入', 'data' => []],
+            ['key' => 'lx', 'name' => '利息', 'data' => []],
+            ['key' => 'glf', 'name' => '管理费', 'data' => []],
+            ['key' => 'fh', 'name' => '分红', 'data' => []],
+            ['key' => 'tzly', 'name' => '投资收益', 'data' => []],
+            ['key' => 'ssjl', 'name' => '税收奖励', 'data' => []],
+            ['key' => 'gpdx', 'name' => '高抛低吸', 'data' => []],
+            ['key' => 'zj', 'name' => '租金', 'data' => []]
+        ];
+        collect($data)->map(function ($v) use (&$field_arr) {
+            foreach ($field_arr as $k1 => $v1) {
+                array_push($field_arr[$k1]['data'], [
+                    'fee' => $v[$v1['key']],
+                    'year' => $v['year'],
+                ]);
+            }
+        })->values()->all();
+        //累计
+        $field_lj = collect($data)->map(function ($v) {
+            return [
+                'fee' => $v['dbfdw'] + $v['lx'] + $v['glf'] + $v['fh'] + $v['tzly'] + $v['ssjl'] + $v['gpdx'] + $v['zj'],
+                'year' => $v['year'],
+            ];
+        });
+        array_push($field_arr, ['key' => 'lj', 'name' => '累计', 'data' => $field_lj]);
+        return $field_arr;
+    }
+
     /**
      * @param $lnzc_data
      * @param $field_arr
      * @param $name
      */
-    protected function lnzcData($field_arr){
+    protected function lnzcData($field_arr)
+    {
         $data = [];
-        foreach ($field_arr as $k => $v){
+        foreach ($field_arr as $k => $v) {
             $data1 = Lnzc::select(["{$v[0]} as fee", 'year'])->orderBy('year', 'desc')->get()->toArray();
             $data_temp1 = [
                 'name' => $v[1],
@@ -480,16 +535,18 @@ class CheckService
     }
 
 
-    public function dataStatistics($type){
-        switch ($type){
+    public function dataStatistics($type)
+    {
+        switch ($type) {
             case 'lnzcxq':
                 return $this->getLjzcxq();
-            break;
+                break;
         }
     }
 
-    protected function getLjzcxq(){
-        $field_kg = ['yxwzc', 'cwfy', 'gz', 'pgzxf', 'zj','bgf', 'ywzdf', 'clf', 'qtywcb', 'kgqt'];
+    protected function getLjzcxq()
+    {
+        $field_kg = ['yxwzc', 'cwfy', 'gz', 'pgzxf', 'zj', 'bgf', 'ywzdf', 'clf', 'qtywcb', 'kgqt'];
         $field_ct = ['ggsjf', 'sds', 'ctqt'];
 
     }

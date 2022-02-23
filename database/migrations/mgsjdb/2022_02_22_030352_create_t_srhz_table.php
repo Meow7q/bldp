@@ -16,6 +16,7 @@ class CreateTSrhzTable extends Migration
         Schema::create('t_srhz', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('year')->nullable()->comment('年费');
+            $table->string('type')->nullable()->comment('收入汇总');
             $table->string('dbfdw')->nullable()->comment('担保费对外');
             $table->string('lx')->nullable()->comment('利息');
             $table->string('glf')->nullable()->comment('管理费');
