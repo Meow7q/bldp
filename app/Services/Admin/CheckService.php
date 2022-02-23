@@ -437,7 +437,9 @@ class CheckService
     protected function lnzcData($field_arr){
         $data = [];
         foreach ($field_arr as $k => $v){
-            $data1 = Lnzc::select(["{$v[0]} as fee", 'year'])->orderBy('year', 'desc')->get()->toArray();
+            $data1 = Lnzc::select(["{$v[0]} as fee"])->orderBy('year', 'desc')->get()->map(function ($v, $i){
+                return $v->fee;
+            });
             $data_temp1 = [
                 'name' => $v[1],
                 'data' => $data1,
