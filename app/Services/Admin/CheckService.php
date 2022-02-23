@@ -414,10 +414,11 @@ class CheckService
         if($table_name == 'lnzc'){
             $field_arr1 = ['yxwzc', 'cwfy', 'gz', 'pgzxf', 'zj', 'bgf', 'ywzdf', 'clf', 'qtywcb', 'kgqt',];
             $field_arr2 = [ 'ggsjf','sds', 'ctqt',];
-
             $lnzc_data = [];
-            $this->lnzcData($lnzc_data, $field_arr1, '控股');
-            $this->lnzcData($lnzc_data, $field_arr2, '城投');
+            $data1 = $this->lnzcData($field_arr1);
+            $data2 = $this->lnzcData($field_arr2);
+            array_push($lnzc_data, $data1);
+            array_push($lnzc_data, $data2);
             return $lnzc_data;
         }
 
@@ -426,17 +427,21 @@ class CheckService
         return $table->query()->select(['*'])->get()->toArray();
     }
 
-    protected function lnzcData(&$lnzc_data, $field_arr, $name){
+    /**
+     * @param $lnzc_data
+     * @param $field_arr
+     * @param $name
+     */
+    protected function lnzcData($field_arr){
+        $data = [];
         foreach ($field_arr as $k => $v){
-            $data1 = Lnzc::select([$v, 'year'])->orderBy('year', 'desc')->get()->toArray();
+            $data1 = Lnzc::select(["{$v} as fee", 'year'])->orderBy('year', 'desc')->get()->toArray();
             $data_temp1 = [
-                'name' => $name,
-                'projectLength' => count($field_arr),
-                'project' => $v,
-                'data' => $data1
+                $v => $data1
             ];
-            array_push($lnzc_data, $data_temp1);
+            array_push($data, $data_temp1);
         }
+        return $data;
     }
 
 

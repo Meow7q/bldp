@@ -69,6 +69,10 @@ class PCompanyCheckController extends Controller
         return $this->success($list);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
     public function statisticsLnzcxq(Request $request){
         $fee_kg = Lnzc::select(DB::raw("SUM(yxwzc)+SUM(cwfy)+SUM(gz)+SUM(pgzxf)+SUM(zj)+SUM(bgf)+SUM(ywzdf)+SUM(clf)+SUM(qtywcb)+SUM(kgqt) as fee"))
             ->first();
@@ -134,5 +138,16 @@ class PCompanyCheckController extends Controller
     }
 
     public function statisticsKjbbqk(){
+        //各项收入
+        $fee_kg_gxsr = Kjbb::where('type', '控股')->selectRaw("SUM(yysr)+SUM(tzss)+SUM(qtsy) as fee")->first();
+        $fee_ct_gxsr = Kjbb::where('type', '城投')->selectRaw("SUM(yysr)+SUM(tzss)+SUM(qtsy) as fee")->first();
+
+        //各项支出
+        $fee_kg_gxzc = Kjbb::where('type', '控股')->selectRaw("SUM(yyzc)+SUM(glfy)+SUM(cwfy)+SUM(sjjfj)+SUM(yywjqtzc)+SUM(sds)+SUM(dnjlr)+SUM(qmwfplr) as fee")->first();
+        $fee_ct_gxzc = Kjbb::where('type', '城投')->selectRaw("SUM(yyzc)+SUM(glfy)+SUM(cwfy)+SUM(sjjfj)+SUM(yywjqtzc)+SUM(sds)+SUM(dnjlr)+SUM(qmwfplr) as fee")->first();
+
+        //
+//        $fee_kg_zycyzj =
+//        $fee_ct_zycyzj
     }
 }
