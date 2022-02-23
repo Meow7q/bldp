@@ -45,7 +45,7 @@ class CheckService
             case 'fhmx':
                 $this->fhmx($collection);
                 break;
-            case 'ysbmb':
+                    case 'ysbmb':
                 $this->ysbmb($collection);
                 break;
             case 'ysjlcb':
