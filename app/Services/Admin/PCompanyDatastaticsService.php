@@ -134,7 +134,7 @@ class PCompanyDatastaticsService
         $fee_ct_kjyl = $fee_ct_gxsr - $fee_ct_gxzc;
 
         //管理费用
-        $fee_kg_glfy =
+//        $fee_kg_glfy = ;
         $this->saveDocx();
     }
 }

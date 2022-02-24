@@ -609,6 +609,15 @@ class CheckService
             return $data_xjlbsj;
         }
 
+        if($table_name == 'zbqk'){
+            $data_zbqk = Zbqk::all()->toArray();
+            $data_zbqk = collect($data_zbqk)->map(function ($v){
+                $v['xj'] = $v['zyzj'] + $v['cqgqtz'] + $v['gdzc'];
+                return $v;
+            })->values()->all();
+            return $data_zbqk;
+        }
+
         $class = 'App\Models\PCompanyCheck\\' . ucfirst($table_name);;
         $table = new $class();
         return $table->query()->select(['*'])->get()->toArray();
