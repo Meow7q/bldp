@@ -480,6 +480,16 @@ class CheckService
             ];
         }
 
+        if($table_name == 'ysbmb'){
+            $data_ysbmb = Ysbmb::all()->toArray();
+            $data_ysbmb = collect($data_ysbmb)->map(function ($v){
+                $v['de'] = (round($v['fee_d']/$v['fee_e'], 4)*100).'%';
+                $v['df'] =(round($v['fee_d']/$v['fee_f'], 4)*100).'%';
+                return $v;
+            })->values()->all();
+            return $data_ysbmb;
+        }
+
         $class = 'App\Models\PCompanyCheck\\' . ucfirst($table_name);;
         $table = new $class();
         return $table->query()->select(['*'])->get()->toArray();
@@ -487,8 +497,6 @@ class CheckService
 
     protected function srhzBuild($data)
     {
-//        $raw = "year, SUM(dbfdw) as dbfdw, SUM(lx) as lx, SUM(glf) as glf, SUM(fh) as fh, SUM(tzly) as tzly, SUM(ssjl) as ssjl, SUM(gpdx) as gpdx, SUM(zj) as zj";
-//        $data = Srhz::selectRaw($raw)->groupBy('year')->orderBy('year', 'desc')->get()->toArray();
         $field_arr = [
             ['key' => 'dbfdw', 'name' => '营业收入', 'data' => []],
             ['key' => 'lx', 'name' => '利息', 'data' => []],
