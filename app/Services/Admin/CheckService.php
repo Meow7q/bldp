@@ -476,7 +476,7 @@ class CheckService
                 $hj_data,
                 $kg_data,
                 $ct_data,
-                'hj' => $lj->fee
+                ['hj' => $lj->fee]
             ];
         }
 

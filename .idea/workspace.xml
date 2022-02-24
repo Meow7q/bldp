@@ -20,12 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e08bbc1-bad0-47d5-9c0a-6d50afee08ce" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Services/Admin/PCompanyDatastaticsService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/static/template/点检表.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PCompanyCheckController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/PCompanyCheckController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PCompanyDataStaticsService.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/static/template/母公司点检.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/static/template/母公司点检表1.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -254,7 +249,7 @@
       <workItem from="1645167825972" duration="10726000" />
       <workItem from="1645493384944" duration="43017000" />
       <workItem from="1645632940513" duration="1039000" />
-      <workItem from="1645666691269" duration="1983000" />
+      <workItem from="1645666691269" duration="2290000" />
     </task>
     <servers />
   </component>
@@ -274,16 +269,16 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="458" y="210" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1645633909902">
+    <state x="458" y="210" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1645668718966">
       <screen x="0" y="23" width="1440" height="795" />
     </state>
     <state x="458" y="212" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.900@0.0.1440.900" timestamp="1645433074814" />
-    <state x="458" y="210" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.795@0.23.1440.795" timestamp="1645633909902" />
-    <state x="892" y="182" key="NewPhpClassDialog" timestamp="1645633354559">
+    <state x="458" y="210" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.795@0.23.1440.795" timestamp="1645668718966" />
+    <state x="892" y="182" key="NewPhpClassDialog" timestamp="1645668704377">
       <screen x="0" y="23" width="1440" height="795" />
     </state>
     <state x="227" y="172" key="NewPhpClassDialog/0.0.1440.900@0.0.1440.900" timestamp="1645521241694" />
-    <state x="892" y="182" key="NewPhpClassDialog/0.23.1440.795@0.23.1440.795" timestamp="1645633354559" />
+    <state x="892" y="182" key="NewPhpClassDialog/0.23.1440.795@0.23.1440.795" timestamp="1645668704377" />
     <state x="450" y="159" width="549" height="524" key="StructurePopup" timestamp="1645610242593">
       <screen x="0" y="23" width="1440" height="798" />
     </state>
