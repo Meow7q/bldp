@@ -482,6 +482,10 @@ class CheckService
 
         if ($table_name == 'ysbmb') {
             $data_ysbmb = Ysbmb::all()->toArray();
+            $ysbmb_hj_d = collect($data_ysbmb)->sum('fee_d');
+            $ysbmb_hj_e = collect($data_ysbmb)->sum('fee_e');
+            $ysbmb_hj_f = collect($data_ysbmb)->sum('fee_f');
+            array_push($data_ysbmb, ['type' => '合计', 'fee_d' => $ysbmb_hj_d, 'fee_e' => $ysbmb_hj_e, 'fee_f' => $ysbmb_hj_f]);
             $data_ysbmb = collect($data_ysbmb)->map(function ($v) {
                 $v['de'] = (round($v['fee_d'] / $v['fee_e'], 4) * 100) . '%';
                 $v['df'] = (round($v['fee_d'] / $v['fee_f'], 4) * 100) . '%';
@@ -492,7 +496,10 @@ class CheckService
 
         if ($table_name == 'ysjlcb') {
             $data_ysjlcb = Ysjlcb::all()->toArray();
-            $data_ysjlcb = collect($data_ysjlcb)->map(function ($v) {
+            $ysjlcb_hj_d = collect($data_ysjlcb)->sum('fee_d');
+            $ysjlcb_hj_e = collect($data_ysjlcb)->sum('fee_e');
+            $ysjlcb_hj_f = collect($data_ysjlcb)->sum('fee_f');
+            array_push($data_ysjlcb, ['type' => '合计', 'fee_d' => $ysjlcb_hj_d, 'fee_e' => $ysjlcb_hj_e, 'fee_f' => $ysjlcb_hj_f]);            $data_ysjlcb = collect($data_ysjlcb)->map(function ($v) {
                 $v['de'] = (round($v['fee_d'] / $v['fee_e'], 4) * 100) . '%';
                 $v['df'] = (round($v['fee_d'] / $v['fee_f'], 4) * 100) . '%';
                 return $v;
