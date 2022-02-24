@@ -480,14 +480,24 @@ class CheckService
             ];
         }
 
-        if($table_name == 'ysbmb'){
+        if ($table_name == 'ysbmb') {
             $data_ysbmb = Ysbmb::all()->toArray();
-            $data_ysbmb = collect($data_ysbmb)->map(function ($v){
-                $v['de'] = (round($v['fee_d']/$v['fee_e'], 4)*100).'%';
-                $v['df'] =(round($v['fee_d']/$v['fee_f'], 4)*100).'%';
+            $data_ysbmb = collect($data_ysbmb)->map(function ($v) {
+                $v['de'] = (round($v['fee_d'] / $v['fee_e'], 4) * 100) . '%';
+                $v['df'] = (round($v['fee_d'] / $v['fee_f'], 4) * 100) . '%';
                 return $v;
             })->values()->all();
             return $data_ysbmb;
+        }
+
+        if ($table_name == 'ysjlcb') {
+            $data_ysjlcb = Ysjlcb::all()->toArray();
+            $data_ysjlcb = collect($data_ysjlcb)->map(function ($v) {
+                $v['de'] = (round($v['fee_d'] / $v['fee_e'], 4) * 100) . '%';
+                $v['df'] = (round($v['fee_d'] / $v['fee_f'], 4) * 100) . '%';
+                return $v;
+            })->values()->all();
+            return $data_ysjlcb;
         }
 
         $class = 'App\Models\PCompanyCheck\\' . ucfirst($table_name);;
