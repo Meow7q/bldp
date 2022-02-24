@@ -9,6 +9,7 @@ use App\Models\PCompanyCheck\Kjbb;
 use App\Models\PCompanyCheck\Lnzc;
 use App\Models\PCompanyCheck\Zbqk;
 use App\Services\Admin\CheckService;
+use App\Services\Admin\PCompanyDatastaticsService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -18,7 +19,7 @@ class PCompanyCheckController extends Controller
 
     protected $data_service;
 
-    public function __construct(CheckService $service, PCompanyDataStaticsService $data_service)
+    public function __construct(CheckService $service, PCompanyDatastaticsService $data_service)
     {
         $this->service = $service;
 

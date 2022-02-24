@@ -2,11 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Http\Controllers\Admin\PCompanyDataStaticsService;
-use App\Services\ExcelService;
-use Carbon\Carbon;
+use App\Services\Admin\PCompanyDatastaticsService;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Log;
 
 class Test extends Command
 {
@@ -44,6 +41,6 @@ class Test extends Command
         //
         //Log::channel('test')->info(time());
        // (new ExcelService())->import(4, 2020, 12, '/static/2020-12.xlsx');
-        (new PCompanyDataStaticsService())->saveToWord();
+        (new PCompanyDatastaticsService())->saveToWord();
     }
 }

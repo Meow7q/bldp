@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Controllers\Admin;
+namespace App\Services\Admin;
 
 
 use App\Models\PCompanyCheck\Lnzc;
@@ -9,14 +9,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PhpOffice\PhpWord\TemplateProcessor;
 
-class PCompanyDataStaticsService
+class PCompanyDatastaticsService
 {
     public function saveToWord(){
-        $tmp = new TemplateProcessor(public_path('/static/template/母公司点检.docx'));
+        $tmp = new TemplateProcessor(public_path('/static/template/点检表.docx'));
         $tmp->setValues([
             'fee_kg' => 2000
         ]);
-        $tmp->saveAs(public_path('/static/template/母公司点检表1.docx'));
+        $tmp->saveAs(public_path('/static/template/母公司经营管理指标成果点检表.docx'));
     }
 
 
