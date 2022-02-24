@@ -470,10 +470,13 @@ class CheckService
             $data3 = Srhz::select(['*'])->where('type', '城投')->orderBy('year', 'desc')->get()->toArray();
             $ct_data = $this->srhzBuild($data3);
 
+            $raw4 = "SUM(dbfdw)+SUM(lx)+SUM(glf)+SUM(fh) +SUM(tzly)+SUM(ssjl)+SUM(gpdx)+SUM(zj) as fee";
+            $lj = Srhz::selectRaw($raw4)->first();
             return [
                 $hj_data,
                 $kg_data,
-                $ct_data
+                $ct_data,
+                'hj' => $lj->fee
             ];
         }
 
@@ -503,6 +506,11 @@ class CheckService
                     'year' => $v['year'],
                 ]);
             }
+        })->values()->all();
+        $field_arr = collect($field_arr)->map(function ($v) {
+            $total = Srhz::sum($v['key']);
+            array_push($v['data'], ['fee' => $total, 'year' => 'hj']);
+            return $v;
         })->values()->all();
         //累计
         $field_lj = collect($data)->map(function ($v) {
