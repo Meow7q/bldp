@@ -405,12 +405,62 @@ class CheckService
                 $data_temp = [];
                 $data_temp['unit'] = $data[0]['unit'];
                 $data_temp['company'] = $data[0]['company'];
+                $hz = 0;
                 foreach ($data as $v) {
+                    $hz += $v['fee'];
                     $data_temp[$v['year']] = $v['fee'];
                 }
+                $data_temp['hz'] = $hz;
                 $data_temp['remark'] = $data[0]['remark'];
                 array_push($fhmx_data, $data_temp);
             }
+            //小计
+            $fhmx_xj = [
+                "unit" => "中南控股",
+                "company" => "小计",
+                "2022" => 0,
+                "2021" => 0,
+                "2020" => 0,
+                "2019" => 0,
+                "2018" => 0,
+                "2017" => 0,
+                "2016" => 0,
+                "2015" => 0,
+                "2014" => 0,
+                "2013" => 0,
+                "hz" => 0,
+                "remark" => ''
+            ];
+            $fhmx_hj = [
+                "unit" => '',
+                "company" => "合计",
+                "2022" =>  0,
+                "2021" =>  0,
+                "2020" =>  0,
+                "2019" =>  0,
+                "2018" =>  0,
+                "2017" =>  0,
+                "2016" =>  0,
+                "2015" =>  0,
+                "2014" =>  0,
+                "2013" => 0,
+                "hz" =>  0,
+                "remark" => ''
+            ];
+            collect($fhmx_data)->map(function ($v) use (&$fhmx_xj, &$fhmx_hj) {
+                foreach ($v as $k1 => $v1){
+                    if($v['unit'] == '中南控股') {
+                        if(($k1 != 'remark') && ($k1 != 'company') && ($k1 != 'unit') ){
+                            $fhmx_xj[$k1] += $v1;
+                        }
+                    }
+                    if(($k1 != 'remark') && ($k1 != 'company') && ($k1 != 'unit') ){
+                        $fhmx_hj[$k1] += $v1;
+                    }
+                }
+            });
+            array_push($fhmx_data, $fhmx_xj);
+            array_push($fhmx_data, $fhmx_hj);
             return $fhmx_data;
         }
 
@@ -424,7 +474,7 @@ class CheckService
             [$hj2, $data2] = $this->lnzcData($field_arr2);
             array_push($lnzc_data, $data1);
             array_push($lnzc_data, $data2);
-            array_push($lnzc_data, ['hj' => $hj1 +$hj2]);
+            array_push($lnzc_data, ['hj' => $hj1 + $hj2]);
             return $lnzc_data;
         }
 
@@ -570,7 +620,7 @@ class CheckService
             array_push($data, $data_temp1);
         }
         $hj = 0;
-        $data = collect($data)->map(function ($v) use (&$hj){
+        $data = collect($data)->map(function ($v) use (&$hj) {
             $fee_tatal = collect($v['data'])->sum('fee');
             $hj += $fee_tatal;
             array_push($v['data'], ['year' => 'hj', 'fee' => $fee_tatal]);
@@ -578,22 +628,5 @@ class CheckService
         })->values()->all();
 
         return [$hj, $data];
-    }
-
-
-    public function dataStatistics($type)
-    {
-        switch ($type) {
-            case 'lnzcxq':
-                return $this->getLjzcxq();
-                break;
-        }
-    }
-
-    protected function getLjzcxq()
-    {
-        $field_kg = ['yxwzc', 'cwfy', 'gz', 'pgzxf', 'zj', 'bgf', 'ywzdf', 'clf', 'qtywcb', 'kgqt'];
-        $field_ct = ['ggsjf', 'sds', 'ctqt'];
-
     }
 }
