@@ -7,6 +7,7 @@ namespace App\Services\Admin;
 use App\Models\PCompanyCheck\Kjbb;
 use App\Models\PCompanyCheck\Lnzc;
 use App\Models\PCompanyCheck\Zbqk;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
@@ -40,6 +41,7 @@ class PCompanyDatastaticsService
         foreach ($data as $k => $v) {
             $cace_data[$k] = $v;
         }
+        $cace_data['current_month'] = Carbon::now()->month;
         Redis::set($this->key, json_encode($cace_data, JSON_UNESCAPED_UNICODE));
         $this->docx->setValues($cace_data);
         $this->docx->saveAs(public_path('/static/template/母公司经营管理指标成果点检表.docx'));
@@ -131,6 +133,8 @@ class PCompanyDatastaticsService
         $fee_kg_kjyl = $fee_kg_gxsr - $fee_kg_gxzc;
         $fee_ct_kjyl = $fee_ct_gxsr - $fee_ct_gxzc;
 
-
+        //管理费用
+        $fee_kg_glfy =
+        $this->saveDocx();
     }
 }

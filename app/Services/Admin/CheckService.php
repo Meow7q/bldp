@@ -571,6 +571,7 @@ class CheckService
                 "gxzj" => 0,
                 "yfhhysj" => 0,
                 "tzhbl" => 0,
+                'hj' => 0,
             ];
             $data_dwtzqk = collect($data_dwtzqk)->map(function ($v) use(&$dwtzqk_hj) {
                 foreach ($v as $k1 => $v1){
@@ -580,10 +581,32 @@ class CheckService
                     $dwtzqk_hj[$k1] += $v1;
                 }
                 $v['hj'] = $v['gqbj'] + $v['ysgx']+ $v['zq']+ $v['yszx']+ $v['lcsy'];
+                $dwtzqk_hj['hj'] += $v['hj'];
                 return $v;
             })->values()->all();
             array_push($data_dwtzqk, $dwtzqk_hj);
             return $data_dwtzqk;
+        }
+
+        if($table_name == 'xjlbyg'){
+            $data_xjlbyg = Xjlbyg::all()->toArray();
+            $data_xjlbyg = collect($data_xjlbyg)->map(function ($v){
+                $temp = $v;
+                unset($temp['id']);
+                unset($temp['project']);
+                $v['hj'] =collect($temp)->values()->sum();
+                return $v;
+            })->values()->all();
+            return $data_xjlbyg;
+        }
+
+        if($table_name == 'xjlbsj'){
+            $data_xjlbsj = Xjlbsj::all()->toArray();
+            $data_xjlbsj = collect($data_xjlbsj)->map(function ($v){
+                $v['hj'] = $v['fee_kg'] + $v['fee_ct'];
+                return $v;
+            })->values()->all();
+            return $data_xjlbsj;
         }
 
         $class = 'App\Models\PCompanyCheck\\' . ucfirst($table_name);;
