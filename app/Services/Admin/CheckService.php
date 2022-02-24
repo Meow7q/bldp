@@ -420,10 +420,11 @@ class CheckService
                 ['clf', '管理费用-差旅费`'], ['qtywcb', '其他业务成本'], ['kgqt', '其他']];
             $field_arr2 = [['ggsjf', '管理费用-广告设计费'], ['sds', '所得税费用'], ['ctqt', '其他']];
             $lnzc_data = [];
-            $data1 = $this->lnzcData($field_arr1);
-            $data2 = $this->lnzcData($field_arr2);
+            [$hj1, $data1] = $this->lnzcData($field_arr1);
+            [$hj2, $data2] = $this->lnzcData($field_arr2);
             array_push($lnzc_data, $data1);
             array_push($lnzc_data, $data2);
+            array_push($lnzc_data, ['hj' => $hj1 +$hj2]);
             return $lnzc_data;
         }
 
@@ -499,7 +500,8 @@ class CheckService
             $ysjlcb_hj_d = collect($data_ysjlcb)->sum('fee_d');
             $ysjlcb_hj_e = collect($data_ysjlcb)->sum('fee_e');
             $ysjlcb_hj_f = collect($data_ysjlcb)->sum('fee_f');
-            array_push($data_ysjlcb, ['name' => '合计', 'fee_d' => $ysjlcb_hj_d, 'fee_e' => $ysjlcb_hj_e, 'fee_f' => $ysjlcb_hj_f]);            $data_ysjlcb = collect($data_ysjlcb)->map(function ($v) {
+            array_push($data_ysjlcb, ['name' => '合计', 'fee_d' => $ysjlcb_hj_d, 'fee_e' => $ysjlcb_hj_e, 'fee_f' => $ysjlcb_hj_f]);
+            $data_ysjlcb = collect($data_ysjlcb)->map(function ($v) {
                 $v['de'] = (round($v['fee_d'] / $v['fee_e'], 4) * 100) . '%';
                 $v['df'] = (round($v['fee_d'] / $v['fee_f'], 4) * 100) . '%';
                 return $v;
@@ -567,7 +569,15 @@ class CheckService
             ];
             array_push($data, $data_temp1);
         }
-        return $data;
+        $hj = 0;
+        $data = collect($data)->map(function ($v) use (&$hj){
+            $fee_tatal = collect($v['data'])->sum('fee');
+            $hj += $fee_tatal;
+            array_push($v['data'], ['year' => 'hj', 'fee' => $fee_tatal]);
+            return $v;
+        })->values()->all();
+
+        return [$hj, $data];
     }
 
 
