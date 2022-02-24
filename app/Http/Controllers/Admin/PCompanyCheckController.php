@@ -16,9 +16,13 @@ class PCompanyCheckController extends Controller
 {
     protected $service;
 
-    public function __construct(CheckService $service)
+    protected $data_service;
+
+    public function __construct(CheckService $service, PCompanyDataStaticsService $data_service)
     {
         $this->service = $service;
+
+        $this->data_service = $data_service;
     }
 
     /**
@@ -74,15 +78,7 @@ class PCompanyCheckController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
     public function statisticsLnzcxq(Request $request){
-        $fee_kg = Lnzc::select(DB::raw("SUM(yxwzc)+SUM(cwfy)+SUM(gz)+SUM(pgzxf)+SUM(zj)+SUM(bgf)+SUM(ywzdf)+SUM(clf)+SUM(qtywcb)+SUM(kgqt) as fee"))
-            ->first();
-        $fee_ct = Lnzc::select(DB::raw("SUM(ggsjf)+SUM(sds)+SUM(ctqt) as fee"))
-            ->first();
-        $data = [
-            'fee_kg' => $fee_kg->fee,
-            'fee_ct' => $fee_ct->fee,
-            'fee_total' => $fee_kg->fee + $fee_ct->fee,
-        ];
+        $data = $this->data_service->statisticsLnzcxq();
         return $this->success($data);
     }
 

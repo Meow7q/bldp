@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Http\Controllers\Admin\PCompanyDataStaticsService;
 use App\Services\ExcelService;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -41,7 +42,8 @@ class Test extends Command
     public function handle()
     {
         //
-        Log::channel('test')->info(time());
-        (new ExcelService())->import(4, 2020, 12, '/static/2020-12.xlsx');
+        //Log::channel('test')->info(time());
+       // (new ExcelService())->import(4, 2020, 12, '/static/2020-12.xlsx');
+        (new PCompanyDataStaticsService())->saveToWord();
     }
 }
