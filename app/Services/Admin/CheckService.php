@@ -507,19 +507,22 @@ class CheckService
                 ]);
             }
         })->values()->all();
-        $field_arr = collect($field_arr)->map(function ($v) {
-            $total = Srhz::sum($v['key']);
-            array_push($v['data'], ['fee' => $total, 'year' => 'hj']);
-            return $v;
-        })->values()->all();
         //累计
         $field_lj = collect($data)->map(function ($v) {
             return [
                 'fee' => $v['dbfdw'] + $v['lx'] + $v['glf'] + $v['fh'] + $v['tzly'] + $v['ssjl'] + $v['gpdx'] + $v['zj'],
                 'year' => $v['year'],
             ];
-        });
+        })->values()->all();
         array_push($field_arr, ['key' => 'lj', 'name' => '累计', 'data' => $field_lj]);
+
+        //横的合计
+        $field_arr = collect($field_arr)->map(function ($v) {
+            $total = collect($v['data'])->sum('fee');
+            array_push($v['data'], ['fee' => $total, 'year' => 'hj']);
+            return $v;
+        })->values()->all();
+
         return $field_arr;
     }
 
