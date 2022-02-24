@@ -572,14 +572,16 @@ class CheckService
                 "yfhhysj" => 0,
                 "tzhbl" => 0,
             ];
-            collect($data_dwtzqk)->map(function ($v) use(&$dwtzqk_hj) {
+            $data_dwtzqk = collect($data_dwtzqk)->map(function ($v) use(&$dwtzqk_hj) {
                 foreach ($v as $k1 => $v1){
                     if($k1 == 'unit'){
                         continue;
                     }
                     $dwtzqk_hj[$k1] += $v1;
                 }
-            });
+                $v['hj'] = $v['gqbj'] + $v['ysgx']+ $v['zq']+ $v['yszx']+ $v['lcsy'];
+                return $v;
+            })->values()->all();
             array_push($data_dwtzqk, $dwtzqk_hj);
             return $data_dwtzqk;
         }
