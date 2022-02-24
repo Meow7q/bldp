@@ -78,8 +78,8 @@ class PCompanyCheckController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
     public function statisticsData(){
-        $data = $this->data_service->statisticsKjbbqk();
-        return $this->success($data);
+        $data = $this->data_service->statisticsYsqk();
+//        return $this->success($data);
     }
 
 }

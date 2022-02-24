@@ -460,6 +460,7 @@ class CheckService
                 }
             });
             array_push($fhmx_data, $fhmx_xj);
+            $fhmx_data = collect($fhmx_data)->sortByDesc('unit')->values()->all();
             array_push($fhmx_data, $fhmx_hj);
             return $fhmx_data;
         }

@@ -4,8 +4,10 @@
 namespace App\Services\Admin;
 
 
+use App\Models\PCompanyCheck\Fhmx;
 use App\Models\PCompanyCheck\Kjbb;
 use App\Models\PCompanyCheck\Lnzc;
+use App\Models\PCompanyCheck\Srhz;
 use App\Models\PCompanyCheck\Zbqk;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -50,7 +52,6 @@ class PCompanyDatastaticsService
 
     /**
      * 历年资产详情
-     * @return array
      */
     public function statisticsLnzcxq()
     {
@@ -64,12 +65,10 @@ class PCompanyDatastaticsService
             'fee_total' => $fee_kg->fee + $fee_ct->fee,
         ];
         $this->saveDocx($data);
-        return $data;
     }
 
     /**
      * 资本情况
-     * @return array[]
      */
     public function statisticsZbqk()
     {
@@ -114,7 +113,6 @@ class PCompanyDatastaticsService
             'fee_ct_xczc' => $fee_ct_xczc->fee,
         ];
         $this->saveDocx($data);
-        return $data;
     }
 
     /**
@@ -133,8 +131,81 @@ class PCompanyDatastaticsService
         $fee_kg_kjyl = $fee_kg_gxsr - $fee_kg_gxzc;
         $fee_ct_kjyl = $fee_ct_gxsr - $fee_ct_gxzc;
 
-        //管理费用
-//        $fee_kg_glfy = ;
-        $this->saveDocx();
+        //管理费用(控股)
+        $fee_kg = Kjbb::where('type', '控股')->where('year', 2022)->first();
+        $fee_kg_glfy = $fee_kg->glfy;
+        $fee_kg_dnjlr = $fee_kg->dnjlr;
+
+        //城投
+        $fee_ct = Kjbb::where('type', '城投')->where('year', 2022)->first();
+        //当年净利润
+        $fee_ct_dnjlr = $fee_ct->dnjlr;
+        //投资收益
+        $fee_ct_tzss = $fee_ct->tzss;
+        //财务指标
+        $fee_ct_cwfy = $fee_ct->cwfy;
+        //会计亏损
+        $fee_kjks = $fee_ct_dnjlr + $fee_kg_dnjlr;
+
+        $this->saveDocx([
+            'fee_kg_kjyl' => $fee_kg_kjyl,
+            'fee_kg_gxsr' => $fee_kg_gxsr,
+            'fee_kg_gxzc' => $fee_kg_gxzc,
+            'fee_kg_glfy' => $fee_kg_glfy,
+
+            'fee_ct_kjyl' => $fee_ct_kjyl,
+            'fee_ct_tzss' => $fee_ct_tzss,
+            'fee_ct_cwfy' => $fee_ct_cwfy,
+            'fee_kjks' => $fee_kjks,
+        ]);
+    }
+
+    /**
+     * 收入情况
+     */
+    public function statisticsSrqk(){
+        //控股及城投收入合计
+        $fee_srqk_srhj = Srhz::selectRaw('SUM(dbfdw)+SUM(zj) as fee')->where('year', 2022)->first()->fee;
+
+        //投资收益
+        $fee_srqk_tzss = Srhz::selectRaw('SUM(zj) as fee')->where('year', 2022)->first()->fee;
+
+        //借款利息
+        $fee_srqk_jklx = Srhz::selectRaw('SUM(lx) as fee')->where('year', 2022)->first()->fee;
+
+        //担保费
+        $fee_srqk_dbf = Srhz::selectRaw('SUM(dbfdw) as fee')->where('year', 2022)->first()->fee;
+
+        //分红
+        $fee_srqk_fh = Srhz::selectRaw('SUM(fh) as fee')->where('year', 2022)->first()->fee;
+
+        $this->saveDocx([
+            'fee_srqk_srhj' => $fee_srqk_srhj,
+            'fee_srqk_tzss' => $fee_srqk_tzss,
+            'fee_srqk_jklx' => $fee_srqk_jklx,
+            'fee_srqk_dbf' => $fee_srqk_dbf,
+            'fee_srqk_fh' => $fee_srqk_fh,
+        ]);
+    }
+
+    /**
+     * 分红情况
+     */
+    public function statisticsFhqk(){
+        $fee_fhqk_kgfh = Fhmx::selectRaw("SUM(fee) as fee")->where('year', 2022)->whereIn('company', ['中南装饰', '中南控股集团（上海）资产管理有限公司'])->first()->fee;
+        $fee_fhqk_ctfh = Fhmx::select(['fee'])->where('year', 2022)->where('company', '江苏中南建设集团有限公司')->first()->fee;
+        $this->saveDocx([
+            'fee_fhqk_kgfh' => $fee_fhqk_kgfh,
+            'fee_fhqk_ctfh' => $fee_fhqk_ctfh,
+        ]);
+    }
+
+    public function statisticsYsqk(){
+        //各部门预算数31
+//        $fee_ysqk_gbmyss =
+//        //实际发生数32
+//        $fee_ysqk_sjfss =
+//        //执行率33
+//        $fee_ysqk_sxl =
     }
 }
