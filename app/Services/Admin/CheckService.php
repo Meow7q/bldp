@@ -434,27 +434,27 @@ class CheckService
             $fhmx_hj = [
                 "unit" => '',
                 "company" => "合计",
-                "2022" =>  0,
-                "2021" =>  0,
-                "2020" =>  0,
-                "2019" =>  0,
-                "2018" =>  0,
-                "2017" =>  0,
-                "2016" =>  0,
-                "2015" =>  0,
-                "2014" =>  0,
+                "2022" => 0,
+                "2021" => 0,
+                "2020" => 0,
+                "2019" => 0,
+                "2018" => 0,
+                "2017" => 0,
+                "2016" => 0,
+                "2015" => 0,
+                "2014" => 0,
                 "2013" => 0,
-                "hz" =>  0,
+                "hz" => 0,
                 "remark" => ''
             ];
             collect($fhmx_data)->map(function ($v) use (&$fhmx_xj, &$fhmx_hj) {
-                foreach ($v as $k1 => $v1){
-                    if($v['unit'] == '中南控股') {
-                        if(($k1 != 'remark') && ($k1 != 'company') && ($k1 != 'unit') ){
+                foreach ($v as $k1 => $v1) {
+                    if ($v['unit'] == '中南控股') {
+                        if (($k1 != 'remark') && ($k1 != 'company') && ($k1 != 'unit')) {
                             $fhmx_xj[$k1] += $v1;
                         }
                     }
-                    if(($k1 != 'remark') && ($k1 != 'company') && ($k1 != 'unit') ){
+                    if (($k1 != 'remark') && ($k1 != 'company') && ($k1 != 'unit')) {
                         $fhmx_hj[$k1] += $v1;
                     }
                 }
@@ -557,6 +557,31 @@ class CheckService
                 return $v;
             })->values()->all();
             return $data_ysjlcb;
+        }
+
+        if ($table_name == 'dwtzqk') {
+            $data_dwtzqk = Dwtzqk::all()->toArray();
+            $dwtzqk_hj = [
+                "unit" => "合计",
+                "gqbj" => 0,
+                "ysgx" => 0,
+                "zq" => 0,
+                "yszx" => 0,
+                "lcsy" =>0,
+                "gxzj" => 0,
+                "yfhhysj" => 0,
+                "tzhbl" => 0,
+            ];
+            collect($data_dwtzqk)->map(function ($v) use(&$dwtzqk_hj) {
+                foreach ($v as $k1 => $v1){
+                    if($k1 == 'unit'){
+                        continue;
+                    }
+                    $dwtzqk_hj[$k1] += $v1;
+                }
+            });
+            array_push($data_dwtzqk, $dwtzqk_hj);
+            return $data_dwtzqk;
         }
 
         $class = 'App\Models\PCompanyCheck\\' . ucfirst($table_name);;
