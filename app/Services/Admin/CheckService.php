@@ -600,10 +600,10 @@ class CheckService
                     'name' => $v[1],
                     '控股2022' => $data[0],
                     '控股2021' => $data[1],
-                    '城投同比' => (round(($data[0] - $data[1]) / $data[1], 2) * 100) . '%',
+                    '城投同比' => $data[1]?(round(($data[0] - $data[1]) / $data[1], 2) * 100) . '%':0,
                     '城投2022' => $data[2],
                     '城投2021' => $data[3],
-                    '控股同比' => (round(($data[2] - $data[3]) / $data[3], 2) * 100) . '%',
+                    '控股同比' => $data[3]?(round(($data[2] - $data[3]) / $data[3], 2) * 100) . '%':0,
                 ];
             })->values()->all();
             return $kjbb_data;
