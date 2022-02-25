@@ -19,7 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e08bbc1-bad0-47d5-9c0a-6d50afee08ce" name="Default Changelist" comment="" />
+    <list default="true" id="3e08bbc1-bad0-47d5-9c0a-6d50afee08ce" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/auth.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -184,18 +187,18 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/public/static/template" />
-      <recent name="$PROJECT_DIR$/database/migrations/mgsjdb" />
-      <recent name="$PROJECT_DIR$/database/migrations/api" />
-      <recent name="$PROJECT_DIR$/public/static" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/public/static/template" />
       <recent name="$PROJECT_DIR$/routes" />
       <recent name="$PROJECT_DIR$/public/static" />
       <recent name="$PROJECT_DIR$/app" />
       <recent name="$PROJECT_DIR$/database/migrations" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/database/migrations/mgsjdb" />
+      <recent name="$PROJECT_DIR$/public/static/template" />
+      <recent name="$PROJECT_DIR$/database/migrations/api" />
+      <recent name="$PROJECT_DIR$/public/static" />
     </key>
   </component>
   <component name="RunManager">
@@ -248,7 +251,7 @@
       <workItem from="1645493384944" duration="43017000" />
       <workItem from="1645632940513" duration="1039000" />
       <workItem from="1645666691269" duration="29739000" />
-      <workItem from="1645753383850" duration="8188000" />
+      <workItem from="1645753383850" duration="8888000" />
     </task>
     <servers />
   </component>
@@ -268,15 +271,15 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="458" y="210" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1645724818308">
-      <screen x="0" y="23" width="1440" height="795" />
+    <state x="458" y="212" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1645771292800">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="458" y="212" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.900@0.0.1440.900" timestamp="1645433074814" />
+    <state x="458" y="212" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.900@0.0.1440.900" timestamp="1645771292800" />
     <state x="458" y="210" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.795@0.23.1440.795" timestamp="1645724818308" />
-    <state x="892" y="182" key="NewPhpClassDialog" timestamp="1645668704377">
-      <screen x="0" y="23" width="1440" height="795" />
+    <state x="227" y="172" key="NewPhpClassDialog" timestamp="1645771218276">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="227" y="172" key="NewPhpClassDialog/0.0.1440.900@0.0.1440.900" timestamp="1645521241694" />
+    <state x="227" y="172" key="NewPhpClassDialog/0.0.1440.900@0.0.1440.900" timestamp="1645771218276" />
     <state x="892" y="182" key="NewPhpClassDialog/0.23.1440.795@0.23.1440.795" timestamp="1645668704377" />
     <state x="450" y="153" width="549" height="593" key="StructurePopup" timestamp="1645768287579">
       <screen x="0" y="0" width="1440" height="900" />
@@ -284,10 +287,10 @@
     <state x="450" y="153" width="549" height="593" key="StructurePopup/0.0.1440.900@0.0.1440.900" timestamp="1645768287579" />
     <state x="450" y="158" width="549" height="523" key="StructurePopup/0.23.1440.795@0.23.1440.795" timestamp="1645683622291" />
     <state x="450" y="159" width="549" height="524" key="StructurePopup/0.23.1440.798@0.23.1440.798" timestamp="1645610242593" />
-    <state width="520" height="400" key="SwitcherDM" timestamp="1645724842861">
-      <screen x="0" y="23" width="1440" height="795" />
+    <state width="520" height="445" key="SwitcherDM" timestamp="1645771324183">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="520" height="445" key="SwitcherDM/0.0.1440.900@0.0.1440.900" timestamp="1645581294963" />
+    <state width="520" height="445" key="SwitcherDM/0.0.1440.900@0.0.1440.900" timestamp="1645771324183" />
     <state width="520" height="400" key="SwitcherDM/0.23.1440.795@0.23.1440.795" timestamp="1645724842861" />
     <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1645614592131">
       <screen x="0" y="23" width="1440" height="795" />
