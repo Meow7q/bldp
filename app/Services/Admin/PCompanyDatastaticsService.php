@@ -302,20 +302,20 @@ class PCompanyDatastaticsService
 
         //资金缺口50
         $fee_xjlqkyj_zjqk = $qmxjye_hj/10000;
-
-        $this->saveDocx([
-            'fee_xjlqk_mgsxjljc' => $fee_xjlqk_mgsxjljc,
-            'fee_xjlqk_jyxjljc' => $fee_xjlqk_jyxjljc,
-            'fee_xjlqk_rzjlc' => $fee_xjlqk_rzjlc,
-            'fee_xjlqk_tzjlc' => $fee_xjlqk_tzjlc,
-            'fee_xjlqk_hbzjye' => $fee_xjlqk_hbzjye,
+        $data =[
+            'fee_xjlqk_mgsxjljc' => $fee_xjlqk_mgsxjljc/10000,
+            'fee_xjlqk_jyxjljc' => $fee_xjlqk_jyxjljc/10000,
+            'fee_xjlqk_rzjlc' => $fee_xjlqk_rzjlc/10000,
+            'fee_xjlqk_tzjlc' => $fee_xjlqk_tzjlc/10000,
+            'fee_xjlqk_hbzjye' => $fee_xjlqk_hbzjye/10000,
 
             'fee_xjlqkyj_kgxjjlc' => $fee_xjlqkyj_kgxjjlc,
             'fee_xjlqkyj_xjjlc' => $fee_xjlqkyj_xjjlc,
             'fee_xjlqkyj_rzjlc' => $fee_xjlqkyj_rzjlc,
             'fee_xjlqkyj_tzjlc' => $fee_xjlqkyj_tzjlc,
             'fee_xjlqkyj_zjqk' => $fee_xjlqkyj_zjqk,
-        ]);
+        ];
+        $this->saveDocx($data);
     }
 
     public function updateText($data){
