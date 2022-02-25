@@ -420,7 +420,7 @@ class CheckService
                 $fee_12 = array_shift($line);
                 Xjlbyg::create([
                     'project' => $project,
-                    'fee_1' => is_numeric($fee_1)?fee_1:0,
+                    'fee_1' => is_numeric($fee_1)?$fee_1:0,
                     'fee_2' => is_numeric($fee_2)?$fee_2:0,
                     'fee_3' => is_numeric($fee_3)?$fee_3:0,
                     'fee_4' => is_numeric($fee_4)?$fee_4:0,

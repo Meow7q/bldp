@@ -15,9 +15,10 @@ use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 class AuthController extends Controller
 {
     public function auth(Request $request){
-        $validated = $this->validate($request, ['staffcode' => 'required']);
-        $user = User::where('staffcode', $validated['staffcode'])
-            ->select(['id', 'staffcode', 'avatar', 'nickname', 'permission'])
+        $validated = $this->validate($request, ['username' => 'required', 'password' => 'required']);
+        $user = User::where('username', $validated['username'])
+            ->where('password', $validated['password'])
+            ->select(['*'])
             ->first();
         if(!$user){
             throw new UnauthorizedHttpException('未授权！');

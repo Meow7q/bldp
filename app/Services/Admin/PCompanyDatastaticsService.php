@@ -65,9 +65,9 @@ class PCompanyDatastaticsService
         $fee_ct = Lnzc::select(DB::raw("SUM(ggsjf)+SUM(sds)+SUM(ctqt) as fee"))
             ->first();
         $data = [
-            'fee_kg' => $fee_kg->fee,
-            'fee_ct' => $fee_ct->fee,
-            'fee_total' => $fee_kg->fee + $fee_ct->fee,
+            'fee_kg' => $fee_kg->fee/10000,
+            'fee_ct' => $fee_ct->fee/10000,
+            'fee_total' => bcadd($fee_kg->fee, $fee_ct->fee)/10000,
         ];
         $this->saveDocx($data);
     }
