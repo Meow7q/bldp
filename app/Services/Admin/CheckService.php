@@ -102,7 +102,7 @@ class CheckService
                 $this->data_service->statisticsXjlqk();
                 break;
             case 'xjlbyg':
-                if($line_count != 19){
+                if($line_count != 20){
                     throw new \Exception('模版错误');
                 }
                 $this->xjlbyg($collection);
@@ -437,6 +437,7 @@ class CheckService
             Xjlbyg::truncate();
             foreach ($data as $k1 => $line) {
                 $project = array_shift($line);
+                $hj = array_shift($line);
                 $fee_1 = array_shift($line);
                 $fee_2 = array_shift($line);
                 $fee_3 = array_shift($line);
@@ -451,6 +452,7 @@ class CheckService
                 $fee_12 = array_shift($line);
                 Xjlbyg::create([
                     'project' => $project,
+                    'hj' => $hj,
                     'fee_1' => is_numeric($fee_1)?$fee_1:0,
                     'fee_2' => is_numeric($fee_2)?$fee_2:0,
                     'fee_3' => is_numeric($fee_3)?$fee_3:0,
@@ -672,13 +674,6 @@ class CheckService
 
         if ($table_name == 'xjlbyg') {
             $data_xjlbyg = Xjlbyg::all()->toArray();
-            $data_xjlbyg = collect($data_xjlbyg)->map(function ($v) {
-                $temp = $v;
-                unset($temp['id']);
-                unset($temp['project']);
-                $v['hj'] = collect($temp)->values()->sum();
-                return $v;
-            })->values()->all();
             return $data_xjlbyg;
         }
 
