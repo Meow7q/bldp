@@ -41,7 +41,7 @@ class Test extends Command
         //
         //Log::channel('test')->info(time());
        // (new ExcelService())->import(4, 2020, 12, '/static/2020-12.xlsx');
-        dd(is_numeric('-'));
+        dd(0-1);
         (new PCompanyDatastaticsService())->saveToWord();
     }
 }

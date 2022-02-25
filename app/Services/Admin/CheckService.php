@@ -654,7 +654,7 @@ class CheckService
         if ($table_name == 'xjlbsj') {
             $data_xjlbsj = Xjlbsj::all()->toArray();
             $data_xjlbsj = collect($data_xjlbsj)->map(function ($v) {
-                $v['hj'] = bcadd($v['fee_kg'] , $v['fee_ct']);
+                $v['hj'] = $v['fee_kg'] + $v['fee_ct'];
                 return $v;
             })->values()->all();
             return $data_xjlbsj;
@@ -663,7 +663,7 @@ class CheckService
         if ($table_name == 'zbqk') {
             $data_zbqk = Zbqk::all()->toArray();
             $data_zbqk = collect($data_zbqk)->map(function ($v) {
-                $v['xj'] = bcadd(bcadd($v['zyzj'],$v['cqgqtz']), $v['gdzc']);
+                $v['xj'] = $v['zyzj']+$v['cqgqtz']+$v['gdzc'];
                 return $v;
             })->values()->all();
             return $data_zbqk;
