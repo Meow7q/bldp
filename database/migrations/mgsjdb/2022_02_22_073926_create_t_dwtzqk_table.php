@@ -21,6 +21,7 @@ class CreateTDwtzqkTable extends Migration
             $table->string('zq')->nullable()->comment('债券');
             $table->string('yszx')->nullable()->comment('应收债息');
             $table->string('lcsy')->nullable()->comment('留存收益');
+            $table->string('hj')->nullable()->comment('合计');
             $table->string('gxzj')->nullable()->comment('贡献资金');
             $table->string('yfhhysj')->nullable()->comment('已分红或已上交');
             $table->string('tzhbl')->nullable()->comment('投资回报率(年化)');

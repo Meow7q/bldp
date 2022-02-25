@@ -382,6 +382,7 @@ class CheckService
                 $zq = array_shift($line);
                 $yszx = array_shift($line);
                 $lcsy = array_shift($line);
+                $hj = array_shift($line);
                 $gxzj = array_shift($line);
                 $yfhhysj = array_shift($line);
                 $tzhbl = array_shift($line);
@@ -392,6 +393,7 @@ class CheckService
                     'zq' => is_numeric($zq) ? $zq : 0,
                     'yszx' => is_numeric($yszx) ? $yszx : 0,
                     'lcsy' => is_numeric($lcsy) ? $lcsy : 0,
+                    'hj' => is_numeric($hj) ? $hj : 0,
                     'gxzj' => is_numeric($gxzj) ? $gxzj : 0,
                     'yfhhysj' => is_numeric($yfhhysj) ? $yfhhysj : 0,
                     'tzhbl' => is_numeric($tzhbl) ? $tzhbl : 0,
