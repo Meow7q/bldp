@@ -376,6 +376,9 @@ class CheckService
             DB::beginTransaction();
             Dwtzqk::truncate();
             foreach ($data as $k1 => $line) {
+                if($k1 == 0){
+                    continue;
+                }
                 $unit = array_shift($line);
                 $gqbj = array_shift($line);
                 $ysgx = array_shift($line);
@@ -657,30 +660,6 @@ class CheckService
 
         if ($table_name == 'dwtzqk') {
             $data_dwtzqk = Dwtzqk::all()->toArray();
-            $dwtzqk_hj = [
-                "unit" => "合计",
-                "gqbj" => 0,
-                "ysgx" => 0,
-                "zq" => 0,
-                "yszx" => 0,
-                "lcsy" => 0,
-                "gxzj" => 0,
-                "yfhhysj" => 0,
-                "tzhbl" => 0,
-                'hj' => 0,
-            ];
-            $data_dwtzqk = collect($data_dwtzqk)->map(function ($v) use (&$dwtzqk_hj) {
-                foreach ($v as $k1 => $v1) {
-                    if ($k1 == 'unit') {
-                        continue;
-                    }
-                    $dwtzqk_hj[$k1] += $v1;
-                }
-                $v['hj'] = $v['gqbj'] + $v['ysgx'] + $v['zq'] + $v['yszx'] + $v['lcsy'];
-                $dwtzqk_hj['hj'] += $v['hj'];
-                return $v;
-            })->values()->all();
-            array_push($data_dwtzqk, $dwtzqk_hj);
             return $data_dwtzqk;
         }
 

@@ -20,13 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e08bbc1-bad0-47d5-9c0a-6d50afee08ce" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/public/static/template/母公司经营管理指标成果点检表.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/static/template/母公司经营管理指标成果点检表62188066226fb.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/static/template/母公司经营管理指标成果点检表62188af5319d1.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/static/template/母公司经营管理指标成果点检表621898535bf9e.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/static/template/母公司经营管理指标成果点检表62189bddc97d8.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/static/template/母公司经营管理指标成果点检表6218a5be9baef.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/static/template/母公司经营管理指标成果点检表6218a5c37de50.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/Admin/CheckService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Admin/CheckService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/template/dwtzqk.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/template/dwtzqk.xlsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -256,7 +252,7 @@
       <workItem from="1645493384944" duration="43017000" />
       <workItem from="1645632940513" duration="1039000" />
       <workItem from="1645666691269" duration="29739000" />
-      <workItem from="1645753383850" duration="16258000" />
+      <workItem from="1645753383850" duration="17026000" />
     </task>
     <servers />
   </component>
