@@ -281,27 +281,26 @@ class PCompanyDatastaticsService
         $fee_xjlqk_hbzjye = Xjlbsj::selectRaw("hj as fee")->where('name', '货币资金余额')->first()->fee;
 
 
-        //期出现金余额全年合计
-        $qcxjye_hj = Xjlbyg::where('project', '期初现金余额')->selectRaw("fee_1+fee_2+fee_3+fee_4+fee_5+fee_6+fee_7+fee_8+fee_9+fee_10+fee_11+fee_12 as fee")->first()->fee;
-        //期末现金余额
-        $qmxjye_hj = Xjlbyg::where('project', '期末现金余额(资金缺口）')->selectRaw("fee_1+fee_2+fee_3+fee_4+fee_5+fee_6+fee_7+fee_8+fee_9+fee_10+fee_11+fee_12 as fee")->first()->fee;
         //控股预计现金流流出46
-        $fee_xjlqkyj_kgxjjlc = bcsub($qmxjye_hj,$qcxjye_hj)/10000;
+        $fee_xjlqkyj_kgxjjlc = Xjlbyg::where('project', '现金净流出')->selectRaw("hj as fee")->first()->fee;
+        $fee_xjlqkyj_kgxjjlc = $fee_xjlqkyj_kgxjjlc/10000;
 
         //预计经营现金净流出47
-        $jyxjjlc = Xjlbyg::where('project', '一、经营现金净流入')->selectRaw("fee_1+fee_2+fee_3+fee_4+fee_5+fee_6+fee_7+fee_8+fee_9+fee_10+fee_11+fee_12 as fee")->first()->fee;
+        $jyxjjlc = Xjlbyg::where('project', '一、经营现金净流入')->selectRaw("hj as fee")->first()->fee;
         $fee_xjlqkyj_xjjlc = $jyxjjlc/10000;
 
         //预计融资净流出48
-        $rzjlc = Xjlbyg::where('project', '二、融资现金净流出')->selectRaw("fee_1+fee_2+fee_3+fee_4+fee_5+fee_6+fee_7+fee_8+fee_9+fee_10+fee_11+fee_12 as fee")->first()->fee;
+        $rzjlc = Xjlbyg::where('project', '二、融资现金净流出')->selectRaw("hj as fee")->first()->fee;
         $fee_xjlqkyj_rzjlc = $rzjlc/10000;
 
         //投资净流出49
-        $tzjlc = Xjlbyg::where('project', '三、投资现金净流出(新兴产业)')->selectRaw("fee_1+fee_2+fee_3+fee_4+fee_5+fee_6+fee_7+fee_8+fee_9+fee_10+fee_11+fee_12 as fee")->first()->fee;
+        $tzjlc = Xjlbyg::where('project', '三、投资现金净流出(新兴产业)')->selectRaw("hj as fee")->first()->fee;
         $fee_xjlqkyj_tzjlc = $tzjlc/10000;
 
         //资金缺口50
-        $fee_xjlqkyj_zjqk = $qmxjye_hj/10000;
+        $zjqk = Xjlbyg::where('project', '期末现金余额(资金缺口）')->selectRaw("hj as fee")->first()->fee;
+        $fee_xjlqkyj_zjqk = $zjqk/10000;
+
         $data =[
             'fee_xjlqk_mgsxjljc' => $fee_xjlqk_mgsxjljc/10000,
             'fee_xjlqk_jyxjljc' => $fee_xjlqk_jyxjljc/10000,
