@@ -315,7 +315,6 @@ class PCompanyDatastaticsService
             'fee_xjlqkyj_tzjlc' => $fee_xjlqkyj_tzjlc,
             'fee_xjlqkyj_zjqk' => $fee_xjlqkyj_zjqk,
         ];
-        dd($data);
         $this->saveDocx($data);
     }
 
