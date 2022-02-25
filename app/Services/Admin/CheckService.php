@@ -681,10 +681,6 @@ class CheckService
 
         if ($table_name == 'xjlbsj') {
             $data_xjlbsj = Xjlbsj::all()->toArray();
-            $data_xjlbsj = collect($data_xjlbsj)->map(function ($v) {
-                $v['hj'] = $v['fee_kg'] + $v['fee_ct'];
-                return $v;
-            })->values()->all();
             return $data_xjlbsj;
         }
 
