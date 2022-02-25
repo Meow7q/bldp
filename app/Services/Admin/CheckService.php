@@ -15,6 +15,7 @@ use App\Models\PCompanyCheck\Ysbmb;
 use App\Models\PCompanyCheck\Ysjlcb;
 use App\Models\PCompanyCheck\Zbqk;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 use Rap2hpoutre\FastExcel\FastExcel;
 
 class CheckService
@@ -413,7 +414,13 @@ class CheckService
         try {
             DB::beginTransaction();
             Xjlbsj::truncate();
+            $form_head = [];
             foreach ($data as $k1 => $line) {
+                if($k1 == 0){
+                    foreach ($line as $k2=>$v2){
+                        array_push($form_head, $k2);
+                    }
+                }
                 $name = array_shift($line);
                 $fee_kg = array_shift($line);
                 $fee_ct = array_shift($line);
@@ -425,6 +432,7 @@ class CheckService
                     'hj' => is_numeric($hj) ? $hj : 0,
                 ]);
             }
+            Redis::set('form_head_xjlbsj', json_encode($form_head));
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
@@ -681,7 +689,11 @@ class CheckService
 
         if ($table_name == 'xjlbsj') {
             $data_xjlbsj = Xjlbsj::all()->toArray();
-            return $data_xjlbsj;
+            $form_head  = json_decode(Redis::get('form_head_xjlbsj'), true);
+            return [
+                'form_head' => $form_head,
+                'data' => $data_xjlbsj
+            ];
         }
 
         if ($table_name == 'zbqk') {
