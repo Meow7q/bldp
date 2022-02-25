@@ -59,7 +59,11 @@ class PCompanyCheckController extends Controller
             md5(bcrypt(time().uniqid())).'.'.$ext,
             'public'
         );
-        $this->service->importExcel($path, $validated['table_name']);
+        try{
+            $this->service->importExcel($path, $validated['table_name']);
+        }catch (\Exception $e){
+            return $this->fail('模版错误');
+        }
         return $this->message('ok');
     }
 

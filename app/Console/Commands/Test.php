@@ -38,10 +38,10 @@ class Test extends Command
      */
     public function handle()
     {
+        dd(0.8345+(-1));
         //
         //Log::channel('test')->info(time());
        // (new ExcelService())->import(4, 2020, 12, '/static/2020-12.xlsx');
-        dd(0-1);
         (new PCompanyDatastaticsService())->saveToWord();
     }
 }

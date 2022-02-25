@@ -36,44 +36,75 @@ class CheckService
     public function importExcel($path, $table_name)
     {
         $collection = (new FastExcel())->import(public_path('upload/' . $path));
+        $line_count = count($collection);
         switch ($table_name) {
             case 'lnzc':
+                if($line_count != 13){
+                    throw new \Exception('模版错误');
+                }
                 $this->lnzc($collection);
                 $this->data_service->statisticsLnzcxq();
                 break;
             case 'zbqk':
+                if($line_count != 2){
+                    throw new \Exception('模版错误');
+                }
                 $this->zbqk($collection);
                 $this->data_service->statisticsZbqk();
                 break;
             case 'kjbb':
+                if($line_count != 12){
+                    throw new \Exception('模版错误');
+                }
                 $this->kjbb($collection);
                 $this->data_service->statisticsKjbbqk();
                 break;
             case 'srhz':
+                if($line_count != 16){
+                    throw new \Exception('模版错误');
+                }
                 $this->srhz($collection);
                 $this->data_service->statisticsSrqk();
                 break;
             case 'fhmx':
+                if($line_count != 8){
+                    throw new \Exception('模版错误');
+                }
                 $this->fhmx($collection);
                 $this->data_service->statisticsFhqk();
                 break;
             case 'ysbmb':
+                if($line_count != 19){
+                    throw new \Exception('模版错误');
+                }
                 $this->ysbmb($collection);
                 $this->data_service->statisticsBmysqk();
                 break;
             case 'ysjlcb':
+                if($line_count != 15){
+                    throw new \Exception('模版错误');
+                }
                 $this->ysjlcb($collection);
                 $this->data_service->statisticsJlcysqk();
                 break;
             case 'dwtzqk':
+                if($line_count != 10){
+                    throw new \Exception('模版错误');
+                }
                 $this->dwtzqk($collection);
                 $this->data_service->statisticsDwtzqk();
                 break;
             case 'xjlbsj':
+                if($line_count != 4){
+                    throw new \Exception('模版错误');
+                }
                 $this->xjlbsj($collection);
                 $this->data_service->statisticsXjlqk();
                 break;
             case 'xjlbyg':
+                if($line_count != 19){
+                    throw new \Exception('模版错误');
+                }
                 $this->xjlbyg($collection);
                 $this->data_service->statisticsXjlqk();
                 break;
