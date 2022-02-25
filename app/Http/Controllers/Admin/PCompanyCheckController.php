@@ -87,7 +87,7 @@ class PCompanyCheckController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
     public function statisticsData(){
-        $data = $this->data_service->getDataStatistics();
+        $data = $this->data_service->statisticsXjlqk();
         return $this->success($data);
     }
 

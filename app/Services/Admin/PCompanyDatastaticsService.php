@@ -270,15 +270,15 @@ class PCompanyDatastaticsService
      */
     public function statisticsXjlqk(){
         //母公司现金流净出41
-        $fee_xjlqk_mgsxjljc = Xjlbsj::selectRaw("SUM(fee_kg)+SUM(fee_ct)as fee")->where('name', '!=', '货币资金余额')->first()->fee;
+        $fee_xjlqk_mgsxjljc = Xjlbsj::selectRaw("hj as fee")->where('name', '合计')->first()->fee;
         //经营现金流净出42
-        $fee_xjlqk_jyxjljc = Xjlbsj::selectRaw("SUM(fee_kg)+SUM(fee_ct)as fee")->where('name', '经营活动产生的现金流量净额')->first()->fee;
+        $fee_xjlqk_jyxjljc = Xjlbsj::selectRaw("hj as fee")->where('name', '经营活动产生的现金流量净额')->first()->fee;
         //融资净流出43
-        $fee_xjlqk_rzjlc = Xjlbsj::selectRaw("SUM(fee_kg)+SUM(fee_ct)as fee")->where('name', '融资活动产生的现金流量净额')->first()->fee;
+        $fee_xjlqk_rzjlc = Xjlbsj::selectRaw("hj as fee")->where('name', '融资活动产生的现金流量净额')->first()->fee;
         //投资净流出44
-        $fee_xjlqk_tzjlc = Xjlbsj::selectRaw("SUM(fee_kg)+SUM(fee_ct)as fee")->where('name', '投资活动产生的现金流量净额')->first()->fee;
+        $fee_xjlqk_tzjlc = Xjlbsj::selectRaw("hj as fee")->where('name', '投资活动产生的现金流量净额')->first()->fee;
         //货币资金余额45
-        $fee_xjlqk_hbzjye = Xjlbsj::selectRaw("SUM(fee_kg)+SUM(fee_ct)as fee")->where('name', '货币资金余额')->first()->fee;
+        $fee_xjlqk_hbzjye = Xjlbsj::selectRaw("hj as fee")->where('name', '货币资金余额')->first()->fee;
 
 
         //期出现金余额全年合计
@@ -315,6 +315,7 @@ class PCompanyDatastaticsService
             'fee_xjlqkyj_tzjlc' => $fee_xjlqkyj_tzjlc,
             'fee_xjlqkyj_zjqk' => $fee_xjlqkyj_zjqk,
         ];
+        dd($data);
         $this->saveDocx($data);
     }
 

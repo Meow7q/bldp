@@ -19,6 +19,7 @@ Route::namespace('Admin')->group(function (){
 });
 
 Route::namespace('Admin')->middleware('auth.admin')->group(function (){
+//Route::namespace('Admin')->group(function (){
     Route::post('upload', 'UploadController@upload');
     Route::get('read', 'UploadController@read');
     Route::post('file/add', 'FileController@add');
