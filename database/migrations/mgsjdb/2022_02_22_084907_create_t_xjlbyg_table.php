@@ -28,6 +28,7 @@ class CreateTXjlbygTable extends Migration
             $table->string('fee_10')->nullable()->comment('');
             $table->string('fee_11')->nullable()->comment('');
             $table->string('fee_12')->nullable()->comment('');
+            $table->string('hj')->nullable()->comment('合计');
             $table->timestamps();
         });
     }
