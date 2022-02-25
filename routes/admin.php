@@ -29,5 +29,6 @@ Route::namespace('Admin')->group(function (){
     Route::post('pcheck/import', 'PCompanyCheckController@import');
     Route::get('pcheck/show', 'PCompanyCheckController@show');
     Route::get('pcheck/dataStatistics', 'PCompanyCheckController@statisticsData');
+    Route::post('pcheck/text', 'PCompanyCheckController@updateText');
 
 });

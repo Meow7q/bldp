@@ -19,6 +19,13 @@ use Rap2hpoutre\FastExcel\FastExcel;
 
 class CheckService
 {
+    protected $data_service;
+
+    public function __construct(PCompanyDatastaticsService $data_service)
+    {
+        $this->data_service = $data_service;
+    }
+
     /**
      * @param $path
      * @param $table_name
@@ -32,33 +39,43 @@ class CheckService
         switch ($table_name) {
             case 'lnzc':
                 $this->lnzc($collection);
+                $this->data_service->statisticsLnzcxq();
                 break;
             case 'zbqk':
                 $this->zbqk($collection);
+                $this->data_service->statisticsZbqk();
                 break;
             case 'kjbb':
                 $this->kjbb($collection);
+                $this->data_service->statisticsKjbbqk();
                 break;
             case 'srhz':
                 $this->srhz($collection);
+                $this->data_service->statisticsSrqk();
                 break;
             case 'fhmx':
                 $this->fhmx($collection);
+                $this->data_service->statisticsFhqk();
                 break;
             case 'ysbmb':
                 $this->ysbmb($collection);
+                $this->data_service->statisticsBmysqk();
                 break;
             case 'ysjlcb':
                 $this->ysjlcb($collection);
+                $this->data_service->statisticsJlcysqk();
                 break;
             case 'dwtzqk':
                 $this->dwtzqk($collection);
+                $this->data_service->statisticsDwtzqk();
                 break;
             case 'xjlbsj':
                 $this->xjlbsj($collection);
+                $this->data_service->statisticsXjlqk();
                 break;
             case 'xjlbyg':
                 $this->xjlbyg($collection);
+                $this->data_service->statisticsXjlqk();
                 break;
         }
         TableList::updateOrCreate(['table_name' => $table_name], [

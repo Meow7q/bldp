@@ -12,6 +12,7 @@ use App\Services\Admin\CheckService;
 use App\Services\Admin\PCompanyDatastaticsService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 
 class PCompanyCheckController extends Controller
 {
@@ -78,8 +79,19 @@ class PCompanyCheckController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
     public function statisticsData(){
-        $data = $this->data_service->statisticsYsqk();
-//        return $this->success($data);
+        $data = $this->data_service->getDataStatistics();
+        return $this->success($data);
+    }
+
+    /**
+     * 更新数据
+     * @param Request $request
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function updateText(Request $request){
+        $validated = $this->validate($request, ['text_arr' => 'required']);
+        $this->data_service->updateText($validated['text_arr']);
+        return $this->message('ok');
     }
 
 }
