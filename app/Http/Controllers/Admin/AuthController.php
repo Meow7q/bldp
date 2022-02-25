@@ -25,7 +25,7 @@ class AuthController extends Controller
         }
         $token = auth('backend')->login($user);
         return $this->success([
-            'userinfo' => $user->toArray(),
+            'uid' => $user->id,
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth('backend')->factory()->getTTL() * 60

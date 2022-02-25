@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AuthAdmin;
 use App\Http\Middleware\AuthMini;
 use App\Http\Middleware\EnableCrossRequestMiddleware;
 use App\Http\Middleware\JwtCustomAuth;
@@ -67,6 +68,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'auth.mini' => AuthMini::class,
         'jwt.cauth' => JwtCustomAuth::class,
+        'auth.admin' => AuthAdmin::class,
     ];
 
     /**

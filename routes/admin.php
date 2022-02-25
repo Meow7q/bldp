@@ -18,8 +18,7 @@ Route::namespace('Admin')->group(function (){
     Route::get('vefiry_code', 'AuthController@createVerifyCode');
 });
 
-Route::namespace('Admin')->group(function (){
-//Route::namespace('Admin')->middleware('jwt.cauth')->group(function (){
+Route::namespace('Admin')->middleware('auth.admin')->group(function (){
     Route::post('upload', 'UploadController@upload');
     Route::get('read', 'UploadController@read');
     Route::post('file/add', 'FileController@add');
