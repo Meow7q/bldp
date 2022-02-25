@@ -133,7 +133,7 @@ class CheckService
                 $year = str_replace('年', '', $k);
                 Lnzc::updateOrCreate(['year' => $year], [
                     'year' => $year,
-                    $filed_name => empty($v) ? 0 : $v
+                    $filed_name => is_numeric($v) ? 0 : $v
                 ]);
             }
         }
@@ -156,15 +156,15 @@ class CheckService
                 $line = array_values($line);
                 Zbqk::updateOrCreate(['type' => $line[0]], [
                     'type' => $line[0],
-                    'rzbj' => $line[1],
-                    'rzpjcb' => $line[2],
-                    'zycyzj' => $line[3],
-                    'hjtr' => $line[4],
-                    'lnfyzc' => $line[5],
-                    'zyzj' => $line[6],
-                    'cqgqtz' => $line[7],
-                    'gdzc' => $line[8],
-                    'zmjzc' => $line[9],
+                    'rzbj' => is_numeric($line[1]) ? $line[1] : 0,
+                    'rzpjcb' => is_numeric($line[2]) ? $line[2] : 0,
+                    'zycyzj' => is_numeric($line[3]) ? $line[3] : 0,
+                    'hjtr' => is_numeric($line[4]) ? $line[4] : 0,
+                    'lnfyzc' => is_numeric($line[5]) ? $line[5] : 0,
+                    'zyzj' => is_numeric($line[6]) ? $line[6] : 0,
+                    'cqgqtz' => is_numeric($line[7]) ? $line[7] : 0,
+                    'gdzc' => is_numeric($line[8]) ? $line[8] : 0,
+                    'zmjzc' => is_numeric($line[9]) ? $line[9] : 0,
                 ]);
             }
             DB::commit();
@@ -198,7 +198,7 @@ class CheckService
                     Kjbb::updateOrCreate(['year' => $year, 'type' => $type], [
                         'year' => $year,
                         'type' => $type,
-                        $field_arr[$k1] => $v
+                        $field_arr[$k1] => is_numeric($v) ? $v : 0
                     ]);
                 }
             }
@@ -232,7 +232,7 @@ class CheckService
                     Srhz::updateOrCreate(['year' => $year, 'type' => $type], [
                         'type' => $type,
                         'year' => $year,
-                        $field_arr[$k1] => $v
+                        $field_arr[$k1] => is_numeric($v) ? $v : 0
                     ]);
                 }
             }
@@ -262,7 +262,7 @@ class CheckService
                     $year = preg_filter('/\D/', '', $year);
                     Fhmx::updateOrCreate(['unit' => $unit, 'company' => $company, 'year' => $year], [
                         'year' => $year,
-                        'fee' => $fee,
+                        'fee' => is_numeric($fee) ? $fee : 0,
                         'remark' => $remark
                     ]);
                 }
@@ -286,11 +286,15 @@ class CheckService
             Ysbmb::truncate();
             foreach ($data as $k1 => $line) {
                 if ($k1 > 0) {
+                    $type = array_shift($line);
+                    $fee_d = array_shift($line);
+                    $fee_e = array_shift($line);
+                    $fee_f = array_shift($line);
                     Ysbmb::create([
-                        'type' => array_shift($line),
-                        'fee_d' => array_shift($line),
-                        'fee_e' => array_shift($line),
-                        'fee_f' => array_shift($line),
+                        'type' => $type,
+                        'fee_d' => is_numeric($fee_d) ? $fee_d : 0,
+                        'fee_e' => is_numeric($fee_e) ? $fee_e : 0,
+                        'fee_f' => is_numeric($fee_f) ? $fee_f : 0,
                     ]);
                 }
             }
@@ -312,11 +316,15 @@ class CheckService
             Ysjlcb::truncate();
             foreach ($data as $k1 => $line) {
                 if ($k1 > 0) {
+                    $name = array_shift($line);
+                    $fee_d = array_shift($line);
+                    $fee_e = array_shift($line);
+                    $fee_f = array_shift($line);
                     Ysjlcb::create([
-                        'name' => array_shift($line),
-                        'fee_d' => array_shift($line),
-                        'fee_e' => array_shift($line),
-                        'fee_f' => array_shift($line),
+                        'name' => $name,
+                        'fee_d' => is_numeric($fee_d) ? $fee_d : 0,
+                        'fee_e' => is_numeric($fee_e) ? $fee_e : 0,
+                        'fee_f' => is_numeric($fee_f) ? $fee_f : 0,
                     ]);
                 }
             }
@@ -336,16 +344,25 @@ class CheckService
             DB::beginTransaction();
             Dwtzqk::truncate();
             foreach ($data as $k1 => $line) {
+                $unit = array_shift($line);
+                $gqbj = array_shift($line);
+                $ysgx = array_shift($line);
+                $zq = array_shift($line);
+                $yszx = array_shift($line);
+                $lcsy = array_shift($line);
+                $gxzj = array_shift($line);
+                $yfhhysj = array_shift($line);
+                $tzhbl = array_shift($line);
                 Dwtzqk::create([
-                    'unit' => array_shift($line),
-                    'gqbj' => array_shift($line),
-                    'ysgx' => array_shift($line),
-                    'zq' => array_shift($line),
-                    'yszx' => array_shift($line),
-                    'lcsy' => array_shift($line),
-                    'gxzj' => array_shift($line),
-                    'yfhhysj' => array_shift($line),
-                    'tzhbl' => array_shift($line),
+                    'unit' => $unit,
+                    'gqbj' => is_numeric($gqbj) ? $gqbj : 0,
+                    'ysgx' => is_numeric($ysgx) ? $ysgx : 0,
+                    'zq' => is_numeric($zq) ? $zq : 0,
+                    'yszx' => is_numeric($yszx) ? $yszx : 0,
+                    'lcsy' => is_numeric($lcsy) ? $lcsy : 0,
+                    'gxzj' => is_numeric($gxzj) ? $gxzj : 0,
+                    'yfhhysj' => is_numeric($yfhhysj) ? $yfhhysj : 0,
+                    'tzhbl' => is_numeric($tzhbl) ? $tzhbl : 0,
                 ]);
             }
             DB::commit();
@@ -366,10 +383,13 @@ class CheckService
             DB::beginTransaction();
             Xjlbsj::truncate();
             foreach ($data as $k1 => $line) {
+                $name = array_shift($line);
+                $fee_kg = array_shift($line);
+                $fee_ct = array_shift($line);
                 Xjlbsj::create([
-                    'name' => array_shift($line),
-                    'fee_kg' => array_shift($line),
-                    'fee_ct' => array_shift($line),
+                    'name' => $name,
+                    'fee_kg' => is_numeric($fee_kg) ? $fee_kg : 0,
+                    'fee_ct' => is_numeric($fee_ct) ? $fee_ct : 0,
                 ]);
             }
             DB::commit();
@@ -385,20 +405,33 @@ class CheckService
             DB::beginTransaction();
             Xjlbyg::truncate();
             foreach ($data as $k1 => $line) {
+                $project = array_shift($line);
+                $fee_1 = array_shift($line);
+                $fee_2 = array_shift($line);
+                $fee_3 = array_shift($line);
+                $fee_4 = array_shift($line);
+                $fee_5 = array_shift($line);
+                $fee_6 = array_shift($line);
+                $fee_7 = array_shift($line);
+                $fee_8 = array_shift($line);
+                $fee_9 = array_shift($line);
+                $fee_10 = array_shift($line);
+                $fee_11 = array_shift($line);
+                $fee_12 = array_shift($line);
                 Xjlbyg::create([
-                    'project' => array_shift($line),
-                    'fee_1' => array_shift($line),
-                    'fee_2' => array_shift($line),
-                    'fee_3' => array_shift($line),
-                    'fee_4' => array_shift($line),
-                    'fee_5' => array_shift($line),
-                    'fee_6' => array_shift($line),
-                    'fee_7' => array_shift($line),
-                    'fee_8' => array_shift($line),
-                    'fee_9' => array_shift($line),
-                    'fee_10' => array_shift($line),
-                    'fee_11' => array_shift($line),
-                    'fee_12' => array_shift($line),
+                    'project' => $project,
+                    'fee_1' => is_numeric($fee_1)?fee_1:0,
+                    'fee_2' => is_numeric($fee_2)?$fee_2:0,
+                    'fee_3' => is_numeric($fee_3)?$fee_3:0,
+                    'fee_4' => is_numeric($fee_4)?$fee_4:0,
+                    'fee_5' => is_numeric($fee_5)?$fee_5:0,
+                    'fee_6' => is_numeric($fee_6)?$fee_6:0,
+                    'fee_7' => is_numeric($fee_7)?$fee_7:0,
+                    'fee_8' => is_numeric($fee_8)?$fee_8:0,
+                    'fee_9' => is_numeric($fee_9)?$fee_9:0,
+                    'fee_10' => is_numeric($fee_10)?$fee_10:0,
+                    'fee_11' => is_numeric($fee_11)?$fee_11:0,
+                    'fee_12' => is_numeric($fee_12)?$fee_12:0,
                 ]);
             }
             DB::commit();
@@ -585,20 +618,20 @@ class CheckService
                 "ysgx" => 0,
                 "zq" => 0,
                 "yszx" => 0,
-                "lcsy" =>0,
+                "lcsy" => 0,
                 "gxzj" => 0,
                 "yfhhysj" => 0,
                 "tzhbl" => 0,
                 'hj' => 0,
             ];
-            $data_dwtzqk = collect($data_dwtzqk)->map(function ($v) use(&$dwtzqk_hj) {
-                foreach ($v as $k1 => $v1){
-                    if($k1 == 'unit'){
+            $data_dwtzqk = collect($data_dwtzqk)->map(function ($v) use (&$dwtzqk_hj) {
+                foreach ($v as $k1 => $v1) {
+                    if ($k1 == 'unit') {
                         continue;
                     }
                     $dwtzqk_hj[$k1] += $v1;
                 }
-                $v['hj'] = $v['gqbj'] + $v['ysgx']+ $v['zq']+ $v['yszx']+ $v['lcsy'];
+                $v['hj'] = $v['gqbj'] + $v['ysgx'] + $v['zq'] + $v['yszx'] + $v['lcsy'];
                 $dwtzqk_hj['hj'] += $v['hj'];
                 return $v;
             })->values()->all();
@@ -606,30 +639,30 @@ class CheckService
             return $data_dwtzqk;
         }
 
-        if($table_name == 'xjlbyg'){
+        if ($table_name == 'xjlbyg') {
             $data_xjlbyg = Xjlbyg::all()->toArray();
-            $data_xjlbyg = collect($data_xjlbyg)->map(function ($v){
+            $data_xjlbyg = collect($data_xjlbyg)->map(function ($v) {
                 $temp = $v;
                 unset($temp['id']);
                 unset($temp['project']);
-                $v['hj'] =collect($temp)->values()->sum();
+                $v['hj'] = collect($temp)->values()->sum();
                 return $v;
             })->values()->all();
             return $data_xjlbyg;
         }
 
-        if($table_name == 'xjlbsj'){
+        if ($table_name == 'xjlbsj') {
             $data_xjlbsj = Xjlbsj::all()->toArray();
-            $data_xjlbsj = collect($data_xjlbsj)->map(function ($v){
+            $data_xjlbsj = collect($data_xjlbsj)->map(function ($v) {
                 $v['hj'] = $v['fee_kg'] + $v['fee_ct'];
                 return $v;
             })->values()->all();
             return $data_xjlbsj;
         }
 
-        if($table_name == 'zbqk'){
+        if ($table_name == 'zbqk') {
             $data_zbqk = Zbqk::all()->toArray();
-            $data_zbqk = collect($data_zbqk)->map(function ($v){
+            $data_zbqk = collect($data_zbqk)->map(function ($v) {
                 $v['xj'] = $v['zyzj'] + $v['cqgqtz'] + $v['gdzc'];
                 return $v;
             })->values()->all();

@@ -70,9 +70,13 @@ class PCompanyCheckController extends Controller
      * @throws \Illuminate\Validation\ValidationException
      */
     public function show(Request $request){
-        $validated = $this->validate($request, ['table_name' => 'required']);
-        $list = $this->service->show($validated['table_name']);
-        return $this->success($list);
+        try{
+            $validated = $this->validate($request, ['table_name' => 'required']);
+            $list = $this->service->show($validated['table_name']);
+            return $this->success($list);
+        }catch (\Exception $e){
+            return $this->success([]);
+        }
     }
 
     /**
