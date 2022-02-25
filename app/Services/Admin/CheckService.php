@@ -165,7 +165,7 @@ class CheckService
                 $year = str_replace('年', '', $k);
                 Lnzc::updateOrCreate(['year' => $year], [
                     'year' => $year,
-                    $filed_name => is_numeric($v) ? 0 : $v
+                    $filed_name => is_numeric($v) ? $v : 0
                 ]);
             }
         }
