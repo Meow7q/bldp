@@ -18,6 +18,7 @@ class CreateTXjlbsjTable extends Migration
             $table->string('name')->nullable()->comment('名称');
             $table->string('fee_kg')->nullable()->comment('控股');
             $table->string('fee_ct')->nullable()->comment('城投');
+            $table->string('hj')->nullable()->comment('合计');
             $table->timestamps();
         });
     }

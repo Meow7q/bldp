@@ -95,7 +95,7 @@ class CheckService
                 $this->data_service->statisticsDwtzqk();
                 break;
             case 'xjlbsj':
-                if($line_count != 4){
+                if($line_count != 5){
                     throw new \Exception('模版错误');
                 }
                 $this->xjlbsj($collection);
@@ -417,10 +417,12 @@ class CheckService
                 $name = array_shift($line);
                 $fee_kg = array_shift($line);
                 $fee_ct = array_shift($line);
+                $hj = array_shift($line);
                 Xjlbsj::create([
                     'name' => $name,
                     'fee_kg' => is_numeric($fee_kg) ? $fee_kg : 0,
                     'fee_ct' => is_numeric($fee_ct) ? $fee_ct : 0,
+                    'hj' => is_numeric($hj) ? $hj : 0,
                 ]);
             }
             DB::commit();
