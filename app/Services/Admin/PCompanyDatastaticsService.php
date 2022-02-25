@@ -51,7 +51,7 @@ class PCompanyDatastaticsService
         $cace_data['current_month'] = Carbon::now()->month;
         Redis::set($this->key, json_encode($cace_data, JSON_UNESCAPED_UNICODE));
         $this->docx->setValues($cace_data);
-        chmod(public_path('/static/template/母公司经营管理指标成果点检表.docx'), 777);
+        chmod(public_path('/static/template/母公司经营管理指标成果点检表.docx'), 0777);
         $this->docx->saveAs(public_path('/static/template/母公司经营管理指标成果点检表.docx'));
     }
 
