@@ -75,7 +75,7 @@ class CheckService
                 $this->data_service->statisticsFhqk();
                 break;
             case 'ysbmb':
-                if($line_count != 19){
+                if($line_count != 20){
                     throw new \Exception('模版错误');
                 }
                 $this->ysbmb($collection);
