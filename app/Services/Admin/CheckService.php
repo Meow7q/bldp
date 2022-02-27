@@ -335,7 +335,13 @@ class CheckService
         try {
             DB::beginTransaction();
             Ysbmb::truncate();
+            $form_head = [];
             foreach ($data as $k1 => $line) {
+                if($k1 == 0){
+                    foreach ($line as $k2=>$v2){
+                        array_push($form_head, $k2);
+                    }
+                }
                 if ($k1 > 0) {
                     $type = array_shift($line);
                     $fee_d = array_shift($line);
@@ -353,6 +359,7 @@ class CheckService
                     ]);
                 }
             }
+            Redis::set('form_head_ysbmb', json_encode($form_head));
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
@@ -592,16 +599,11 @@ class CheckService
 
         if ($table_name == 'ysbmb') {
             $data_ysbmb = Ysbmb::all()->toArray();
-            $ysbmb_hj_d = collect($data_ysbmb)->sum('fee_d');
-            $ysbmb_hj_e = collect($data_ysbmb)->sum('fee_e');
-            $ysbmb_hj_f = collect($data_ysbmb)->sum('fee_f');
-            array_push($data_ysbmb, ['type' => '合计', 'fee_d' => $ysbmb_hj_d, 'fee_e' => $ysbmb_hj_e, 'fee_f' => $ysbmb_hj_f]);
-            $data_ysbmb = collect($data_ysbmb)->map(function ($v) {
-                $v['de'] = (round($v['fee_d'] / $v['fee_e'], 4) * 100) . '%';
-                $v['df'] = (round($v['fee_d'] / $v['fee_f'], 4) * 100) . '%';
-                return $v;
-            })->values()->all();
-            return $data_ysbmb;
+            $form_head  = json_decode(Redis::get('form_head_ysbmb'), true);
+            return [
+                'form_head' => $form_head,
+                'data' => $data_ysbmb
+            ];
         }
 
         if ($table_name == 'ysjlcb') {
