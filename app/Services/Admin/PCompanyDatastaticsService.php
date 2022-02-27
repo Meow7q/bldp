@@ -256,7 +256,7 @@ class PCompanyDatastaticsService
         //投资的留存收益39
         $fee_dwtzqk_lcsy = Dwtzqk::selectRaw("SUM(lcsy) as fee")->first()->fee;
         //合计投入40
-        $fee_dwtzqk_hjtr = $fee_dwtzqk_hjgqtz+$fee_dwtzqk_zqtz+$fee_dwtzqk_lcsy;
+        $fee_dwtzqk_hjtr = Dwtzqk::selectRaw("SUM(hj) as fee")->first()->fee;
         $this->saveDocx([
             'fee_dwtzqk_hjgqtz' => $fee_dwtzqk_hjgqtz/10000,
             'fee_dwtzqk_zqtz' => $fee_dwtzqk_zqtz/10000,
