@@ -643,10 +643,6 @@ class CheckService
 
         if ($table_name == 'zbqk') {
             $data_zbqk = Zbqk::all()->toArray();
-            $data_zbqk = collect($data_zbqk)->map(function ($v) {
-                $v['xj'] = $v['zyzj']+$v['cqgqtz']+$v['gdzc'];
-                return $v;
-            })->values()->all();
             return $data_zbqk;
         }
 

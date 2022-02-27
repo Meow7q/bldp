@@ -80,7 +80,6 @@ class PCompanyCheckController extends Controller
             $list = $this->service->show($validated['table_name']);
             return $this->success($list);
         }catch (\Exception $e){
-            throw $e;
             return $this->success([]);
         }
     }
