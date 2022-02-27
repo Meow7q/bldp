@@ -9,6 +9,7 @@ use App\Models\PCompanyCheck\FhmxNew;
 use App\Models\PCompanyCheck\Kjbb;
 use App\Models\PCompanyCheck\Lnzc;
 use App\Models\PCompanyCheck\Srhz;
+use App\Models\PCompanyCheck\SrhzNew;
 use App\Models\PCompanyCheck\TableList;
 use App\Models\PCompanyCheck\Xjlbsj;
 use App\Models\PCompanyCheck\Xjlbyg;
@@ -62,7 +63,7 @@ class CheckService
                 $this->data_service->statisticsKjbbqk();
                 break;
             case 'srhz':
-                if($line_count != 16){
+                if($line_count != 27){
                     throw new \Exception('模版错误');
                 }
                 $this->srhz($collection);
@@ -248,26 +249,38 @@ class CheckService
      */
     protected function srhz($data)
     {
-        $field_arr = [
-            'dbfdw', 'lx', 'glf', 'fh', 'tzly', 'ssjl', 'gpdx', 'zj',
-            'dbfdw', 'lx', 'glf', 'fh', 'tzly', 'ssjl', 'gpdx', 'zj'
-        ];
         try {
             DB::beginTransaction();
-            Srhz::truncate();
+            SrhzNew::truncate();
             foreach ($data as $k1 => $line) {
-                foreach ($line as $k2 => $v) {
-                    $year = preg_filter('/\D/', '', $k2);
-                    if (empty($year)) {
-                        continue;
-                    }
-                    $type = $k1 > 7 ? '城投' : '控股';
-                    Srhz::updateOrCreate(['year' => $year, 'type' => $type], [
-                        'type' => $type,
-                        'year' => $year,
-                        $field_arr[$k1] => is_numeric($v) ? $v : 0
-                    ]);
-                }
+                $unit = array_shift($line);
+                $type = array_shift($line);
+                $hz = array_shift($line);
+                $fee_2022 = array_shift($line);
+                $fee_2021 = array_shift($line);
+                $fee_2020 = array_shift($line);
+                $fee_2019 = array_shift($line);
+                $fee_2018 = array_shift($line);
+                $fee_2017 = array_shift($line);
+                $fee_2016 = array_shift($line);
+                $fee_2015 = array_shift($line);
+                $fee_2014 = array_shift($line);
+                $fee_2013 = array_shift($line);
+                SrhzNew::create([
+                    'unit' => $k1<9?'合计':($k1<18?'控股':'城投'),
+                    'type' => $type,
+                    'hz' => is_numeric($hz)?$hz:0,
+                    'fee_2022' => is_numeric($fee_2022) ? $fee_2022 : 0,
+                    'fee_2021' => is_numeric($fee_2021) ? $fee_2021 : 0,
+                    'fee_2020' => is_numeric($fee_2020) ? $fee_2020 : 0,
+                    'fee_2019' => is_numeric($fee_2019) ? $fee_2019 : 0,
+                    'fee_2018' => is_numeric($fee_2018) ? $fee_2018 : 0,
+                    'fee_2017' => is_numeric($fee_2017) ? $fee_2017 : 0,
+                    'fee_2016' => is_numeric($fee_2016) ? $fee_2016 : 0,
+                    'fee_2015' => is_numeric($fee_2015) ? $fee_2015 : 0,
+                    'fee_2014' => is_numeric($fee_2014) ? $fee_2014 : 0,
+                    'fee_2013' => is_numeric($fee_2013) ? $fee_2013 : 0,
+                ]);
             }
             DB::commit();
         } catch (\Exception $e) {
