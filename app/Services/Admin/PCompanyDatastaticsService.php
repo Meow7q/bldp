@@ -232,16 +232,16 @@ class PCompanyDatastaticsService
      */
     public function statisticsJlcysqk(){
         //控股经理层预算数34
-        $fee_ysqk_kgjlcyss = Ysjlcb::selectRaw("SUM(fee_e) as fee")->first()->fee;
+        $fee_ysqk_kgjlcyss = Ysjlcb::selectRaw("fee_e as fee")->where('name', '经理层费用小计')->first()->fee;
         //经理层实际发生数35
-        $fee_ysqk_ylcsjfss = Ysjlcb::selectRaw("SUM(fee_d) as fee")->first()->fee;
+        $fee_ysqk_ylcsjfss = Ysjlcb::selectRaw("fee_d as fee")->where('name', '经理层费用小计')->first()->fee;
         //经理层执行率36
-        $fee_ysqk_jlczxl = (round($fee_ysqk_ylcsjfss/$fee_ysqk_kgjlcyss, 4)*100).'%';
+        $fee_ysqk_jlczxl = Ysjlcb::selectRaw("de as zxl")->where('name', '经理层费用小计')->first()->zxl;
 
         $this->saveDocx([
             'fee_ysqk_kgjlcyss' => $fee_ysqk_kgjlcyss/10000,
             'fee_ysqk_ylcsjfss' => $fee_ysqk_ylcsjfss/10000,
-            'fee_ysqk_jlczxl' => $fee_ysqk_jlczxl,
+            'fee_ysqk_jlczxl' => round($fee_ysqk_jlczxl*100, 2).'%',
         ]);
     }
 

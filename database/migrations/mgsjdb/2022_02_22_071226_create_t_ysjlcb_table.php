@@ -18,7 +18,9 @@ class CreateTYsjlcbTable extends Migration
             $table->string('name')->nullable()->comment('姓名');
             $table->string('fee_d')->nullable()->comment('全年累计执行数');
             $table->string('fee_e')->nullable()->comment('1-X月累计预算数');
+            $table->string('de')->nullable()->comment('1-X月累计执行');
             $table->string('fee_f')->nullable()->comment('全年预算数');
+            $table->string('df')->nullable()->comment('全年累计执行比率');
             $table->timestamps();
         });
     }
