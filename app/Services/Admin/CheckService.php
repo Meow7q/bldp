@@ -597,24 +597,7 @@ class CheckService
         }
 
         if ($table_name == 'srhz') {
-            $raw1 = "year, SUM(dbfdw) as dbfdw, SUM(lx) as lx, SUM(glf) as glf, SUM(fh) as fh, SUM(tzly) as tzly, SUM(ssjl) as ssjl, SUM(gpdx) as gpdx, SUM(zj) as zj";
-            $data1 = Srhz::selectRaw($raw1)->groupBy('year')->orderBy('year', 'desc')->get()->toArray();
-            $hj_data = $this->srhzBuild($data1);
-
-            $data2 = Srhz::select(['*'])->where('type', '控股')->orderBy('year', 'desc')->get()->toArray();
-            $kg_data = $this->srhzBuild($data2);
-
-            $data3 = Srhz::select(['*'])->where('type', '城投')->orderBy('year', 'desc')->get()->toArray();
-            $ct_data = $this->srhzBuild($data3);
-
-            $raw4 = "SUM(dbfdw)+SUM(lx)+SUM(glf)+SUM(fh) +SUM(tzly)+SUM(ssjl)+SUM(gpdx)+SUM(zj) as fee";
-            $lj = Srhz::selectRaw($raw4)->first();
-            return [
-                $hj_data,
-                $kg_data,
-                $ct_data,
-                ['hj' => $lj->fee]
-            ];
+            return SrhzNew::all()->toArray();
         }
 
         if ($table_name == 'ysbmb') {
