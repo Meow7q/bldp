@@ -376,9 +376,6 @@ class CheckService
             DB::beginTransaction();
             Dwtzqk::truncate();
             foreach ($data as $k1 => $line) {
-                if($k1 == 0){
-                    continue;
-                }
                 $unit = array_shift($line);
                 $gqbj = array_shift($line);
                 $ysgx = array_shift($line);

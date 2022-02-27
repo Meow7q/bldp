@@ -50,7 +50,7 @@ class PCompanyDatastaticsService
         }
         $this->docx->setValues($cace_data);
         $file_name = '母公司经营管理指标成果点检表'.uniqid();
-        $path = '/static/template/'.$file_name.'.docx';
+        $path = '/static/docx/'.$file_name.'.docx';
         $cace_data['current_month'] = Carbon::now()->month;
         $cace_data['docx_path'] = $path;
         Redis::set($this->key, json_encode($cace_data, JSON_UNESCAPED_UNICODE));
