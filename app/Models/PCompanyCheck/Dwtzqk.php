@@ -13,4 +13,8 @@ class Dwtzqk extends Model
     protected $guarded = [];
 
     protected $hidden = ['created_at', 'updated_at', 'id'];
+
+    public function getTzhblAttribute($value){
+        return round($value*100, 2).'%';
+    }
 }
