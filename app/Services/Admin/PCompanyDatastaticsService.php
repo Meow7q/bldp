@@ -129,33 +129,36 @@ class PCompanyDatastaticsService
      * 会计报表情况
      */
     public function statisticsKjbbqk(){
-        //各项收入
-        $fee_kg_gxsr = Kjbb::where('type', '控股')->selectRaw("SUM(yysr)+SUM(tzss)+SUM(qtsy) as fee")->first()->fee;
-        $fee_ct_gxsr = Kjbb::where('type', '城投')->selectRaw("SUM(yysr)+SUM(tzss)+SUM(qtsy) as fee")->first()->fee;
+        //各项收入17
+        $fee_kg_gxsr = Kjbb::selectRaw("SUM(yysr)+SUM(tzss)+SUM(qtsy)+SUM(yywsr) as fee")
+            ->where('type', '控股')
+            ->where('year', 2022)
+            ->first()->fee;
 
-        //各项支出
-        $fee_kg_gxzc = Kjbb::where('type', '控股')->selectRaw("SUM(yyzc)+SUM(glfy)+SUM(cwfy)+SUM(sjjfj)+SUM(yywjqtzc)+SUM(sds)+SUM(dnjlr)+SUM(qmwfplr) as fee")->first()->fee;
-        $fee_ct_gxzc = Kjbb::where('type', '城投')->selectRaw("SUM(yyzc)+SUM(glfy)+SUM(cwfy)+SUM(sjjfj)+SUM(yywjqtzc)+SUM(sds)+SUM(dnjlr)+SUM(qmwfplr) as fee")->first()->fee;
+        //各项支出18
+        $fee_kg_gxzc = Kjbb::
+        selectRaw("SUM(yyzc)+SUM(glfy)+SUM(cwfy)+SUM(sjjfj)+SUM(yywjqtzc)+SUM(sds) as fee")
+            ->where('type', '控股')
+            ->where('year', 2022)
+            ->first()->fee;
 
-        //会计盈利
-        $fee_kg_kjyl = $fee_kg_gxsr - $fee_kg_gxzc;
-        $fee_ct_kjyl = $fee_ct_gxsr - $fee_ct_gxzc;
+        //会计盈利16
+        $fee_kg_kjyl = Kjbb::select('dnjlr as fee')->where('year', 2022)->where('type', '控股')->first()->fee;
+        $fee_ct_kjyl = Kjbb::select('dnjlr as fee')->where('year', 2022)->where('type', '城投')->first()->fee;
 
-        //管理费用(控股)
+        //管理费用(控股)19
         $fee_kg = Kjbb::where('type', '控股')->where('year', 2022)->first();
         $fee_kg_glfy = $fee_kg->glfy;
-        $fee_kg_dnjlr = $fee_kg->dnjlr;
 
         //城投
         $fee_ct = Kjbb::where('type', '城投')->where('year', 2022)->first();
-        //当年净利润
-        $fee_ct_dnjlr = $fee_ct->dnjlr;
-        //投资收益
+        //投资收益21
         $fee_ct_tzss = $fee_ct->tzss;
-        //财务指标
+        //财务费用22
         $fee_ct_cwfy = $fee_ct->cwfy;
-        //会计亏损
-        $fee_kjks = bcadd($fee_ct_dnjlr,$fee_kg_dnjlr);
+        //会计亏损23
+        $fee_kjks = Kjbb::selectRaw('SUM(dnjlr) as fee')
+            ->where('year', 2022)->first()->fee;
 
         $this->saveDocx([
             'fee_kg_kjyl' => $fee_kg_kjyl/10000,
