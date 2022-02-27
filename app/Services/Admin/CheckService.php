@@ -583,14 +583,20 @@ class CheckService
                     ->orderBy('year', 'desc')->get()->map(function ($v) {
                         return $v->fee;
                     })->values()->all();
+                $kgtb = $data[1]?(round(($data[0] - $data[1]) / $data[1], 2) * 100):0;
+                $cttb = $data[3]?(round(($data[2] - $data[3]) / $data[3], 2) * 100):0;
+                if($v[0] == 'qmwfplr' || $v[0] == 'dnjlr'){
+                    $kgtb = -$kgtb;
+                    $cttb = -$cttb;
+                }
                 return [
                     'name' => $v[1],
                     '控股2022' => $data[0],
                     '控股2021' => $data[1],
-                    '控股同比' => $data[1]?(round(($data[0] - $data[1]) / $data[1], 2) * 100) . '%':0,
+                    '控股同比' => $kgtb?$kgtb.'%':$kgtb,
                     '城投2022' => $data[2],
                     '城投2021' => $data[3],
-                    '城投同比' => $data[3]?(round(($data[2] - $data[3]) / $data[3], 2) * 100) . '%':0,
+                    '城投同比' => $cttb?$cttb.'%':$cttb,
                 ];
             })->values()->all();
             return $kjbb_data;
