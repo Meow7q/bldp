@@ -376,7 +376,13 @@ class CheckService
         try {
             DB::beginTransaction();
             Ysjlcb::truncate();
+            $form_head = [];
             foreach ($data as $k1 => $line) {
+                if($k1 == 0){
+                    foreach ($line as $k2=>$v2){
+                        array_push($form_head, $k2);
+                    }
+                }
                 if ($k1 > 0) {
                     $name = array_shift($line);
                     $fee_d = array_shift($line);
@@ -394,6 +400,7 @@ class CheckService
                     ]);
                 }
             }
+            Redis::set('form_head_ysjlcb', json_encode($form_head));
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
@@ -608,7 +615,11 @@ class CheckService
 
         if ($table_name == 'ysjlcb') {
             $data_ysjlcb = Ysjlcb::all()->toArray();
-            return $data_ysjlcb;
+            $form_head  = json_decode(Redis::get('form_head_ysjlcb'), true);
+            return [
+                'form_head' => $form_head,
+                'data' => $data_ysjlcb
+            ];
         }
 
         if ($table_name == 'dwtzqk') {
