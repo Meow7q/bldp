@@ -15,10 +15,10 @@ class Ysjlcb extends Model
     protected $hidden = ['created_at', 'updated_at', 'id'];
 
     public function getDeAttribute($value){
-        return round($value, 2).'%';
+        return round($value*100, 2).'%';
     }
 
     public function getDfAttribute($value){
-        return round($value, 2).'%';
+        return round($value*100, 2).'%';
     }
 }
