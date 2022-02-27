@@ -10,6 +10,7 @@ use App\Models\PCompanyCheck\FhmxNew;
 use App\Models\PCompanyCheck\Kjbb;
 use App\Models\PCompanyCheck\Lnzc;
 use App\Models\PCompanyCheck\Srhz;
+use App\Models\PCompanyCheck\SrhzNew;
 use App\Models\PCompanyCheck\Xjlbsj;
 use App\Models\PCompanyCheck\Xjlbyg;
 use App\Models\PCompanyCheck\Ysbmb;
@@ -174,31 +175,31 @@ class PCompanyDatastaticsService
      */
     public function statisticsSrqk(){
         //控股及城投收入合计24
-        $fee_srqk_srhj = Srhz::selectRaw('fee_2022 as fee')
+        $fee_srqk_srhj = SrhzNew::selectRaw('fee_2022 as fee')
             ->where('type', '累计')
             ->where('unit', '合计')
             ->first()->fee;
 
         //投资收益25
-        $fee_srqk_tzss = Srhz::selectRaw('fee_2022 as fee')
+        $fee_srqk_tzss = SrhzNew::selectRaw('fee_2022 as fee')
             ->where('type', '投资收益')
             ->where('unit', '合计')
             ->first()->fee;
 
         //借款利息26
-        $fee_srqk_jklx =  Srhz::selectRaw('fee_2022 as fee')
+        $fee_srqk_jklx =  SrhzNew::selectRaw('fee_2022 as fee')
             ->where('type', '利息')
             ->where('unit', '合计')
             ->first()->fee;
 
         //担保费27
-        $fee_srqk_dbf = Srhz::selectRaw('fee_2022 as fee')
+        $fee_srqk_dbf = SrhzNew::selectRaw('fee_2022 as fee')
             ->where('type', '担保费对外')
             ->where('unit', '合计')
             ->first()->fee;
 
         //分红28
-        $fee_srqk_fh = Srhz::selectRaw('fee_2022 as fee')
+        $fee_srqk_fh = SrhzNew::selectRaw('fee_2022 as fee')
             ->where('type', '分红')
             ->where('unit', '合计')
             ->first()->fee;
