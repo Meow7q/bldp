@@ -49,7 +49,7 @@ class CheckService
                 $this->data_service->statisticsLnzcxq();
                 break;
             case 'zbqk':
-                if($line_count != 2){
+                if($line_count != 3){
                     throw new \Exception('模版错误');
                 }
                 $this->zbqk($collection);
@@ -180,9 +180,6 @@ class CheckService
      */
     protected function zbqk($data)
     {
-        $field_arr = ['type', 'rzbj', 'rzpjcb', 'zycyzj', 'hjtr',
-            'lnfyzc', 'zyzj', 'cqgqtz', 'gdzc', 'zmjzc'
-        ];
         try {
             DB::beginTransaction();
             Zbqk::truncate();
@@ -198,7 +195,8 @@ class CheckService
                     'zyzj' => is_numeric($line[6]) ? $line[6] : 0,
                     'cqgqtz' => is_numeric($line[7]) ? $line[7] : 0,
                     'gdzc' => is_numeric($line[8]) ? $line[8] : 0,
-                    'zmjzc' => is_numeric($line[9]) ? $line[9] : 0,
+                    'xj' => is_numeric($line[9]) ? $line[9] : 0,
+                    'zmjzc' => is_numeric($line[10]) ? $line[10] : 0,
                 ]);
             }
             DB::commit();

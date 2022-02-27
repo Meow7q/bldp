@@ -88,8 +88,8 @@ class PCompanyDatastaticsService
         $fee_ct_zyzj = Zbqk::query()->where('type', '城投')->sum('zyzj');
 
         //外部融资
-        $fee_kg_wbrz = Zbqk::query()->where('type', '控股')->selectRaw('SUM(rzbj)+SUM(rzpjcb) as fee')->first();
-        $fee_ct_wbrz = Zbqk::query()->where('type', '城投')->selectRaw('SUM(rzbj)+SUM(rzpjcb) as fee')->first();
+        $fee_kg_wbrz = Zbqk::query()->where('type', '控股')->sum('rzbj');
+        $fee_ct_wbrz = Zbqk::query()->where('type', '城投')->sum('rzbj');
 
         //占用产业资金
         $fee_kg_zycyzj = Zbqk::query()->where('type', '控股')->sum('zycyzj');
@@ -104,23 +104,23 @@ class PCompanyDatastaticsService
         $fee_ct_lnfyzc = Zbqk::query()->where('type', '城投')->sum('lnfyzc');
 
         //形成资产
-        $fee_kg_xczc = Zbqk::query()->where('type', '控股')->selectRaw('SUM(zyzj)+SUM(cqgqtz)+SUM(gdzc) as fee')->first();
-        $fee_ct_xczc = Zbqk::query()->where('type', '城投')->selectRaw('SUM(rzbj)+SUM(cqgqtz)+SUM(gdzc) as fee')->first();
+        $fee_kg_xczc = Zbqk::query()->where('type', '控股')->sum('xj');
+        $fee_ct_xczc = Zbqk::query()->where('type', '城投')->sum('xj');
 
         $data = [
-            'fee_kg_zyzj' => $fee_kg_zyzj,
-            'fee_kg_wbrz' => $fee_kg_wbrz->fee,
-            'fee_kg_zycyzj' => $fee_kg_zycyzj,
-            'fee_kg_hjtr' => $fee_kg_hjtr,
-            'fee_kg_lnfyzc' => $fee_kg_lnfyzc,
-            'fee_kg_xczc' => $fee_kg_xczc->fee,
+            'fee_kg_zyzj' => $fee_kg_zyzj/10000,
+            'fee_kg_wbrz' => $fee_kg_wbrz/10000,
+            'fee_kg_zycyzj' => $fee_kg_zycyzj/10000,
+            'fee_kg_hjtr' => $fee_kg_hjtr/10000,
+            'fee_kg_lnfyzc' => $fee_kg_lnfyzc/10000,
+            'fee_kg_xczc' => $fee_kg_xczc/10000,
 
-            'fee_ct_zyzj' => $fee_ct_zyzj,
-            'fee_ct_wbrz' => $fee_ct_wbrz->fee,
-            'fee_ct_zycyzj' => $fee_ct_zycyzj,
-            'fee_ct_hjtr' => $fee_ct_hjtr,
-            'fee_ct_lnfyzc' => $fee_ct_lnfyzc,
-            'fee_ct_xczc' => $fee_ct_xczc->fee,
+            'fee_ct_zyzj' => $fee_ct_zyzj/10000,
+            'fee_ct_wbrz' => $fee_ct_wbrz/10000,
+            'fee_ct_zycyzj' => $fee_ct_zycyzj/10000,
+            'fee_ct_hjtr' => $fee_ct_hjtr/10000,
+            'fee_ct_lnfyzc' => $fee_ct_lnfyzc/10000,
+            'fee_ct_xczc' => $fee_ct_xczc/10000,
         ];
         $this->saveDocx($data);
     }

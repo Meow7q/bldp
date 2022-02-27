@@ -24,6 +24,7 @@ class CreateTZbqkTable extends Migration
             $table->string('zyzj')->nullable()->comment('自有资金');
             $table->string('cqgqtz')->nullable()->comment('长期股权投资');
             $table->string('gdzc')->nullable()->comment('固定资产');
+            $table->string('xj')->nullable()->comment('小计');
             $table->string('zmjzc')->nullable()->comment('账面净资产');
             $table->timestamps();
         });

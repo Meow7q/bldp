@@ -22,6 +22,10 @@
     <list default="true" id="3e08bbc1-bad0-47d5-9c0a-6d50afee08ce" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Services/Admin/CheckService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Admin/CheckService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/Admin/PCompanyDatastaticsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Admin/PCompanyDatastaticsService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/mgsjdb/2022_02_21_095731_create_t_zbqk_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/mgsjdb/2022_02_21_095731_create_t_zbqk_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/template/kjbb.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/template/kjbb.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/template/zbqk.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/template/zbqk.xlsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -251,7 +255,7 @@
       <workItem from="1645493384944" duration="43017000" />
       <workItem from="1645632940513" duration="1039000" />
       <workItem from="1645666691269" duration="29739000" />
-      <workItem from="1645753383850" duration="31387000" />
+      <workItem from="1645753383850" duration="33517000" />
     </task>
     <servers />
   </component>
