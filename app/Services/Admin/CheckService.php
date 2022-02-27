@@ -5,6 +5,7 @@ namespace App\Services\Admin;
 
 use App\Models\PCompanyCheck\Dwtzqk;
 use App\Models\PCompanyCheck\Fhmx;
+use App\Models\PCompanyCheck\FhmxNew;
 use App\Models\PCompanyCheck\Kjbb;
 use App\Models\PCompanyCheck\Lnzc;
 use App\Models\PCompanyCheck\Srhz;
@@ -68,7 +69,7 @@ class CheckService
                 $this->data_service->statisticsSrqk();
                 break;
             case 'fhmx':
-                if($line_count != 8){
+                if($line_count != 10){
                     throw new \Exception('模版错误');
                 }
                 $this->fhmx($collection);
@@ -282,22 +283,40 @@ class CheckService
      */
     protected function fhmx($data)
     {
-        $field_arr = ['unit', 'company', 'year', 'remark'];
         try {
             DB::beginTransaction();
-            Fhmx::truncate();
+            FhmxNew::truncate();
             foreach ($data as $k1 => $line) {
                 $unit = array_shift($line);
-                $company = array_shift($line);
+                $name = array_shift($line);
+                $hj = array_shift($line);
+                $fee_2022 = array_shift($line);
+                $fee_2021 = array_shift($line);
+                $fee_2020 = array_shift($line);
+                $fee_2019 = array_shift($line);
+                $fee_2018 = array_shift($line);
+                $fee_2017 = array_shift($line);
+                $fee_2016 = array_shift($line);
+                $fee_2015 = array_shift($line);
+                $fee_2014 = array_shift($line);
+                $fee_2013 = array_shift($line);
                 $remark = array_pop($line);
-                foreach ($line as $year => $fee) {
-                    $year = preg_filter('/\D/', '', $year);
-                    Fhmx::updateOrCreate(['unit' => $unit, 'company' => $company, 'year' => $year], [
-                        'year' => $year,
-                        'fee' => is_numeric($fee) ? $fee : 0,
-                        'remark' => $remark
-                    ]);
-                }
+                FhmxNew::updateOrCreate([
+                    'unit' => (empty($unit)&&$name!='合计')?'中南控股':$unit,
+                    'name' => $name,
+                    'hj' => $hj,
+                    'remark' => $remark,
+                    'fee_2022' => is_numeric($fee_2022) ? $fee_2022 : 0,
+                    'fee_2021' => is_numeric($fee_2021) ? $fee_2021 : 0,
+                    'fee_2020' => is_numeric($fee_2020) ? $fee_2020 : 0,
+                    'fee_2019' => is_numeric($fee_2019) ? $fee_2019 : 0,
+                    'fee_2018' => is_numeric($fee_2018) ? $fee_2018 : 0,
+                    'fee_2017' => is_numeric($fee_2017) ? $fee_2017 : 0,
+                    'fee_2016' => is_numeric($fee_2016) ? $fee_2016 : 0,
+                    'fee_2015' => is_numeric($fee_2015) ? $fee_2015 : 0,
+                    'fee_2014' => is_numeric($fee_2014) ? $fee_2014 : 0,
+                    'fee_2013' => is_numeric($fee_2013) ? $fee_2013 : 0,
+                ]);
             }
             DB::commit();
         } catch (\Exception $e) {
@@ -501,71 +520,7 @@ class CheckService
     public function show($table_name)
     {
         if ($table_name == 'fhmx') {
-            $fhmx_data = [];
-            $company = Fhmx::distinct()->pluck('company')->toArray();
-            foreach ($company as $k => $v) {
-                $data = Fhmx::where('company', $v)->select(['*'])->orderBy('year', 'desc')->get()->toArray();
-                $data_temp = [];
-                $data_temp['unit'] = $data[0]['unit'];
-                $data_temp['company'] = $data[0]['company'];
-                $hz = 0;
-                foreach ($data as $v) {
-                    $hz += $v['fee'];
-                    $data_temp[$v['year']] = $v['fee'];
-                }
-                $data_temp['hz'] = $hz;
-                $data_temp['remark'] = $data[0]['remark'];
-                array_push($fhmx_data, $data_temp);
-            }
-            //小计
-            $fhmx_xj = [
-                "unit" => "中南控股",
-                "company" => "小计",
-                "2022" => 0,
-                "2021" => 0,
-                "2020" => 0,
-                "2019" => 0,
-                "2018" => 0,
-                "2017" => 0,
-                "2016" => 0,
-                "2015" => 0,
-                "2014" => 0,
-                "2013" => 0,
-                "hz" => 0,
-                "remark" => ''
-            ];
-            $fhmx_hj = [
-                "unit" => '',
-                "company" => "合计",
-                "2022" => 0,
-                "2021" => 0,
-                "2020" => 0,
-                "2019" => 0,
-                "2018" => 0,
-                "2017" => 0,
-                "2016" => 0,
-                "2015" => 0,
-                "2014" => 0,
-                "2013" => 0,
-                "hz" => 0,
-                "remark" => ''
-            ];
-            collect($fhmx_data)->map(function ($v) use (&$fhmx_xj, &$fhmx_hj) {
-                foreach ($v as $k1 => $v1) {
-                    if ($v['unit'] == '中南控股') {
-                        if (($k1 != 'remark') && ($k1 != 'company') && ($k1 != 'unit')) {
-                            $fhmx_xj[$k1] += $v1;
-                        }
-                    }
-                    if (($k1 != 'remark') && ($k1 != 'company') && ($k1 != 'unit')) {
-                        $fhmx_hj[$k1] += $v1;
-                    }
-                }
-            });
-            array_push($fhmx_data, $fhmx_xj);
-            $fhmx_data = collect($fhmx_data)->sortByDesc('unit')->values()->all();
-            array_push($fhmx_data, $fhmx_hj);
-            return $fhmx_data;
+            return  FhmxNew::all()->toArray();
         }
 
         if ($table_name == 'lnzc') {

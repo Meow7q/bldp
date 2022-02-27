@@ -6,6 +6,7 @@ namespace App\Services\Admin;
 
 use App\Models\PCompanyCheck\Dwtzqk;
 use App\Models\PCompanyCheck\Fhmx;
+use App\Models\PCompanyCheck\FhmxNew;
 use App\Models\PCompanyCheck\Kjbb;
 use App\Models\PCompanyCheck\Lnzc;
 use App\Models\PCompanyCheck\Srhz;
@@ -200,8 +201,8 @@ class PCompanyDatastaticsService
      * 分红情况
      */
     public function statisticsFhqk(){
-        $fee_fhqk_kgfh = Fhmx::selectRaw("SUM(fee) as fee")->where('year', 2022)->whereIn('company', ['中南装饰', '中南控股集团（上海）资产管理有限公司'])->first()->fee;
-        $fee_fhqk_ctfh = Fhmx::select(['fee'])->where('year', 2022)->where('company', '江苏中南建设集团有限公司')->first()->fee;
+        $fee_fhqk_kgfh = FhmxNew::selectRaw("SUM(fee_2022) as fee")->whereIn('name', ['小计','中南装饰'])->first()->fee;
+        $fee_fhqk_ctfh = FhmxNew::selectRaw('fee_2022 as fee')->where('name', '江苏中南建设集团有限公司')->first()->fee;
         $this->saveDocx([
             'fee_fhqk_kgfh' => $fee_fhqk_kgfh,
             'fee_fhqk_ctfh' => $fee_fhqk_ctfh,
