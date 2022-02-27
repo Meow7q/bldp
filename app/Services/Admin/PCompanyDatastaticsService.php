@@ -213,11 +213,11 @@ class PCompanyDatastaticsService
      */
     public function statisticsBmysqk(){
         //各部门预算数31
-        $fee_ysqk_gbmyss = Ysbmb::selectRaw("fee_e as fee")->where('name', '费用合计')->first()->fee;
+        $fee_ysqk_gbmyss = Ysbmb::selectRaw("fee_e as fee")->where('type', '费用合计')->first()->fee;
         //实际发生数32
-        $fee_ysqk_sjfss = Ysbmb::selectRaw("fee_d as fee")->first()->fee;
+        $fee_ysqk_sjfss = Ysbmb::selectRaw("fee_d as fee")->where('type', '费用合计')->first()->fee;
         //执行率
-        $fee_ysqk_zxl = Ysbmb::selectRaw("de as zxl")->first()->zxl;
+        $fee_ysqk_zxl = Ysbmb::selectRaw("de as zxl")->where('type', '费用合计')->first()->zxl;
 
         $this->saveDocx([
             'fee_ysqk_gbmyss' => $fee_ysqk_gbmyss/100000000,

@@ -62,6 +62,7 @@ class PCompanyCheckController extends Controller
         try{
             $this->service->importExcel($path, $validated['table_name']);
         }catch (\Exception $e){
+            throw $e;
             return $this->fail('模版错误');
         }
         return $this->message('ok');

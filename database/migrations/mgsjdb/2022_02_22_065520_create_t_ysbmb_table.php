@@ -18,6 +18,8 @@ class CreateTYsbmbTable extends Migration
             $table->string('type')->nullable()->comment('类别');
             $table->string('fee_d')->nullable()->comment('全年累计执行数');
             $table->string('fee_e')->nullable()->comment('1-X月累计预算数');
+            $table->string('de')->nullable()->comment('d/e%');
+            $table->string('df')->nullable()->comment('d/f%');
             $table->string('fee_f')->nullable()->comment('全年预算数');
             $table->timestamps();
         });

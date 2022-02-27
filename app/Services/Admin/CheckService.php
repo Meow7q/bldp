@@ -321,12 +321,16 @@ class CheckService
                     $type = array_shift($line);
                     $fee_d = array_shift($line);
                     $fee_e = array_shift($line);
+                    $de = array_shift($line);
                     $fee_f = array_shift($line);
+                    $df = array_shift($line);
                     Ysbmb::create([
                         'type' => $type,
                         'fee_d' => is_numeric($fee_d) ? $fee_d : 0,
                         'fee_e' => is_numeric($fee_e) ? $fee_e : 0,
                         'fee_f' => is_numeric($fee_f) ? $fee_f : 0,
+                        'de' => is_numeric($de) ? $de : 0,
+                        'df' => is_numeric($df) ? $df : 0,
                     ]);
                 }
             }
