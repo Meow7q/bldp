@@ -276,13 +276,22 @@ class PCompanyDatastaticsService
      */
     public function statisticsDwtzqk(){
         //股权投资37
-        $fee_dwtzqk_hjgqtz = Dwtzqk::selectRaw("SUM(gqbj)+SUM(ysgx) as fee")->first()->fee;
+        $fee_dwtzqk_hjgqtz = Dwtzqk::selectRaw("gqbj+ysgx as fee")
+            ->where('unit', '合计')
+            ->first()->fee;
         //债权投资38
-        $fee_dwtzqk_zqtz = Dwtzqk::selectRaw("SUM(zq)+SUM(yszx) as fee")->first()->fee;
+        $fee_dwtzqk_zqtz = Dwtzqk::selectRaw("zq+yszx as fee")
+            ->where('unit', '合计')
+            ->first()->fee;
         //投资的留存收益39
-        $fee_dwtzqk_lcsy = Dwtzqk::selectRaw("SUM(lcsy) as fee")->first()->fee;
+        $fee_dwtzqk_lcsy = Dwtzqk::selectRaw("lcsy as fee")
+            ->where('unit', '合计')
+            ->first()->fee;
         //合计投入40
-        $fee_dwtzqk_hjtr = Dwtzqk::selectRaw("SUM(hj) as fee")->first()->fee;
+        $fee_dwtzqk_hjtr = Dwtzqk::selectRaw("hj as fee")
+            ->where('unit', '合计')
+            ->first()->fee;
+
         $this->saveDocx([
             'fee_dwtzqk_hjgqtz' => $fee_dwtzqk_hjgqtz/10000,
             'fee_dwtzqk_zqtz' => $fee_dwtzqk_zqtz/10000,
