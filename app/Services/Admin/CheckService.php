@@ -92,7 +92,7 @@ class CheckService
                 $this->data_service->statisticsJlcysqk();
                 break;
             case 'dwtzqk':
-                if($line_count != 10){
+                if($line_count != 11){
                     throw new \Exception('模版错误');
                 }
                 $this->dwtzqk($collection);
