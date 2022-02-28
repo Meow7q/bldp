@@ -17,6 +17,9 @@ Route::namespace('Admin')->group(function (){
     Route::post('auth', 'AuthController@auth');
     Route::get('vefiry_code', 'AuthController@createVerifyCode');
 });
+Route::namespace('Admin')->group(function (){
+    Route::get('pcheck/dataStatistics1', 'PCompanyCheckController@statisticsData');
+});
 
 Route::namespace('Admin')->group(function (){
 //Route::namespace('Admin')->middleware('auth.admin')->group(function (){
