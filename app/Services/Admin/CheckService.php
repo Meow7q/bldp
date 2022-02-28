@@ -64,7 +64,7 @@ class CheckService
                 $this->data_service->statisticsKjbbqk();
                 break;
             case 'srhz':
-                if($line_count != 27){
+                if($line_count != 29){
                     throw new \Exception('模版错误');
                 }
                 $this->srhz($collection);

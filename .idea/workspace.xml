@@ -21,6 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3e08bbc1-bad0-47d5-9c0a-6d50afee08ce" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,18 +187,18 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/database/migrations/mgsjdb" />
-      <recent name="$PROJECT_DIR$/public/static/template" />
-      <recent name="$PROJECT_DIR$/database/migrations/api" />
-      <recent name="$PROJECT_DIR$/public/static" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/public/static/template" />
       <recent name="$PROJECT_DIR$/routes" />
       <recent name="$PROJECT_DIR$/public/static" />
       <recent name="$PROJECT_DIR$/app" />
       <recent name="$PROJECT_DIR$/database/migrations" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/database/migrations/mgsjdb" />
+      <recent name="$PROJECT_DIR$/public/static/template" />
+      <recent name="$PROJECT_DIR$/database/migrations/api" />
+      <recent name="$PROJECT_DIR$/public/static" />
     </key>
   </component>
   <component name="RunManager">
@@ -254,6 +255,7 @@
       <workItem from="1646012145849" duration="978000" />
       <workItem from="1646014642252" duration="1126000" />
       <workItem from="1646016342190" duration="9321000" />
+      <workItem from="1646039023123" duration="382000" />
     </task>
     <servers />
   </component>
