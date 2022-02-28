@@ -195,7 +195,7 @@ class CheckService
             Zbqk::truncate();
             foreach ($data as $k => $line) {
                 $line = array_values($line);
-                Zbqk::updateOrCreate(['type' => $line[0]], [
+                Zbqk::create([
                     'type' => $line[0],
                     'rzbj' => is_numeric($line[1]) ? $line[1] : 0,
                     'rzpjcb' => is_numeric($line[2]) ? $line[2] : 0,
