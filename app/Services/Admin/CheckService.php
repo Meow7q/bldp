@@ -275,7 +275,7 @@ class CheckService
                 $fee_2014 = array_shift($line);
                 $fee_2013 = array_shift($line);
                 SrhzNew::create([
-                    'unit' => $k1<9?'合计':($k1<18?'控股':'城投'),
+                    'unit' => $k1<9?'合计':($k1<19?'控股':'城投'),
                     'type' => $type,
                     'hz' => is_numeric($hz)?$hz:0,
                     'fee_2022' => is_numeric($fee_2022) ? $fee_2022 : 0,
