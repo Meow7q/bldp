@@ -328,11 +328,11 @@ class PCompanyDatastaticsService
         $fee_xjlqkyj_zjqk = $zjqk/10000;
 
         $data =[
-            'fee_xjlqk_mgsxjljc' => $fee_xjlqk_mgsxjljc/10000,
-            'fee_xjlqk_jyxjljc' => $fee_xjlqk_jyxjljc/10000,
-            'fee_xjlqk_rzjlc' => $fee_xjlqk_rzjlc/10000,
-            'fee_xjlqk_tzjlc' => $fee_xjlqk_tzjlc/10000,
-            'fee_xjlqk_hbzjye' => $fee_xjlqk_hbzjye/10000,
+            'fee_xjlqk_mgsxjljc' => bcdiv($fee_xjlqk_mgsxjljc, 10000, 4),
+            'fee_xjlqk_jyxjljc' => bcdiv($fee_xjlqk_jyxjljc, 10000, 4),
+            'fee_xjlqk_rzjlc' => bcdiv($fee_xjlqk_rzjlc,10000,4),
+            'fee_xjlqk_tzjlc' => bcdiv($fee_xjlqk_tzjlc,10000,4),
+            'fee_xjlqk_hbzjye' => bcdiv($fee_xjlqk_hbzjye, 10000,4),
 
             'fee_xjlqkyj_kgxjjlc' => $fee_xjlqkyj_kgxjjlc,
             'fee_xjlqkyj_xjjlc' => $fee_xjlqkyj_xjjlc,
