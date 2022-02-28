@@ -84,7 +84,6 @@ class PCompanyDatastaticsService
      */
     public function statisticsZbqk()
     {
-
         //自有资金
         $fee_kg_zyzj = Zbqk::query()->where('type', '控股')->sum('zyzj');
         $fee_ct_zyzj = Zbqk::query()->where('type', '城投')->sum('zyzj');
