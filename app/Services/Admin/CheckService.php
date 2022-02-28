@@ -227,7 +227,7 @@ class CheckService
                         continue;
                     }
                     $type = strpos($k2, '控股') !== false ? '控股' : '城投';
-                    Kjbb::create(['year' => $year, 'type' => $type], [
+                    Kjbb::updateOrCreate(['year' => $year, 'type' => $type], [
                         'year' => $year,
                         'type' => $type,
                         $field_arr[$k1] => is_numeric($v) ? $v : 0
@@ -568,6 +568,7 @@ class CheckService
                 ['tzss', '投资收益'],
                 ['qtsy', '其他收益'],
                 ['yywsr', '营业外收入'],
+                ['yyzc', '营业支出'],
                 ['glfy', '管理费用'],
                 ['cwfy', '财务费用'],
                 ['sjjfj', '税金及附加'],
