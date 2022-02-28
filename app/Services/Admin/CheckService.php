@@ -227,7 +227,7 @@ class CheckService
                         continue;
                     }
                     $type = strpos($k2, '控股') !== false ? '控股' : '城投';
-                    Kjbb::updateOrCreate(['year' => $year, 'type' => $type], [
+                    Kjbb::create(['year' => $year, 'type' => $type], [
                         'year' => $year,
                         'type' => $type,
                         $field_arr[$k1] => is_numeric($v) ? $v : 0
