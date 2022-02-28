@@ -9,6 +9,7 @@ use App\Models\PCompanyCheck\Fhmx;
 use App\Models\PCompanyCheck\FhmxNew;
 use App\Models\PCompanyCheck\Kjbb;
 use App\Models\PCompanyCheck\Lnzc;
+use App\Models\PCompanyCheck\LnzcNew;
 use App\Models\PCompanyCheck\Srhz;
 use App\Models\PCompanyCheck\SrhzNew;
 use App\Models\PCompanyCheck\Xjlbsj;
@@ -65,11 +66,15 @@ class PCompanyDatastaticsService
      */
     public function statisticsLnzcxq()
     {
-        $fee_kg = Lnzc::select(DB::raw("SUM(yxwzc)+SUM(cwfy)+SUM(gz)+SUM(pgzxf)+SUM(zj)+SUM(bgf)+SUM(ywzdf)+SUM(clf)+SUM(qtywcb)+SUM(kgqt) as fee"))
+        $fee_kg = LnzcNew::select(DB::raw("hj as fee"))
+            ->where('project', '小计')
+            ->where('unit', '控股')
             ->first();
-        $fee_ct = Lnzc::select(DB::raw("SUM(ggsjf)+SUM(sds)+SUM(ctqt) as fee"))
+        $fee_ct = LnzcNew::select(DB::raw("hj as fee"))
+            ->where('unit', '合计')
             ->first();
-        $fee_total = Lnzc::select(DB::raw("SUM(yxwzc)+SUM(cwfy)+SUM(gz)+SUM(pgzxf)+SUM(zj)+SUM(bgf)+SUM(ywzdf)+SUM(clf)+SUM(qtywcb)+SUM(kgqt)+SUM(ggsjf)+SUM(sds)+SUM(ctqt) as fee"))
+        $fee_total = LnzcNew::select(DB::raw("hj as fee"))
+            ->orderBy('id', 'desc')
             ->first();
         $data = [
             'fee_kg' => $fee_kg->fee/10000,

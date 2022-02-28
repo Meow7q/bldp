@@ -8,6 +8,7 @@ use App\Models\PCompanyCheck\Fhmx;
 use App\Models\PCompanyCheck\FhmxNew;
 use App\Models\PCompanyCheck\Kjbb;
 use App\Models\PCompanyCheck\Lnzc;
+use App\Models\PCompanyCheck\LnzcNew;
 use App\Models\PCompanyCheck\Srhz;
 use App\Models\PCompanyCheck\SrhzNew;
 use App\Models\PCompanyCheck\TableList;
@@ -42,7 +43,7 @@ class CheckService
         $line_count = count($collection);
         switch ($table_name) {
             case 'lnzc':
-                if($line_count != 13){
+                if($line_count != 18){
                     throw new \Exception('模版错误');
                 }
                 $this->lnzc($collection);
@@ -124,29 +125,38 @@ class CheckService
      */
     protected function lnzc($data)
     {
-        //yxwzc 营业外支出(捐赠等)
-        //cwfy 财务费用
-        //gz 工资
-        //pgzxf 评估咨询费
-        //zj 折旧
-        //bgf 办公费
-        //ywzdf 业务招待费
-        //clf 差旅费
-        //qtywcb 其他业务成本
-        //kgqt 控股其他
-
-        //ggsjf 广告设计费
-        //sds 所得税费用
-        //ctqt 城投其他
-        $field_arr = ['yxwzc', 'cwfy', 'gz', 'pgzxf', 'zj',
-            'bgf', 'ywzdf', 'clf', 'qtywcb', 'kgqt', 'ggsjf',
-            'sds', 'ctqt',
-        ];
         try {
             DB::beginTransaction();
-            Lnzc::truncate();
+            LnzcNew::truncate();
             foreach ($data as $k => $line) {
-                $this->setData($field_arr[$k], $line);
+                $unit = array_shift($line);
+                $project = array_shift($line);
+                $fee_2022 = array_shift($line);
+                $fee_2021 = array_shift($line);
+                $fee_2020 = array_shift($line);
+                $fee_2019 = array_shift($line);
+                $fee_2018 = array_shift($line);
+                $fee_2017 = array_shift($line);
+                $fee_2016 = array_shift($line);
+                $fee_2015 = array_shift($line);
+                $fee_2014 = array_shift($line);
+                $fee_2013 = array_shift($line);
+                $hj = array_shift($line);
+                LnzcNew::create([
+                    'unit' => $k<12?'控股':($k<16?'城投':($k==16?'合计':$unit)),
+                    'project' => $project,
+                    'hj' => is_numeric($hj)?$hj:0,
+                    'fee_2022' => is_numeric($fee_2022) ? $fee_2022 : 0,
+                    'fee_2021' => is_numeric($fee_2021) ? $fee_2021 : 0,
+                    'fee_2020' => is_numeric($fee_2020) ? $fee_2020 : 0,
+                    'fee_2019' => is_numeric($fee_2019) ? $fee_2019 : 0,
+                    'fee_2018' => is_numeric($fee_2018) ? $fee_2018 : 0,
+                    'fee_2017' => is_numeric($fee_2017) ? $fee_2017 : 0,
+                    'fee_2016' => is_numeric($fee_2016) ? $fee_2016 : 0,
+                    'fee_2015' => is_numeric($fee_2015) ? $fee_2015 : 0,
+                    'fee_2014' => is_numeric($fee_2014) ? $fee_2014 : 0,
+                    'fee_2013' => is_numeric($fee_2013) ? $fee_2013 : 0,
+                ]);
             }
             DB::commit();
         } catch (\Exception $e) {
@@ -549,17 +559,7 @@ class CheckService
         }
 
         if ($table_name == 'lnzc') {
-            $field_arr1 = [['yxwzc', '营业外支出(捐赠等)'], ['cwfy', '财务费用'], ['gz', '管理费用-工资'], ['pgzxf', '管理费用-评估咨询费'],
-                ['zj', '管理费用-折旧'], ['bgf', '管理费用-办公费'], ['ywzdf', '管理费用-业务招待费'],
-                ['clf', '管理费用-差旅费`'], ['qtywcb', '其他业务成本'], ['kgqt', '其他']];
-            $field_arr2 = [['ggsjf', '管理费用-广告设计费'], ['sds', '所得税费用'], ['ctqt', '其他']];
-            $lnzc_data = [];
-            [$hj1, $data1] = $this->lnzcData($field_arr1);
-            [$hj2, $data2] = $this->lnzcData($field_arr2);
-            array_push($lnzc_data, $data1);
-            array_push($lnzc_data, $data2);
-            array_push($lnzc_data, ['hj' => $hj1 + $hj2]);
-            return $lnzc_data;
+            return LnzcNew::all()->toArray();
         }
 
         if ($table_name == 'kjbb') {
