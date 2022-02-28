@@ -5,14 +5,9 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
-use App\Models\PCompanyCheck\Kjbb;
-use App\Models\PCompanyCheck\Lnzc;
-use App\Models\PCompanyCheck\Zbqk;
 use App\Services\Admin\CheckService;
 use App\Services\Admin\PCompanyDatastaticsService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Redis;
 
 class PCompanyCheckController extends Controller
 {
@@ -62,7 +57,6 @@ class PCompanyCheckController extends Controller
         try{
             $this->service->importExcel($path, $validated['table_name']);
         }catch (\Exception $e){
-            throw $e;
             return $this->fail('模版错误');
         }
         return $this->message('ok');
