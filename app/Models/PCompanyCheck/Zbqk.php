@@ -13,4 +13,8 @@ class Zbqk extends Model
     protected $guarded = [];
 
     protected $hidden = ['created_at', 'updated_at', 'id'];
+
+    protected function getRzpjcbAttribute($value){
+        return round($value*100, 2).'%';
+    }
 }
