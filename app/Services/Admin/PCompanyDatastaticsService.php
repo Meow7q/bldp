@@ -137,13 +137,14 @@ class PCompanyDatastaticsService
      */
     public function statisticsKjbbqk(){
         //各项收入17
-        $fee_kg_gxsr = KjbbNew::selectRaw("kg_2022 as fee")
+        $fee_kg_gxsr = KjbbNew::selectRaw("SUM(kg_2022) as fee")
                 ->whereIn('project', ['营业收入', '投资收益', '其他收益', '营业外收入'])
                 ->first()->fee;
         //各项支出18
-        $fee_kg_gxzc = KjbbNew::selectRaw("kg_2022 as fee")
+        $fee_kg_gxzc = KjbbNew::selectRaw("SUM(kg_2022) as fee")
             ->whereIn('project', ['营业支出', '管理费用', '财务费用', '税金及附加', '营业外及其他支出', '所得税'])
             ->first()->fee;
+
         //会计盈利16
         $fee_kg_kjyl = KjbbNew::selectRaw("kg_2022 as fee")
             ->where('project', '当年净利润')
