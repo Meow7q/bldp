@@ -34,11 +34,12 @@ class CheckService
     /**
      * @param $path
      * @param $table_name
+     * @param $file_name
      * @throws \Box\Spout\Common\Exception\IOException
      * @throws \Box\Spout\Common\Exception\UnsupportedTypeException
      * @throws \Box\Spout\Reader\Exception\ReaderNotOpenedException
      */
-    public function importExcel($path, $table_name)
+    public function importExcel($path, $table_name, $file_name)
     {
         $collection = (new FastExcel())->import(public_path('upload/' . $path));
         $line_count = count($collection);
@@ -114,7 +115,9 @@ class CheckService
                 $this->data_service->statisticsXjlqk();
                 break;
         }
-        TableList::updateOrCreate(['table_name' => $table_name], [
+        TableList::create([
+            'table_name' => $table_name,
+            'file_name' => $file_name,
             'file_path' => $path
         ]);
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Models\PCompanyCheck\TableList;
 use App\Services\Admin\CheckService;
 use App\Services\Admin\PCompanyDatastaticsService;
 use Illuminate\Http\Request;
@@ -54,8 +55,9 @@ class PCompanyCheckController extends Controller
             md5(bcrypt(time().uniqid())).'.'.$ext,
             'public'
         );
+
         try{
-            $this->service->importExcel($path, $validated['table_name']);
+            $this->service->importExcel($path, $validated['table_name'],$file->getClientOriginalName());
         }catch (\Exception $e){
 //            throw $e;
             return $this->fail('模版错误');
@@ -98,4 +100,17 @@ class PCompanyCheckController extends Controller
         return $this->message('ok');
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function getFileList(Request $request){
+        $validated = $this->validate($request, ['table_name' => 'required']);
+        $data = TableList::where('table_name', $validated['table_name'])
+            ->select(['id', 'table_name', 'file_name', 'file_path', 'created_at'])
+            ->orderBy('created_at', 'desc')
+            ->simplePaginate()->toArray();
+        return $this->success($data);
+    }
 }

@@ -18,6 +18,7 @@ class CreatePCheckTableListTable extends Migration
             $table->string('table_name')->nullable()->comment('表名');
             $table->string('tmp_path')->nullable()->comment('模版地址');
             $table->string('file_path')->nullable()->comment('最新文件地址');
+            $table->string('file_name')->nullable()->comment('文件名称');
             $table->tinyInteger('status')->default(0)->comment('状态');
             $table->timestamps();
         });

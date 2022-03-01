@@ -12,5 +12,9 @@ class TableList extends Model
 
     protected $guarded = [];
 
-    protected $hidden = ['created_at', 'updated_at'];
+    protected $hidden = ['updated_at'];
+
+    public function getFilePathAttribute($value){
+        return '/upload/'.$value;
+    }
 }
