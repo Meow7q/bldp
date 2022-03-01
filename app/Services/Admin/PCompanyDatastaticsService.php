@@ -77,9 +77,9 @@ class PCompanyDatastaticsService
             ->orderBy('id', 'desc')
             ->first();
         $data = [
-            'fee_kg' => $fee_kg->fee/10000,
-            'fee_ct' => $fee_ct->fee/10000,
-            'fee_total' => $fee_total->fee/10000,
+            'fee_kg' => bcdiv($fee_kg->fee, 10000, 8),
+            'fee_ct' => bcdiv($fee_ct->fee, 10000, 8),
+            'fee_total' => bcdiv($fee_total->fee, 10000, 8),
         ];
         $this->saveDocx($data);
     }
@@ -114,19 +114,19 @@ class PCompanyDatastaticsService
         $fee_ct_xczc = Zbqk::query()->where('type', '城投')->sum('xj');
 
         $data = [
-            'fee_kg_zyzj' => $fee_kg_zyzj/10000,
-            'fee_kg_wbrz' => $fee_kg_wbrz/10000,
-            'fee_kg_zycyzj' => $fee_kg_zycyzj/10000,
-            'fee_kg_hjtr' => $fee_kg_hjtr/10000,
-            'fee_kg_lnfyzc' => $fee_kg_lnfyzc/10000,
-            'fee_kg_xczc' => $fee_kg_xczc/10000,
+            'fee_kg_zyzj' => bcdiv($fee_kg_zyzj, 10000, 8),
+            'fee_kg_wbrz' => bcdiv($fee_kg_wbrz, 10000, 8),
+            'fee_kg_zycyzj' => bcdiv($fee_kg_zycyzj, 10000, 8),
+            'fee_kg_hjtr' => bcdiv($fee_kg_hjtr, 10000, 8),
+            'fee_kg_lnfyzc' => bcdiv($fee_kg_lnfyzc, 10000, 8),
+            'fee_kg_xczc' => bcdiv($fee_kg_xczc, 10000, 8),
 
-            'fee_ct_zyzj' => $fee_ct_zyzj/10000,
-            'fee_ct_wbrz' => $fee_ct_wbrz/10000,
-            'fee_ct_zycyzj' => $fee_ct_zycyzj/10000,
-            'fee_ct_hjtr' => $fee_ct_hjtr/10000,
-            'fee_ct_lnfyzc' => $fee_ct_lnfyzc/10000,
-            'fee_ct_xczc' => $fee_ct_xczc/10000,
+            'fee_ct_zyzj' => bcdiv($fee_ct_zyzj,10000, 8),
+            'fee_ct_wbrz' => bcdiv($fee_ct_wbrz, 10000, 8),
+            'fee_ct_zycyzj' => bcdiv($fee_ct_zycyzj, 10000, 8),
+            'fee_ct_hjtr' => bcdiv($fee_ct_hjtr, 10000, 8),
+            'fee_ct_lnfyzc' => bcdiv($fee_ct_lnfyzc, 10000, 8),
+            'fee_ct_xczc' => bcdiv($fee_ct_xczc, 10000, 8),
         ];
         $this->saveDocx($data);
     }
@@ -167,15 +167,15 @@ class PCompanyDatastaticsService
             ->where('year', 2022)->first()->fee;
 
         $this->saveDocx([
-            'fee_kg_kjyl' => $fee_kg_kjyl/10000,
-            'fee_kg_gxsr' => $fee_kg_gxsr/10000,
-            'fee_kg_gxzc' => $fee_kg_gxzc/10000,
-            'fee_kg_glfy' => $fee_kg_glfy/10000,
+            'fee_kg_kjyl' => bcdiv($fee_kg_kjyl, 10000, 8),
+            'fee_kg_gxsr' => bcdiv($fee_kg_gxsr, 10000, 8),
+            'fee_kg_gxzc' => bcdiv($fee_kg_gxzc, 10000, 8),
+            'fee_kg_glfy' => bcdiv($fee_kg_glfy, 10000, 8),
 
-            'fee_ct_kjyl' => $fee_ct_kjyl/10000,
-            'fee_ct_tzss' => $fee_ct_tzss/10000,
-            'fee_ct_cwfy' => $fee_ct_cwfy/10000,
-            'fee_kjks' => $fee_kjks/10000,
+            'fee_ct_kjyl' => bcdiv($fee_ct_kjyl, 10000, 8),
+            'fee_ct_tzss' => bcdiv($fee_ct_tzss, 10000, 8),
+            'fee_ct_cwfy' => bcdiv($fee_ct_cwfy, 10000, 8),
+            'fee_kjks' => bcdiv($fee_kjks, 10000, 8),
         ]);
     }
 
@@ -214,11 +214,11 @@ class PCompanyDatastaticsService
             ->first()->fee;
 
         $this->saveDocx([
-            'fee_srqk_srhj' => $fee_srqk_srhj/10000,
-            'fee_srqk_tzss' => $fee_srqk_tzss/10000,
-            'fee_srqk_jklx' => $fee_srqk_jklx/10000,
-            'fee_srqk_dbf' => $fee_srqk_dbf/10000,
-            'fee_srqk_fh' => $fee_srqk_fh/10000,
+            'fee_srqk_srhj' => bcdiv($fee_srqk_srhj, 10000, 8),
+            'fee_srqk_tzss' => bcdiv($fee_srqk_tzss, 10000, 8),
+            'fee_srqk_jklx' => bcdiv($fee_srqk_jklx, 10000, 8),
+            'fee_srqk_dbf' => bcdiv($fee_srqk_dbf, 10000, 8),
+            'fee_srqk_fh' => bcdiv($fee_srqk_fh, 10000, 8),
         ]);
     }
 
@@ -246,8 +246,8 @@ class PCompanyDatastaticsService
         $fee_ysqk_zxl = Ysbmb::selectRaw("de as zxl")->where('type', '费用合计')->first()->zxl;
 
         $this->saveDocx([
-            'fee_ysqk_gbmyss' => $fee_ysqk_gbmyss/100000000,
-            'fee_ysqk_sjfss' => $fee_ysqk_sjfss/100000000,
+            'fee_ysqk_gbmyss' => bcdiv($fee_ysqk_gbmyss, 100000000, 8),
+            'fee_ysqk_sjfss' => bcdiv($fee_ysqk_sjfss, 100000000, 8),
             'fee_ysqk_zxl' => round($fee_ysqk_zxl*100, 2).'%',
         ]);
     }
@@ -265,8 +265,8 @@ class PCompanyDatastaticsService
         $fee_ysqk_jlczxl = Ysjlcb::selectRaw("de as zxl")->where('name', '经理层费用小计')->first()->zxl;
 
         $this->saveDocx([
-            'fee_ysqk_kgjlcyss' => $fee_ysqk_kgjlcyss/10000,
-            'fee_ysqk_ylcsjfss' => $fee_ysqk_ylcsjfss/10000,
+            'fee_ysqk_kgjlcyss' => bcdiv($fee_ysqk_kgjlcyss, 10000, 8),
+            'fee_ysqk_ylcsjfss' => bcdiv($fee_ysqk_ylcsjfss, 10000, 8),
             'fee_ysqk_jlczxl' => round($fee_ysqk_jlczxl*100, 2).'%',
         ]);
     }
@@ -293,10 +293,10 @@ class PCompanyDatastaticsService
             ->first()->fee;
 
         $this->saveDocx([
-            'fee_dwtzqk_hjgqtz' => $fee_dwtzqk_hjgqtz/10000,
-            'fee_dwtzqk_zqtz' => $fee_dwtzqk_zqtz/10000,
-            'fee_dwtzqk_lcsy' => $fee_dwtzqk_lcsy/10000,
-            'fee_dwtzqk_hjtr' => $fee_dwtzqk_hjtr/10000,
+            'fee_dwtzqk_hjgqtz' => bcdiv($fee_dwtzqk_hjgqtz, 10000, 8),
+            'fee_dwtzqk_zqtz' => bcdiv($fee_dwtzqk_zqtz, 10000, 8),
+            'fee_dwtzqk_lcsy' => bcdiv($fee_dwtzqk_lcsy, 10000, 8),
+            'fee_dwtzqk_hjtr' => bcdiv($fee_dwtzqk_hjtr, 10000, 8),
         ]);
     }
 
@@ -318,23 +318,23 @@ class PCompanyDatastaticsService
 
         //控股预计现金流流出46
         $fee_xjlqkyj_kgxjjlc = Xjlbyg::where('project', '现金净流出')->selectRaw("hj as fee")->first()->fee;
-        $fee_xjlqkyj_kgxjjlc = $fee_xjlqkyj_kgxjjlc/10000;
+        $fee_xjlqkyj_kgxjjlc = bcdiv($fee_xjlqkyj_kgxjjlc, 10000, 8);
 
         //预计经营现金净流出47
         $jyxjjlc = Xjlbyg::where('project', '一、经营现金净流入')->selectRaw("hj as fee")->first()->fee;
-        $fee_xjlqkyj_xjjlc = $jyxjjlc/10000;
+        $fee_xjlqkyj_xjjlc = bcdiv($jyxjjlc, 10000, 8);
 
         //预计融资净流出48
         $rzjlc = Xjlbyg::where('project', '二、融资现金净流出')->selectRaw("hj as fee")->first()->fee;
-        $fee_xjlqkyj_rzjlc = $rzjlc/10000;
+        $fee_xjlqkyj_rzjlc = bcdiv($rzjlc, 10000, 8);
 
         //投资净流出49
         $tzjlc = Xjlbyg::where('project', '三、投资现金净流出(新兴产业)')->selectRaw("hj as fee")->first()->fee;
-        $fee_xjlqkyj_tzjlc = $tzjlc/10000;
+        $fee_xjlqkyj_tzjlc = bcdiv($tzjlc, 10000, 8);
 
         //资金缺口50
         $zjqk = Xjlbyg::where('project', '期末现金余额(资金缺口）')->selectRaw("hj as fee")->first()->fee;
-        $fee_xjlqkyj_zjqk = $zjqk/10000;
+        $fee_xjlqkyj_zjqk = bcdiv($zjqk, 10000, 8);
 
         $data =[
             'fee_xjlqk_mgsxjljc' => bcdiv($fee_xjlqk_mgsxjljc, 10000, 8),
