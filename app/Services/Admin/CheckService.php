@@ -7,6 +7,7 @@ use App\Models\PCompanyCheck\Dwtzqk;
 use App\Models\PCompanyCheck\Fhmx;
 use App\Models\PCompanyCheck\FhmxNew;
 use App\Models\PCompanyCheck\Kjbb;
+use App\Models\PCompanyCheck\KjbbNew;
 use App\Models\PCompanyCheck\Lnzc;
 use App\Models\PCompanyCheck\LnzcNew;
 use App\Models\PCompanyCheck\Srhz;
@@ -223,26 +224,26 @@ class CheckService
      */
     protected function kjbb($data)
     {
-        $field_arr = ['yysr', 'tzss', 'qtsy', 'yywsr',
-            'yyzc', 'glfy', 'cwfy', 'sjjfj', 'yywjqtzc', 'sds',
-            'dnjlr', 'qmwfplr',
-        ];
         try {
             DB::beginTransaction();
-            Kjbb::truncate();
+            KjbbNew::truncate();
             foreach ($data as $k1 => $line) {
-                foreach ($line as $k2 => $v) {
-                    $year = preg_filter('/\D/', '', $k2);
-                    if (empty($year)) {
-                        continue;
-                    }
-                    $type = strpos($k2, '控股') !== false ? '控股' : '城投';
-                    Kjbb::updateOrCreate(['year' => $year, 'type' => $type], [
-                        'year' => $year,
-                        'type' => $type,
-                        $field_arr[$k1] => is_numeric($v) ? $v : 0
-                    ]);
-                }
+                $project = array_shift($line);
+                $kg_2022 = array_shift($line);
+                $kg_2021 = array_shift($line);
+                $kg_tb = array_shift($line);
+                $ct_2022 = array_shift($line);
+                $ct_2021 = array_shift($line);
+                $ct_tb = array_shift($line);
+                KjbbNew::create([
+                    'project' => $project,
+                    'kg_2022' => is_numeric($kg_2022)?$kg_2022:0,
+                    'kg_2021' => is_numeric($kg_2021)?$kg_2021:0,
+                    'kg_tb' => is_numeric($kg_tb) ? $kg_tb : 0,
+                    'ct_2022' => is_numeric($ct_2022) ? $ct_2022 : 0,
+                    'ct_2021' => is_numeric($ct_2021) ? $ct_2021 : 0,
+                    'ct_tb' => is_numeric($ct_tb) ? $ct_tb : 0,
+                ]);
             }
             DB::commit();
         } catch (\Exception $e) {
@@ -563,42 +564,7 @@ class CheckService
         }
 
         if ($table_name == 'kjbb') {
-            $field_arr = [
-                ['yysr', '营业收入'],
-                ['tzss', '投资收益'],
-                ['qtsy', '其他收益'],
-                ['yywsr', '营业外收入'],
-                ['yyzc', '营业支出'],
-                ['glfy', '管理费用'],
-                ['cwfy', '财务费用'],
-                ['sjjfj', '税金及附加'],
-                ['yywjqtzc', '营业外及其他支出'],
-                ['sds', '所得税'],
-                ['dnjlr', '当年净利润'],
-                ['qmwfplr', '期末未分配利润'],
-            ];
-            $kjbb_data = collect($field_arr)->map(function ($v, $k) {
-                $data = Kjbb::select("{$v[0]} as fee")->orderBy('type', 'desc')
-                    ->orderBy('year', 'desc')->get()->map(function ($v) {
-                        return $v->fee;
-                    })->values()->all();
-                $kgtb = $data[1]?(round(($data[0] - $data[1]) / $data[1], 2) * 100):0;
-                $cttb = $data[3]?(round(($data[2] - $data[3]) / $data[3], 2) * 100):0;
-                if($v[0] == 'qmwfplr' || $v[0] == 'dnjlr'){
-                    $kgtb = -$kgtb;
-                    $cttb = -$cttb;
-                }
-                return [
-                    'name' => $v[1],
-                    '控股2022' => $data[0],
-                    '控股2021' => $data[1],
-                    '控股同比' => $kgtb?$kgtb.'%':$kgtb,
-                    '城投2022' => $data[2],
-                    '城投2021' => $data[3],
-                    '城投同比' => $cttb?$cttb.'%':$cttb,
-                ];
-            })->values()->all();
-            return $kjbb_data;
+            return KjbbNew::all()->toArray();
         }
 
         if ($table_name == 'srhz') {
