@@ -20,11 +20,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e08bbc1-bad0-47d5-9c0a-6d50afee08ce" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Enum/FinalizeStatus.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PCompanyCheckController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/PCompanyCheckController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/PCompanyCheck/TableList.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/PCompanyCheck/TableList.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Services/Admin/CheckService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Admin/CheckService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/Admin/PCompanyDatastaticsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Admin/PCompanyDatastaticsService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/mgsjdb/2022_02_21_064606_create_p_check_table_list_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/mgsjdb/2022_02_21_064606_create_p_check_table_list_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/docx/母公司经营管理指标成果点检表621b20aac1d44.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/docx/母公司经营管理指标成果点检表621b292edbc18.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/docx/母公司经营管理指标成果点检表621b4a7064d4d.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/docx/母公司经营管理指标成果点检表621b5bd18b9a4.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/docx/母公司经营管理指标成果点检表621b634c02a73.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/docx/母公司经营管理指标成果点检表621b65c9d619d.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/docx/母公司经营管理指标成果点检表621b65d880e85.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/docx/母公司经营管理指标成果点检表621b690b0b40a.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/docx/母公司经营管理指标成果点检表621b6d6d43234.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/docx/母公司经营管理指标成果点检表621b6d748491c.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/docx/母公司经营管理指标成果点检表621b6e10ae737.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/docx/母公司经营管理指标成果点检表621b6f9ba7d4f.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/docx/母公司经营管理指标成果点检表621b930214d1f.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/docx/母公司经营管理指标成果点检表621bb17414bea.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/docx/母公司经营管理指标成果点检表621bb1af86e7c.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/docx/母公司经营管理指标成果点检表621bb52f2a0bb.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/docx/母公司经营管理指标成果点检表621c3b8e988ad.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/docx/母公司经营管理指标成果点检表621c3baa8bc76.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/docx/母公司经营管理指标成果点检表621c3c071c121.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/docx/母公司经营管理指标成果点检表621c3c3ada563.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/docx/母公司经营管理指标成果点检表621c5f109afe0.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/docx/母公司经营管理指标成果点检表621c63b41cff3.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/docx/母公司经营管理指标成果点检表621c6611a0ce9.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/docx/母公司经营管理指标成果点检表621c85cfc4928.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/docx/母公司经营管理指标成果点检表621c9436bcddd.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/docx/母公司经营管理指标成果点检表621c94820e14d.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/docx/母公司经营管理指标成果点检表621c98e0a7edc.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/docx/母公司经营管理指标成果点检表621db69e5d466.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/docx/母公司经营管理指标成果点检表621dbc7c97096.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/static/docx/母公司经营管理指标成果点检表621dbc873c0bd.docx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -263,7 +294,7 @@
       <workItem from="1646041198891" duration="347000" />
       <workItem from="1646043053529" duration="1505000" />
       <workItem from="1646099472887" duration="108000" />
-      <workItem from="1646100363781" duration="5826000" />
+      <workItem from="1646100363781" duration="13914000" />
     </task>
     <servers />
   </component>
@@ -288,10 +319,10 @@
     </state>
     <state x="458" y="212" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.900@0.0.1440.900" timestamp="1645771292800" />
     <state x="458" y="210" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.795@0.23.1440.795" timestamp="1645724818308" />
-    <state x="227" y="172" key="NewPhpClassDialog" timestamp="1646105262756">
+    <state x="379" y="176" key="NewPhpClassDialog" timestamp="1646123407640">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="227" y="172" key="NewPhpClassDialog/0.0.1440.900@0.0.1440.900" timestamp="1646105262756" />
+    <state x="379" y="176" key="NewPhpClassDialog/0.0.1440.900@0.0.1440.900" timestamp="1646123407640" />
     <state x="892" y="182" key="NewPhpClassDialog/0.23.1440.795@0.23.1440.795" timestamp="1645668704377" />
     <state x="450" y="153" width="549" height="593" key="StructurePopup" timestamp="1646114468394">
       <screen x="0" y="0" width="1440" height="900" />
@@ -299,10 +330,10 @@
     <state x="450" y="153" width="549" height="593" key="StructurePopup/0.0.1440.900@0.0.1440.900" timestamp="1646114468394" />
     <state x="450" y="158" width="549" height="523" key="StructurePopup/0.23.1440.795@0.23.1440.795" timestamp="1645683622291" />
     <state x="450" y="159" width="549" height="524" key="StructurePopup/0.23.1440.798@0.23.1440.798" timestamp="1645610242593" />
-    <state width="520" height="445" key="SwitcherDM" timestamp="1646116536660">
+    <state width="520" height="445" key="SwitcherDM" timestamp="1646127453244">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="520" height="445" key="SwitcherDM/0.0.1440.900@0.0.1440.900" timestamp="1646116536660" />
+    <state width="520" height="445" key="SwitcherDM/0.0.1440.900@0.0.1440.900" timestamp="1646127453244" />
     <state width="520" height="400" key="SwitcherDM/0.23.1440.795@0.23.1440.795" timestamp="1646015884704" />
     <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1645975002005">
       <screen x="0" y="0" width="1440" height="900" />

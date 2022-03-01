@@ -41,7 +41,7 @@ class CheckService
      */
     public function importExcel($path, $table_name, $file_name)
     {
-        $collection = (new FastExcel())->import(public_path('upload/' . $path));
+        $collection = (new FastExcel())->import(public_path( $path));
         $line_count = count($collection);
         switch ($table_name) {
             case 'lnzc':
@@ -115,11 +115,13 @@ class CheckService
                 $this->data_service->statisticsXjlqk();
                 break;
         }
-        TableList::create([
-            'table_name' => $table_name,
-            'file_name' => $file_name,
-            'file_path' => $path
-        ]);
+        if(!empty($file_name)){
+            TableList::create([
+                'table_name' => $table_name,
+                'file_name' => $file_name,
+                'file_path' => $path
+            ]);
+        }
     }
 
     /**
@@ -165,7 +167,7 @@ class CheckService
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
-            throw $e;
+            //throw $e;
         }
     }
 

@@ -4,11 +4,13 @@
 namespace App\Http\Controllers\Admin;
 
 
+use App\Enum\FinalizeStatus;
 use App\Http\Controllers\Controller;
 use App\Models\PCompanyCheck\TableList;
 use App\Services\Admin\CheckService;
 use App\Services\Admin\PCompanyDatastaticsService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PCompanyCheckController extends Controller
 {
@@ -57,7 +59,7 @@ class PCompanyCheckController extends Controller
         );
 
         try{
-            $this->service->importExcel($path, $validated['table_name'],$file->getClientOriginalName());
+            $this->service->importExcel('upload/'.$path, $validated['table_name'],$file->getClientOriginalName());
         }catch (\Exception $e){
 //            throw $e;
             return $this->fail('模版错误');
@@ -106,11 +108,73 @@ class PCompanyCheckController extends Controller
      * @throws \Illuminate\Validation\ValidationException
      */
     public function getFileList(Request $request){
-        $validated = $this->validate($request, ['table_name' => 'required']);
+        $validated = $this->validate($request, ['table_name' => 'required', 'keyword' => '', 'status' => '']);
         $data = TableList::where('table_name', $validated['table_name'])
-            ->select(['id', 'table_name', 'file_name', 'file_path', 'created_at'])
+            ->where('file_name', 'like', '%'.($validated['keyword']??'').'%')
+            ->when(!empty($validated['status']), function ($query) use ($validated){
+                $query->where('status', $validated['status']);
+            })
+            ->select(['id', 'table_name', 'file_name', 'file_path', 'created_at','month', 'status'])
             ->orderBy('created_at', 'desc')
             ->simplePaginate($request->per_page??10)->toArray();
         return $this->success($data);
     }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function update(Request $request){
+        $validated = $this->validate($request, ['id' => 'required', 'status' => '', 'month' => '']);
+        $status = empty($validated['status'])?null:$validated['status'];
+        $month = empty($validated['month'])?null:$validated['month'];
+        if(empty($status) && empty($month)){
+            return $this->fail('参数错误: 是否定稿和定稿月份至少有一个');
+        }
+        $data = [];
+        if($status){
+            $data['status'] = $status;
+        }
+        if($month){
+            $data['month'] = $month;
+        }
+        TableList::where('id', $validated['id'])
+            ->update($data);
+        return $this->message('ok');
+    }
+
+    /**
+     * 切换数据源
+     * @param Request $request
+     * @throws \Box\Spout\Common\Exception\IOException
+     * @throws \Box\Spout\Common\Exception\UnsupportedTypeException
+     * @throws \Box\Spout\Reader\Exception\ReaderNotOpenedException
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function switchDataSourceByMonth(Request $request){
+        $validated = $this->validate($request, ['month' => 'required']);
+        $table_list = ['lnzc', 'zbqk', 'kjbb', 'srhz', 'fhmx', 'ysbmb', 'ysjlcb', 'dwtzqk', 'xjlbsj', 'xjlbyg'];
+        $this->data_service->resetStatisticsData($validated['month']);
+        foreach ($table_list as $table){
+            $info = TableList::where('table_name', $table)
+                ->where('month', $validated['month'])
+                ->where('status', FinalizeStatus::YES)
+                ->first();
+            if($info){
+                $this->service->importExcel($info->file_path, $table, null);
+            }
+        }
+        return $this->message('ok');
+    }
+
+    /**
+     * 首页下载列表
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
+    public function getDownloadList(){
+        $list = $this->data_service->downlist();
+        return $this->success($list);
+    }
+
 }

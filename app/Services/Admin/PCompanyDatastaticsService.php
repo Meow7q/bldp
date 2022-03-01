@@ -4,6 +4,7 @@
 namespace App\Services\Admin;
 
 
+use App\Enum\FinalizeStatus;
 use App\Models\PCompanyCheck\Dwtzqk;
 use App\Models\PCompanyCheck\Fhmx;
 use App\Models\PCompanyCheck\FhmxNew;
@@ -13,6 +14,7 @@ use App\Models\PCompanyCheck\Lnzc;
 use App\Models\PCompanyCheck\LnzcNew;
 use App\Models\PCompanyCheck\Srhz;
 use App\Models\PCompanyCheck\SrhzNew;
+use App\Models\PCompanyCheck\TableList;
 use App\Models\PCompanyCheck\Xjlbsj;
 use App\Models\PCompanyCheck\Xjlbyg;
 use App\Models\PCompanyCheck\Ysbmb;
@@ -357,13 +359,117 @@ class PCompanyDatastaticsService
         $this->saveDocx($data);
     }
 
+    /**
+     * @param $data
+     */
     public function updateText($data){
-        $cace_data = Redis::get($this->key);
-        $cace_data = empty($cace_data) ? [] : json_decode($cace_data, true);
+        $cache_data = Redis::get($this->key);
+        $cache_data = empty($cace_data) ? [] : json_decode($cache_data, true);
         foreach ($data as $k=>$v){
-            $cace_data[$k] = $v;
+            $cache_data[$k] = $v;
         }
-        $this->saveDocx($cace_data);
+        $this->saveDocx($cache_data);
     }
 
+
+    /**
+     * 重置统计数据
+     */
+    public function resetStatisticsData($month){
+        $data = [
+            'data_source_month' => $month,
+            'docx_path' => '',
+            'fee_xjlqk_mgsxjljc' => '',
+            'fee_xjlqk_jyxjljc' => '',
+            'fee_xjlqk_rzjlc' => '',
+            'fee_xjlqk_tzjlc' => '',
+            'fee_xjlqk_hbzjye' => '',
+            'fee_xjlqkyj_kgxjjlc' => '',
+            'fee_xjlqkyj_xjjlc' => '',
+            'fee_xjlqkyj_rzjlc' => '',
+            'fee_xjlqkyj_tzjlc' => '',
+            'fee_xjlqkyj_zjqk' => '',
+            'current_month' => '',
+            'fee_dwtzqk_hjgqtz' => '',
+            'fee_dwtzqk_zqtz' => '',
+            'fee_dwtzqk_lcsy' => '',
+            'fee_dwtzqk_hjtr' => '',
+            'fee_kg' => '',
+            'fee_ct' => '',
+            'fee_total' => '',
+            'fee_kg_kjyl' => '',
+            'fee_kg_gxsr' => '',
+            'fee_kg_gxzc' => '',
+            'fee_kg_glfy' => '',
+            'fee_ct_kjyl' => '',
+            'fee_ct_tzss' => '',
+            'fee_ct_cwfy' => '',
+            'fee_kjks' => '',
+            'fee_ysqk_kgjlcyss' => '',
+            'fee_ysqk_ylcsjfss' => '',
+            'fee_ysqk_jlczxl' => '',
+            'fee_ysqk_gbmyss' => '',
+            'fee_ysqk_sjfss' => '',
+            'fee_ysqk_zxl' => '',
+            'fee_fhqk_kgfh' => '',
+            'fee_fhqk_ctfh' => '',
+            'fee_srqk_srhj' => '',
+            'fee_srqk_tzss' => '',
+            'fee_srqk_jklx' => '',
+            'fee_srqk_dbf' => '',
+            'fee_srqk_fh' => '',
+            'fee_kg_zyzj' => '',
+            'fee_kg_wbrz' => '',
+            'fee_kg_zycyzj' => '',
+            'fee_kg_hjtr' => '',
+            'fee_kg_lnfyzc' => '',
+            'fee_kg_xczc' => '',
+            'fee_ct_zyzj' => '',
+            'fee_ct_wbrz' => '',
+            'fee_ct_zycyzj' =>'',
+            'fee_ct_hjtr' => '',
+            'fee_ct_lnfyzc' => '',
+            'fee_ct_xczc' => '',
+            'text1' => '',
+            'text2' => '',
+            'text3' => '',
+            'text4' => '',
+            'text5' => '',
+            'text6' => '',
+            'text7' => '',
+            'text8' => '',
+            'text9' => '',
+            'text10' => ''
+        ];
+        $this->saveDocx($data);
+        Redis::set($this->key, json_encode($data, JSON_UNESCAPED_UNICODE));
+    }
+
+    /**
+     * 下载列表
+     * @return array
+     */
+    public function downlist(){
+        $data = Redis::get($this->key);
+        $data = json_decode($data, true);
+        $month = $data['data_source_month']??null;
+        $file_list = [];
+        if(!empty($data['docx_path'])){
+            array_push($file_list, $data['docx_path']);
+        }
+        $table_list = ['lnzc', 'zbqk', 'kjbb', 'srhz', 'fhmx', 'ysbmb', 'ysjlcb', 'dwtzqk', 'xjlbsj', 'xjlbyg'];
+        foreach ($table_list as $table_name){
+            $info = TableList::where('table_name', $table_name)
+                ->when(!empty($month), function ($query) use ($month){
+                    $query->where('month', $month)
+                        ->where('status', FinalizeStatus::YES);
+                })
+                ->orderBy('created_at', 'desc')
+                ->first();
+            if($info){
+                array_push($file_list, $info->file_path);
+            }
+        }
+        return $file_list;
+    }
 }
