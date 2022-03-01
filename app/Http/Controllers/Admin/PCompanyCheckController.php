@@ -110,7 +110,7 @@ class PCompanyCheckController extends Controller
         $data = TableList::where('table_name', $validated['table_name'])
             ->select(['id', 'table_name', 'file_name', 'file_path', 'created_at'])
             ->orderBy('created_at', 'desc')
-            ->simplePaginate()->toArray();
+            ->simplePaginate($request->per_page??10)->toArray();
         return $this->success($data);
     }
 }
