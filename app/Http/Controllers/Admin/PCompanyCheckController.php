@@ -116,7 +116,7 @@ class PCompanyCheckController extends Controller
             })
             ->select(['id', 'table_name', 'file_name', 'file_path', 'created_at','month', 'status'])
             ->orderBy('created_at', 'desc')
-            ->simplePaginate($request->per_page??10)->toArray();
+            ->Paginate($request->per_page??10)->toArray();
         return $this->success($data);
     }
 
@@ -127,16 +127,17 @@ class PCompanyCheckController extends Controller
      */
     public function update(Request $request){
         $validated = $this->validate($request, ['id' => 'required', 'status' => '', 'month' => '']);
-        $status = empty($validated['status'])?null:$validated['status'];
-        $month = empty($validated['month'])?null:$validated['month'];
-        if(empty($status) && empty($month)){
+        $status = $validated['status']??null;
+        $month = $validated['month']??null;
+
+        if(($status === null) && ($month === null)){
             return $this->fail('参数错误: 是否定稿和定稿月份至少有一个');
         }
         $data = [];
-        if($status){
+        if($status !== null){
             $data['status'] = $status;
         }
-        if($month){
+        if($month !== null){
             $data['month'] = $month;
         }
         TableList::where('id', $validated['id'])
