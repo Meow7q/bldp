@@ -455,7 +455,7 @@ class PCompanyDatastaticsService
         $month = $data['data_source_month']??null;
         $file_list = [];
         if(!empty($data['docx_path'])){
-            array_push($file_list, $data['docx_path']);
+            //array_push($file_list, $data['docx_path']);
         }
         $table_list = ['lnzc', 'zbqk', 'kjbb', 'srhz', 'fhmx', 'ysbmb', 'ysjlcb', 'dwtzqk', 'xjlbsj', 'xjlbyg'];
         foreach ($table_list as $table_name){
