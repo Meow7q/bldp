@@ -6,7 +6,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enum\FinalizeStatus;
 use App\Http\Controllers\Controller;
+use App\Models\PCompanyCheck\Dwtzqk;
+use App\Models\PCompanyCheck\FhmxNew;
+use App\Models\PCompanyCheck\KjbbNew;
+use App\Models\PCompanyCheck\LnzcNew;
+use App\Models\PCompanyCheck\SrhzNew;
 use App\Models\PCompanyCheck\TableList;
+use App\Models\PCompanyCheck\Xjlbsj;
+use App\Models\PCompanyCheck\Xjlbyg;
+use App\Models\PCompanyCheck\Ysbmb;
+use App\Models\PCompanyCheck\Ysjlcb;
+use App\Models\PCompanyCheck\Zbqk;
 use App\Services\Admin\CheckService;
 use App\Services\Admin\PCompanyDatastaticsService;
 use Illuminate\Http\Request;
@@ -109,9 +119,10 @@ class PCompanyCheckController extends Controller
      */
     public function getFileList(Request $request){
         $validated = $this->validate($request, ['table_name' => 'required', 'keyword' => '', 'status' => '']);
+        $status = $validated['status']??null;
         $data = TableList::where('table_name', $validated['table_name'])
             ->where('file_name', 'like', '%'.($validated['keyword']??'').'%')
-            ->when(!empty($validated['status']), function ($query) use ($validated){
+            ->when(($status!==null), function ($query) use ($validated){
                 $query->where('status', $validated['status']);
             })
             ->select(['id', 'table_name', 'file_name', 'file_path', 'created_at','month', 'status'])
@@ -164,9 +175,49 @@ class PCompanyCheckController extends Controller
                 ->first();
             if($info){
                 $this->service->importExcel($info->file_path, $table, null);
+                continue;
             }
+            $this->truncateTable($table);
         }
         return $this->message('ok');
+    }
+
+    /**
+     * @param $table
+     */
+    protected function truncateTable($table){
+        switch ($table) {
+            case 'lnzc':
+                LnzcNew::truncate();
+                break;
+            case 'zbqk':
+                Zbqk::truncate();
+                break;
+            case 'kjbb':
+                KjbbNew::truncate();
+                break;
+            case 'srhz':
+                SrhzNew::truncate();
+                break;
+            case 'fhmx':
+                FhmxNew::truncate();
+                break;
+            case 'ysbmb':
+                Ysbmb::truncate();
+                break;
+            case 'ysjlcb':
+                Ysjlcb::truncate();
+                break;
+            case 'dwtzqk':
+                Dwtzqk::truncate();
+                break;
+            case 'xjlbsj':
+                Xjlbsj::truncate();
+                break;
+            case 'xjlbyg':
+                Xjlbyg::truncate();
+                break;
+        }
     }
 
     /**
