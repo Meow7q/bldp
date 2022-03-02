@@ -41,7 +41,7 @@ class CheckService
      */
     public function importExcel($path, $table_name, $file_name)
     {
-        $collection = (new FastExcel())->import(public_path( $path));
+        $collection = (new FastExcel())->import(public_path($path));
         $line_count = count($collection);
         switch ($table_name) {
             case 'lnzc':
