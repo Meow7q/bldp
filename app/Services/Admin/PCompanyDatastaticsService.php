@@ -322,6 +322,20 @@ class PCompanyDatastaticsService
         //货币资金余额45
         $fee_xjlqk_hbzjye = Xjlbsj::selectRaw("hj as fee")->where('name', '货币资金余额')->first()->fee;
 
+        $data =[
+            'fee_xjlqk_mgsxjljc' => bcdiv($fee_xjlqk_mgsxjljc, 10000, 8),
+            'fee_xjlqk_jyxjljc' => bcdiv($fee_xjlqk_jyxjljc, 10000, 8),
+            'fee_xjlqk_rzjlc' => bcdiv($fee_xjlqk_rzjlc,10000,8),
+            'fee_xjlqk_tzjlc' => bcdiv($fee_xjlqk_tzjlc,10000,8),
+            'fee_xjlqk_hbzjye' => bcdiv($fee_xjlqk_hbzjye, 10000,8),
+        ];
+        $this->saveDocx($data);
+    }
+
+    /**
+     *
+     */
+    public function statisticsXjlqkYg(){
 
         //控股预计现金流流出46
         $fee_xjlqkyj_kgxjjlc = Xjlbyg::where('project', '现金净流出')->selectRaw("hj as fee")->first()->fee;
@@ -344,12 +358,6 @@ class PCompanyDatastaticsService
         $fee_xjlqkyj_zjqk = bcdiv($zjqk, 10000, 8);
 
         $data =[
-            'fee_xjlqk_mgsxjljc' => bcdiv($fee_xjlqk_mgsxjljc, 10000, 8),
-            'fee_xjlqk_jyxjljc' => bcdiv($fee_xjlqk_jyxjljc, 10000, 8),
-            'fee_xjlqk_rzjlc' => bcdiv($fee_xjlqk_rzjlc,10000,8),
-            'fee_xjlqk_tzjlc' => bcdiv($fee_xjlqk_tzjlc,10000,8),
-            'fee_xjlqk_hbzjye' => bcdiv($fee_xjlqk_hbzjye, 10000,8),
-
             'fee_xjlqkyj_kgxjjlc' => $fee_xjlqkyj_kgxjjlc,
             'fee_xjlqkyj_xjjlc' => $fee_xjlqkyj_xjjlc,
             'fee_xjlqkyj_rzjlc' => $fee_xjlqkyj_rzjlc,

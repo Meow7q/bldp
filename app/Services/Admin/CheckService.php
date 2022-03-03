@@ -112,7 +112,7 @@ class CheckService
                     throw new \Exception('模版错误');
                 }
                 $this->xjlbyg($collection);
-                $this->data_service->statisticsXjlqk();
+                $this->data_service->statisticsXjlqkYg();
                 break;
         }
         if(!empty($file_name)){
