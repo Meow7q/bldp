@@ -139,19 +139,36 @@ class PCompanyCheckController extends Controller
      */
     public function update(Request $request){
         $validated = $this->validate($request, ['id' => 'required', 'status' => '', 'month' => '']);
-        $status = $validated['status']??null;
-        $month = $validated['month']??null;
+        $status = $validated['status']??-1;
+        $month = $validated['month']??-1;
 
-        if(($status === null) && ($month === null)){
+        if(($status === -1) && ($month === -1)){
             return $this->fail('参数错误: 是否定稿和定稿月份至少有一个');
         }
-        $data = [];
-        if($status !== null){
-            $data['status'] = $status;
+        $info = TableList::where('id', $validated['id'])->first();
+        if(!$info){
+            return $this->fail('记录不存在');
         }
-        if($month !== null){
+        $have_exists = TableList::where('table_name', $info->table_name)
+            ->where('status', FinalizeStatus::YES)
+            ->where('month', $month)
+            ->first();
+        if($have_exists){
+            return $this->fail('当前月份已有定稿文件');
+        }
+
+        $data = [];
+        if($status !== -1){
+            $data['status'] = $status;
+            //如果是取消定稿，则删除对应的定稿月份
+            if($data['status'] == 0){
+                $data['month'] = null;
+            }
+        }
+        if($month !== -1){
             $data['month'] = $month;
         }
+
         TableList::where('id', $validated['id'])
             ->update($data);
         return $this->message('ok');
