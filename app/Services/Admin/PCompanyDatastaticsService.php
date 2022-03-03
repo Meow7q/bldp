@@ -58,7 +58,7 @@ class PCompanyDatastaticsService
         $this->docx->setValues($cache_data);
         $file_name = '母公司经营管理指标成果点检表'.uniqid();
         $path = '/static/docx/'.$file_name.'.docx';
-        $cache_data['current_month'] = Carbon::now()->month;
+        $cache_data['current_month'] = $cache_data['data_source_month']??Carbon::now()->month;
         $cache_data['docx_path'] = $path;
         Redis::set($this->key, json_encode($cache_data, JSON_UNESCAPED_UNICODE));
         $this->docx->saveAs(public_path($path));
@@ -490,7 +490,7 @@ class PCompanyDatastaticsService
                 ->orderBy('created_at', 'desc')
                 ->first();
             if($info){
-                array_push($file_list, '/'.$info->file_path);
+                array_push($file_list, $info->file_path);
             }
         }
         return $file_list;
