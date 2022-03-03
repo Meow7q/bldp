@@ -47,20 +47,34 @@ class PCompanyDatastaticsService
         return $cace_data;
     }
 
-    protected function saveDocx($data)
+
+    /**
+     * @param $data
+     */
+    public function exportDocx()
     {
-        $cace_data = Redis::get($this->key);
-        $cace_data = empty($cace_data) ? [] : json_decode($cace_data, true);
-        foreach ($data as $k => $v) {
-            $cace_data[$k] = $v;
-        }
-        $this->docx->setValues($cace_data);
+        $cache_data = Redis::get($this->key);
+        $cache_data = empty($cache_data) ? [] : json_decode($cache_data, true);
+        $this->docx->setValues($cache_data);
         $file_name = '母公司经营管理指标成果点检表'.uniqid();
         $path = '/static/docx/'.$file_name.'.docx';
-        $cace_data['current_month'] = Carbon::now()->month;
-        $cace_data['docx_path'] = $path;
-        Redis::set($this->key, json_encode($cace_data, JSON_UNESCAPED_UNICODE));
+        $cache_data['current_month'] = Carbon::now()->month;
+        $cache_data['docx_path'] = $path;
+        Redis::set($this->key, json_encode($cache_data, JSON_UNESCAPED_UNICODE));
         $this->docx->saveAs(public_path($path));
+    }
+
+    /**
+     * @param $data
+     */
+    public function saveDocxData($data){
+        $cache_data = Redis::get($this->key);
+        $cache_data = empty($cache_data) ? [] : json_decode($cache_data, true);
+        foreach ($data as $k => $v) {
+            $cache_data[$k] = $v;
+        }
+        $cache_data['current_month'] = Carbon::now()->month;
+        Redis::set($this->key, json_encode($cache_data, JSON_UNESCAPED_UNICODE));
     }
 
 
@@ -84,7 +98,7 @@ class PCompanyDatastaticsService
             'fee_ct' => bcdiv($fee_ct->fee, 10000, 8),
             'fee_total' => bcdiv($fee_total->fee, 10000, 8),
         ];
-        $this->saveDocx($data);
+        $this->saveDocxData($data);
     }
 
     /**
@@ -131,7 +145,7 @@ class PCompanyDatastaticsService
             'fee_ct_lnfyzc' => bcdiv($fee_ct_lnfyzc, 10000, 8),
             'fee_ct_xczc' => bcdiv($fee_ct_xczc, 10000, 8),
         ];
-        $this->saveDocx($data);
+        $this->saveDocxData($data);
     }
 
     /**
@@ -173,7 +187,7 @@ class PCompanyDatastaticsService
             ->where('project', '当年净利润')
             ->first()->fee;
 
-        $this->saveDocx([
+        $this->saveDocxData([
             'fee_kg_kjyl' => bcdiv($fee_kg_kjyl, 10000, 8),
             'fee_kg_gxsr' => bcdiv($fee_kg_gxsr, 10000, 8),
             'fee_kg_gxzc' => bcdiv($fee_kg_gxzc, 10000, 8),
@@ -220,7 +234,7 @@ class PCompanyDatastaticsService
             ->where('unit', '合计')
             ->first()->fee;
 
-        $this->saveDocx([
+        $this->saveDocxData([
             'fee_srqk_srhj' => bcdiv($fee_srqk_srhj, 10000, 8),
             'fee_srqk_tzss' => bcdiv($fee_srqk_tzss, 10000, 8),
             'fee_srqk_jklx' => bcdiv($fee_srqk_jklx, 10000, 8),
@@ -235,7 +249,7 @@ class PCompanyDatastaticsService
     public function statisticsFhqk(){
         $fee_fhqk_kgfh = FhmxNew::selectRaw("SUM(fee_2022) as fee")->whereIn('name', ['小计','中南装饰'])->first()->fee;
         $fee_fhqk_ctfh = FhmxNew::selectRaw('fee_2022 as fee')->where('name', '江苏中南建设集团有限公司')->first()->fee;
-        $this->saveDocx([
+        $this->saveDocxData([
             'fee_fhqk_kgfh' => $fee_fhqk_kgfh,
             'fee_fhqk_ctfh' => $fee_fhqk_ctfh,
         ]);
@@ -252,7 +266,7 @@ class PCompanyDatastaticsService
         //执行率
         $fee_ysqk_zxl = Ysbmb::selectRaw("de as zxl")->where('type', '费用合计')->first()->zxl;
 
-        $this->saveDocx([
+        $this->saveDocxData([
             'fee_ysqk_gbmyss' => bcdiv($fee_ysqk_gbmyss, 100000000, 8),
             'fee_ysqk_sjfss' => bcdiv($fee_ysqk_sjfss, 100000000, 8),
             'fee_ysqk_zxl' => round($fee_ysqk_zxl*100, 2).'%',
@@ -271,7 +285,7 @@ class PCompanyDatastaticsService
         //经理层执行率36
         $fee_ysqk_jlczxl = Ysjlcb::selectRaw("de as zxl")->where('name', '经理层费用小计')->first()->zxl;
 
-        $this->saveDocx([
+        $this->saveDocxData([
             'fee_ysqk_kgjlcyss' => bcdiv($fee_ysqk_kgjlcyss, 10000, 8),
             'fee_ysqk_ylcsjfss' => bcdiv($fee_ysqk_ylcsjfss, 10000, 8),
             'fee_ysqk_jlczxl' => round($fee_ysqk_jlczxl*100, 2).'%',
@@ -299,7 +313,7 @@ class PCompanyDatastaticsService
             ->where('unit', '合计')
             ->first()->fee;
 
-        $this->saveDocx([
+        $this->saveDocxData([
             'fee_dwtzqk_hjgqtz' => bcdiv($fee_dwtzqk_hjgqtz, 10000, 8),
             'fee_dwtzqk_zqtz' => bcdiv($fee_dwtzqk_zqtz, 10000, 8),
             'fee_dwtzqk_lcsy' => bcdiv($fee_dwtzqk_lcsy, 10000, 8),
@@ -329,7 +343,7 @@ class PCompanyDatastaticsService
             'fee_xjlqk_tzjlc' => bcdiv($fee_xjlqk_tzjlc,10000,8),
             'fee_xjlqk_hbzjye' => bcdiv($fee_xjlqk_hbzjye, 10000,8),
         ];
-        $this->saveDocx($data);
+        $this->saveDocxData($data);
     }
 
     /**
@@ -364,7 +378,7 @@ class PCompanyDatastaticsService
             'fee_xjlqkyj_tzjlc' => $fee_xjlqkyj_tzjlc,
             'fee_xjlqkyj_zjqk' => $fee_xjlqkyj_zjqk,
         ];
-        $this->saveDocx($data);
+        $this->saveDocxData($data);
     }
 
     /**
@@ -376,7 +390,8 @@ class PCompanyDatastaticsService
         foreach ($data as $k=>$v){
             $cache_data[$k] = $v;
         }
-        $this->saveDocx($cache_data);
+        $this->saveDocxData($cache_data);
+        $this->exportDocx();
     }
 
 
@@ -449,7 +464,7 @@ class PCompanyDatastaticsService
             'text9' => '',
             'text10' => ''
         ];
-        $this->saveDocx($data);
+        //$this->saveDocx($data);
         Redis::set($this->key, json_encode($data, JSON_UNESCAPED_UNICODE));
     }
 

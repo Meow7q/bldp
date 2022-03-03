@@ -70,6 +70,7 @@ class PCompanyCheckController extends Controller
 
         try{
             $this->service->importExcel('upload/'.$path, $validated['table_name'],$file->getClientOriginalName());
+            $this->data_service->exportDocx();
         }catch (\Exception $e){
             throw $e;
             return $this->fail('模版错误');
@@ -179,6 +180,8 @@ class PCompanyCheckController extends Controller
             }
             $this->truncateTable($table);
         }
+        $this->data_service->exportDocx();
+
         return $this->message('ok');
     }
 
