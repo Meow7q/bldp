@@ -2,6 +2,16 @@
 
 namespace App\Console\Commands;
 
+use App\Models\PCompanyCheck\Dwtzqk;
+use App\Models\PCompanyCheck\FhmxNew;
+use App\Models\PCompanyCheck\KjbbNew;
+use App\Models\PCompanyCheck\LnzcNew;
+use App\Models\PCompanyCheck\SrhzNew;
+use App\Models\PCompanyCheck\Xjlbsj;
+use App\Models\PCompanyCheck\Xjlbyg;
+use App\Models\PCompanyCheck\Ysbmb;
+use App\Models\PCompanyCheck\Ysjlcb;
+use App\Models\PCompanyCheck\Zbqk;
 use App\Services\Admin\PCompanyDatastaticsService;
 use Illuminate\Console\Command;
 
@@ -38,10 +48,15 @@ class Test extends Command
      */
     public function handle()
     {
-        dd(0.8345+(-1));
-        //
-        //Log::channel('test')->info(time());
-       // (new ExcelService())->import(4, 2020, 12, '/static/2020-12.xlsx');
-        (new PCompanyDatastaticsService())->saveToWord();
+        LnzcNew::truncate();
+        Zbqk::truncate();
+        KjbbNew::truncate();
+        SrhzNew::truncate();
+        FhmxNew::truncate();
+        Ysbmb::truncate();
+        Ysjlcb::truncate();
+        Dwtzqk::truncate();
+        Xjlbsj::truncate();
+        Xjlbyg::truncate();
     }
 }

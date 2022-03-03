@@ -490,7 +490,7 @@ class PCompanyDatastaticsService
                 ->orderBy('created_at', 'desc')
                 ->first();
             if($info){
-                array_push($file_list, $info->file_path);
+                array_push($file_list, '/'.$info->file_path);
             }
         }
         return $file_list;
