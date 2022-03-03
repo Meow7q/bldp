@@ -137,14 +137,10 @@ class PCompanyCheckController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function update(Request $request){
-        $validated = $this->validate($request, ['id' => 'required', 'status' => '', 'month' => '']);
-        $status = $validated['status']??-1;
-        $month = $validated['month']??-1;
+    public function finalize(Request $request){
+        $validated = $this->validate($request, ['id' => 'required', 'month' => 'required']);
+        $month = $validated['month'];
 
-        if(($status === -1) && ($month === -1)){
-            return $this->fail('参数错误: 是否定稿和定稿月份至少有一个');
-        }
         $info = TableList::where('id', $validated['id'])->first();
         if(!$info){
             return $this->fail('记录不存在');
@@ -157,20 +153,28 @@ class PCompanyCheckController extends Controller
             return $this->fail('当前月份已有定稿文件');
         }
 
-        $data = [];
-        if($status !== -1){
-            $data['status'] = $status;
-            //如果是取消定稿，则删除对应的定稿月份
-            if($data['status'] == 0){
-                $data['month'] = null;
-            }
-        }
-        if($month !== -1){
-            $data['month'] = $month;
-        }
-
         TableList::where('id', $validated['id'])
-            ->update($data);
+            ->update([
+                'status' => FinalizeStatus::YES,
+                'month' => $month
+            ]);
+        return $this->message('ok');
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function cancelFinalize(Request $request){
+        $validated = $this->validate($request, ['id' => 'required']);
+        $info = TableList::where('id', $validated['id'])->first();
+        if(!$info){
+            return $this->fail('记录不存在');
+        }
+        $info->status = FinalizeStatus::NO;
+        $info->month = null;
+        $info->save();
         return $this->message('ok');
     }
 
