@@ -61,7 +61,6 @@ class PCompanyCheckController extends Controller
         if (empty($ext) or in_array(strtolower($ext), $allowExt) === false) {
             return $this->fail('不允许的文件类型!');
         }
-        chmod(public_path('upload/'), 0777);
 
         $path = $file->storeAs(
             date('Y-m-d', time()),
