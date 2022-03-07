@@ -614,7 +614,7 @@ class CheckService
         }
 
         if ($table_name == 'zbqk') {
-            $data_zbqk = Zbqk::all()->toArray();
+            $data_zbqk = ZbqkNew::all()->toArray();
             return $data_zbqk;
         }
 
