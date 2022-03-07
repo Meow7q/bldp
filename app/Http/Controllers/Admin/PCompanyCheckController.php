@@ -67,6 +67,7 @@ class PCompanyCheckController extends Controller
             md5(bcrypt(time().uniqid())).'.'.$ext,
             'public'
         );
+        chmod(public_path('upload/'.$path), 0777);
 
         try{
             $this->service->importExcel('upload/'.$path, $validated['table_name'],$file->getClientOriginalName());
