@@ -13,4 +13,12 @@ class KjbbNew extends Model
     protected $guarded = [];
 
     protected $hidden = ['created_at', 'updated_at'];
+
+    protected function getKgTbAttribute($value){
+        return (round($value, 4)*100).'%';
+    }
+
+    protected function getCtTbAttribute($value){
+        return (round($value, 4)*100).'%';
+    }
 }
