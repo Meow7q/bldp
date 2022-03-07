@@ -20,11 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e08bbc1-bad0-47d5-9c0a-6d50afee08ce" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Models/PCompanyCheck/ZbqkNew.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PCompanyCheckController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/PCompanyCheckController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Services/Admin/CheckService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Admin/CheckService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Admin/PCompanyDatastaticsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Admin/PCompanyDatastaticsService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/static/template/zbqk.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/template/zbqk.xlsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -272,7 +269,7 @@
       <workItem from="1646299785476" duration="637000" />
       <workItem from="1646377483096" duration="120000" />
       <workItem from="1646379880421" duration="313000" />
-      <workItem from="1646618312635" duration="1212000" />
+      <workItem from="1646618312635" duration="1556000" />
     </task>
     <servers />
   </component>
@@ -308,10 +305,10 @@
     <state x="450" y="153" width="549" height="593" key="StructurePopup/0.0.1440.900@0.0.1440.900" timestamp="1646289395895" />
     <state x="450" y="158" width="549" height="523" key="StructurePopup/0.23.1440.795@0.23.1440.795" timestamp="1645683622291" />
     <state x="450" y="159" width="549" height="524" key="StructurePopup/0.23.1440.798@0.23.1440.798" timestamp="1645610242593" />
-    <state width="520" height="445" key="SwitcherDM" timestamp="1646619213295">
+    <state width="520" height="445" key="SwitcherDM" timestamp="1646619837152">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="520" height="445" key="SwitcherDM/0.0.1440.900@0.0.1440.900" timestamp="1646619213295" />
+    <state width="520" height="445" key="SwitcherDM/0.0.1440.900@0.0.1440.900" timestamp="1646619837152" />
     <state width="520" height="400" key="SwitcherDM/0.23.1440.795@0.23.1440.795" timestamp="1646015884704" />
     <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1646287743261">
       <screen x="0" y="0" width="1440" height="900" />
