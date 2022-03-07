@@ -72,6 +72,7 @@ class PCompanyCheckController extends Controller
             $this->service->importExcel('upload/'.$path, $validated['table_name'],$file->getClientOriginalName());
             $this->data_service->exportDocx();
         }catch (\Exception $e){
+            throw $e;
             return $this->fail('模版错误');
         }
         return $this->message('ok');

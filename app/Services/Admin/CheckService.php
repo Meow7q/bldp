@@ -18,6 +18,7 @@ use App\Models\PCompanyCheck\Xjlbyg;
 use App\Models\PCompanyCheck\Ysbmb;
 use App\Models\PCompanyCheck\Ysjlcb;
 use App\Models\PCompanyCheck\Zbqk;
+use App\Models\PCompanyCheck\ZbqkNew;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 use Rap2hpoutre\FastExcel\FastExcel;
@@ -199,21 +200,19 @@ class CheckService
     {
         try {
             DB::beginTransaction();
-            Zbqk::truncate();
+            ZbqkNew::truncate();
             foreach ($data as $k => $line) {
                 $line = array_values($line);
-                Zbqk::create([
+                ZbqkNew::create([
                     'type' => $line[0],
-                    'rzbj' => is_numeric($line[1]) ? $line[1] : 0,
-                    'rzpjcb' => is_numeric($line[2]) ? $line[2] : 0,
-                    'zycyzj' => is_numeric($line[3]) ? $line[3] : 0,
-                    'hjtr' => is_numeric($line[4]) ? $line[4] : 0,
-                    'lnfyzc' => is_numeric($line[5]) ? $line[5] : 0,
-                    'zyzj' => is_numeric($line[6]) ? $line[6] : 0,
-                    'cqgqtz' => is_numeric($line[7]) ? $line[7] : 0,
-                    'gdzc' => is_numeric($line[8]) ? $line[8] : 0,
-                    'xj' => is_numeric($line[9]) ? $line[9] : 0,
-                    'zmjzc' => is_numeric($line[10]) ? $line[10] : 0,
+                    'hbzj' => is_numeric($line[1]) ? $line[1] : 0,
+                    'rzbj' => is_numeric($line[2]) ? $line[2] : 0,
+                    'rzpjcb' => is_numeric($line[3]) ? $line[3] : 0,
+                    'zycyzj' => is_numeric($line[4]) ? $line[4] : 0,
+                    'hjtr' => is_numeric($line[5]) ? $line[5] : 0,
+                    'lnfyzc' => is_numeric($line[6]) ? $line[6] : 0,
+                    'zc' => is_numeric($line[7]) ? $line[7] : 0,
+                    'zmjzc' => is_numeric($line[8]) ? $line[8] : 0,
                 ]);
             }
             DB::commit();

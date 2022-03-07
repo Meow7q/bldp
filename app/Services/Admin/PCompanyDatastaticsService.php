@@ -20,6 +20,7 @@ use App\Models\PCompanyCheck\Xjlbyg;
 use App\Models\PCompanyCheck\Ysbmb;
 use App\Models\PCompanyCheck\Ysjlcb;
 use App\Models\PCompanyCheck\Zbqk;
+use App\Models\PCompanyCheck\ZbqkNew;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -107,28 +108,28 @@ class PCompanyDatastaticsService
     public function statisticsZbqk()
     {
         //自有资金
-        $fee_kg_zyzj = Zbqk::query()->where('type', '控股')->sum('zyzj');
-        $fee_ct_zyzj = Zbqk::query()->where('type', '城投')->sum('zyzj');
+        $fee_kg_zyzj = ZbqkNew::query()->where('type', '控股')->sum('hbzj');
+        $fee_ct_zyzj = ZbqkNew::query()->where('type', '城投')->sum('hbzj');
 
         //外部融资
-        $fee_kg_wbrz = Zbqk::query()->where('type', '控股')->sum('rzbj');
-        $fee_ct_wbrz = Zbqk::query()->where('type', '城投')->sum('rzbj');
+        $fee_kg_wbrz = ZbqkNew::query()->where('type', '控股')->sum('rzbj');
+        $fee_ct_wbrz = ZbqkNew::query()->where('type', '城投')->sum('rzbj');
 
         //占用产业资金
-        $fee_kg_zycyzj = Zbqk::query()->where('type', '控股')->sum('zycyzj');
-        $fee_ct_zycyzj = Zbqk::query()->where('type', '城投')->sum('zycyzj');
+        $fee_kg_zycyzj = ZbqkNew::query()->where('type', '控股')->sum('zycyzj');
+        $fee_ct_zycyzj = ZbqkNew::query()->where('type', '城投')->sum('zycyzj');
 
         //合计投入
-        $fee_kg_hjtr = Zbqk::query()->where('type', '控股')->sum('hjtr');
-        $fee_ct_hjtr = Zbqk::query()->where('type', '城投')->sum('hjtr');
+        $fee_kg_hjtr = ZbqkNew::query()->where('type', '控股')->sum('hjtr');
+        $fee_ct_hjtr = ZbqkNew::query()->where('type', '城投')->sum('hjtr');
 
         //历年费用支出
-        $fee_kg_lnfyzc = Zbqk::query()->where('type', '控股')->sum('lnfyzc');
-        $fee_ct_lnfyzc = Zbqk::query()->where('type', '城投')->sum('lnfyzc');
+        $fee_kg_lnfyzc = ZbqkNew::query()->where('type', '控股')->sum('lnfyzc');
+        $fee_ct_lnfyzc = ZbqkNew::query()->where('type', '城投')->sum('lnfyzc');
 
         //形成资产
-        $fee_kg_xczc = Zbqk::query()->where('type', '控股')->sum('xj');
-        $fee_ct_xczc = Zbqk::query()->where('type', '城投')->sum('xj');
+        $fee_kg_xczc = ZbqkNew::query()->where('type', '控股')->sum('zc');
+        $fee_ct_xczc = ZbqkNew::query()->where('type', '城投')->sum('zc');
 
         $data = [
             'fee_kg_zyzj' => bcdiv($fee_kg_zyzj, 10000, 8),
