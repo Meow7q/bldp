@@ -89,10 +89,11 @@ class PCompanyDatastaticsService
             ->where('unit', '控股')
             ->first();
         $fee_ct = LnzcNew::select(DB::raw("hj as fee"))
-            ->where('unit', '合计')
+            ->where('project', '小计')
+            ->where('unit', '城投 ')
             ->first();
         $fee_total = LnzcNew::select(DB::raw("hj as fee"))
-            ->orderBy('id', 'desc')
+            ->where('unit', '合计')
             ->first();
         $data = [
             'fee_kg' => bcdiv($fee_kg->fee, 10000, 8),
