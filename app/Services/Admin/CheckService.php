@@ -565,7 +565,9 @@ class CheckService
         }
 
         if ($table_name == 'lnzc') {
-            return LnzcNew::all()->toArray();
+            $lnzc_info = LnzcNew::all()->toArray();
+            array_pop($lnzc_info);
+            return $lnzc_info;
         }
 
         if ($table_name == 'kjbb') {
