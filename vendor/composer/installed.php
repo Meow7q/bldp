@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '209374cf6f8a133a03e6adc2e16f89a406538f23',
+        'reference' => '1a9e8eb07b3c03d2c861b8e5933e0d7ff576d4ca',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -370,6 +370,15 @@
                 0 => 'v6.20.29',
             ),
         ),
+        'infostreams/excel-merge' => array(
+            'pretty_version' => '0.8.5',
+            'version' => '0.8.5.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../infostreams/excel-merge',
+            'aliases' => array(),
+            'reference' => '02c894d7d244c29d5e86e521d9031376a8bb1432',
+            'dev_requirement' => false,
+        ),
         'ixudra/curl' => array(
             'pretty_version' => '6.21.0',
             'version' => '6.21.0.0',
@@ -390,6 +399,15 @@
             'replaced' => array(
                 0 => '*',
             ),
+        ),
+        'jupitern/docx' => array(
+            'pretty_version' => '1.0.2',
+            'version' => '1.0.2.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../jupitern/docx',
+            'aliases' => array(),
+            'reference' => '74e6be374fa321fc250f5241371ac53f187de083',
+            'dev_requirement' => false,
         ),
         'kodova/hamcrest-php' => array(
             'dev_requirement' => true,
@@ -421,7 +439,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '209374cf6f8a133a03e6adc2e16f89a406538f23',
+            'reference' => '1a9e8eb07b3c03d2c861b8e5933e0d7ff576d4ca',
             'dev_requirement' => false,
         ),
         'laravel/tinker' => array(

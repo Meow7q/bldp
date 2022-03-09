@@ -27,8 +27,8 @@ Route::namespace('Admin')->group(function (){
     Route::get('pcheck/file_list', 'PCompanyCheckController@getFileList');
 });
 
-//Route::namespace('Admin')->group(function (){
-Route::namespace('Admin')->middleware('auth.admin')->group(function (){
+Route::namespace('Admin')->group(function (){
+//Route::namespace('Admin')->middleware('auth.admin')->group(function (){
     Route::post('upload', 'UploadController@upload');
     Route::get('read', 'UploadController@read');
     Route::post('file/add', 'FileController@add');

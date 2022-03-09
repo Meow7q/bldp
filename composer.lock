@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ec96982b4581c8a886ce2c696e6d6adb",
+    "content-hash": "1ea252260a2096dd39c6672632be7d6f",
     "packages": [
         {
             "name": "box/spout",
@@ -876,6 +876,54 @@
             "time": "2021-04-26T09:17:50+00:00"
         },
         {
+            "name": "infostreams/excel-merge",
+            "version": "0.8.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/infostreams/excel-merge.git",
+                "reference": "02c894d7d244c29d5e86e521d9031376a8bb1432"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/infostreams/excel-merge/zipball/02c894d7d244c29d5e86e521d9031376a8bb1432",
+                "reference": "02c894d7d244c29d5e86e521d9031376a8bb1432",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ExcelMerge\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Edward Akerboom",
+                    "email": "github@infostreams.net",
+                    "homepage": "https://www.infostreams.net/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A PHP library to merge two or more Excel files into one",
+            "keywords": [
+                "PHPExcel",
+                "combine",
+                "excel",
+                "merge",
+                "xls",
+                "xlsm",
+                "xlsx"
+            ],
+            "support": {
+                "issues": "https://github.com/infostreams/excel-merge/issues",
+                "source": "https://github.com/infostreams/excel-merge/tree/0.8.5"
+            },
+            "time": "2017-08-30T10:13:27+00:00"
+        },
+        {
             "name": "ixudra/curl",
             "version": "6.21.0",
             "source": {
@@ -932,6 +980,54 @@
                 "source": "https://github.com/ixudra/curl/tree/6.21.0"
             },
             "time": "2020-09-22T12:50:01+00:00"
+        },
+        {
+            "name": "jupitern/docx",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jupitern/docx.git",
+                "reference": "74e6be374fa321fc250f5241371ac53f187de083"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jupitern/docx/zipball/74e6be374fa321fc250f5241371ac53f187de083",
+                "reference": "74e6be374fa321fc250f5241371ac53f187de083",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jupitern\\Docx\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nuno Chaves",
+                    "email": "nunochaves@sapo.pt",
+                    "role": "Developer"
+                }
+            ],
+            "description": "docx tools - template engine, merge docx files",
+            "homepage": "https://github.com/jupitern/docx",
+            "keywords": [
+                "docx",
+                "docx merge",
+                "docx template",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/jupitern/docx/issues",
+                "source": "https://github.com/jupitern/docx"
+            },
+            "time": "2016-12-16T10:18:05+00:00"
         },
         {
             "name": "laminas/laminas-escaper",

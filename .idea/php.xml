@@ -134,6 +134,8 @@
       <path value="$PROJECT_DIR$/vendor/easyswoole/verifycode" />
       <path value="$PROJECT_DIR$/vendor/laminas/laminas-escaper" />
       <path value="$PROJECT_DIR$/vendor/phpoffice/phpword" />
+      <path value="$PROJECT_DIR$/vendor/jupitern/docx" />
+      <path value="$PROJECT_DIR$/vendor/infostreams/excel-merge" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />

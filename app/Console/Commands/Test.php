@@ -2,17 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\PCompanyCheck\Dwtzqk;
-use App\Models\PCompanyCheck\FhmxNew;
-use App\Models\PCompanyCheck\KjbbNew;
-use App\Models\PCompanyCheck\LnzcNew;
-use App\Models\PCompanyCheck\SrhzNew;
-use App\Models\PCompanyCheck\Xjlbsj;
-use App\Models\PCompanyCheck\Xjlbyg;
-use App\Models\PCompanyCheck\Ysbmb;
-use App\Models\PCompanyCheck\Ysjlcb;
-use App\Models\PCompanyCheck\Zbqk;
-use App\Services\Admin\PCompanyDatastaticsService;
+use ExcelMerge\ExcelMerge;
 use Illuminate\Console\Command;
 
 class Test extends Command
@@ -48,15 +38,9 @@ class Test extends Command
      */
     public function handle()
     {
-        LnzcNew::truncate();
-        Zbqk::truncate();
-        KjbbNew::truncate();
-        SrhzNew::truncate();
-        FhmxNew::truncate();
-        Ysbmb::truncate();
-        Ysjlcb::truncate();
-        Dwtzqk::truncate();
-        Xjlbsj::truncate();
-        Xjlbyg::truncate();
+        $files = array(public_path('/static/template/lnzc.xlsx'), public_path('/static/template/zbqk.xlsx'));
+
+        $merged = new ExcelMerge($files);
+        $merged->download(public_path("/static/template/aaa.xlsm"));
     }
 }

@@ -207,6 +207,7 @@ class ComposerStaticInit3f4b12fb662278dd743668ba15b314d7
         ),
         'J' => 
         array (
+            'Jupitern\\Docx\\' => 14,
             'JakubOnderka\\PhpConsoleHighlighter\\' => 35,
             'JakubOnderka\\PhpConsoleColor\\' => 29,
         ),
@@ -231,6 +232,7 @@ class ComposerStaticInit3f4b12fb662278dd743668ba15b314d7
         ),
         'E' => 
         array (
+            'ExcelMerge\\' => 11,
             'Egulias\\EmailValidator\\' => 23,
             'EasyWeChat\\' => 11,
             'EasyWeChatComposer\\' => 19,
@@ -546,6 +548,10 @@ class ComposerStaticInit3f4b12fb662278dd743668ba15b314d7
         array (
             0 => __DIR__ . '/..' . '/laminas/laminas-escaper/src',
         ),
+        'Jupitern\\Docx\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jupitern/docx/src',
+        ),
         'JakubOnderka\\PhpConsoleHighlighter\\' => 
         array (
             0 => __DIR__ . '/..' . '/php-parallel-lint/php-console-highlighter/src',
@@ -593,6 +599,10 @@ class ComposerStaticInit3f4b12fb662278dd743668ba15b314d7
         'Facade\\FlareClient\\' => 
         array (
             0 => __DIR__ . '/..' . '/facade/flare-client-php/src',
+        ),
+        'ExcelMerge\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/infostreams/excel-merge',
         ),
         'Egulias\\EmailValidator\\' => 
         array (
@@ -701,6 +711,7 @@ class ComposerStaticInit3f4b12fb662278dd743668ba15b314d7
         'App\\Enum\\AuditStatus' => __DIR__ . '/../..' . '/app/Enum/AuditStatus.php',
         'App\\Enum\\DkzlFxType' => __DIR__ . '/../..' . '/app/Enum/DkzlFxType.php',
         'App\\Enum\\DkzlFxType2' => __DIR__ . '/../..' . '/app/Enum/DkzlFxType2.php',
+        'App\\Enum\\FinalizeStatus' => __DIR__ . '/../..' . '/app/Enum/FinalizeStatus.php',
         'App\\Enum\\ImportStatus' => __DIR__ . '/../..' . '/app/Enum/ImportStatus.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Admin\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AuthController.php',
@@ -716,6 +727,7 @@ class ComposerStaticInit3f4b12fb662278dd743668ba15b314d7
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
+        'App\\Http\\Middleware\\AuthAdmin' => __DIR__ . '/../..' . '/app/Http/Middleware/AuthAdmin.php',
         'App\\Http\\Middleware\\AuthMini' => __DIR__ . '/../..' . '/app/Http/Middleware/AuthMini.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
@@ -735,15 +747,20 @@ class ComposerStaticInit3f4b12fb662278dd743668ba15b314d7
         'App\\Models\\ImportData\\Zqzch' => __DIR__ . '/../..' . '/app/Models/ImportData/Zqzch.php',
         'App\\Models\\PCompanyCheck\\Dwtzqk' => __DIR__ . '/../..' . '/app/Models/PCompanyCheck/Dwtzqk.php',
         'App\\Models\\PCompanyCheck\\Fhmx' => __DIR__ . '/../..' . '/app/Models/PCompanyCheck/Fhmx.php',
+        'App\\Models\\PCompanyCheck\\FhmxNew' => __DIR__ . '/../..' . '/app/Models/PCompanyCheck/FhmxNew.php',
         'App\\Models\\PCompanyCheck\\Kjbb' => __DIR__ . '/../..' . '/app/Models/PCompanyCheck/Kjbb.php',
+        'App\\Models\\PCompanyCheck\\KjbbNew' => __DIR__ . '/../..' . '/app/Models/PCompanyCheck/KjbbNew.php',
         'App\\Models\\PCompanyCheck\\Lnzc' => __DIR__ . '/../..' . '/app/Models/PCompanyCheck/Lnzc.php',
+        'App\\Models\\PCompanyCheck\\LnzcNew' => __DIR__ . '/../..' . '/app/Models/PCompanyCheck/LnzcNew.php',
         'App\\Models\\PCompanyCheck\\Srhz' => __DIR__ . '/../..' . '/app/Models/PCompanyCheck/Srhz.php',
+        'App\\Models\\PCompanyCheck\\SrhzNew' => __DIR__ . '/../..' . '/app/Models/PCompanyCheck/SrhzNew.php',
         'App\\Models\\PCompanyCheck\\TableList' => __DIR__ . '/../..' . '/app/Models/PCompanyCheck/TableList.php',
         'App\\Models\\PCompanyCheck\\Xjlbsj' => __DIR__ . '/../..' . '/app/Models/PCompanyCheck/Xjlbsj.php',
         'App\\Models\\PCompanyCheck\\Xjlbyg' => __DIR__ . '/../..' . '/app/Models/PCompanyCheck/Xjlbyg.php',
         'App\\Models\\PCompanyCheck\\Ysbmb' => __DIR__ . '/../..' . '/app/Models/PCompanyCheck/Ysbmb.php',
         'App\\Models\\PCompanyCheck\\Ysjlcb' => __DIR__ . '/../..' . '/app/Models/PCompanyCheck/Ysjlcb.php',
         'App\\Models\\PCompanyCheck\\Zbqk' => __DIR__ . '/../..' . '/app/Models/PCompanyCheck/Zbqk.php',
+        'App\\Models\\PCompanyCheck\\ZbqkNew' => __DIR__ . '/../..' . '/app/Models/PCompanyCheck/ZbqkNew.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -752,6 +769,7 @@ class ComposerStaticInit3f4b12fb662278dd743668ba15b314d7
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Services\\Admin\\CheckService' => __DIR__ . '/../..' . '/app/Services/Admin/CheckService.php',
         'App\\Services\\Admin\\FileService' => __DIR__ . '/../..' . '/app/Services/Admin/FileService.php',
+        'App\\Services\\Admin\\PCompanyDatastaticsService' => __DIR__ . '/../..' . '/app/Services/Admin/PCompanyDatastaticsService.php',
         'App\\Services\\ApiResponse' => __DIR__ . '/../..' . '/app/Services/ApiResponse.php',
         'App\\Services\\Dp\\DataService' => __DIR__ . '/../..' . '/app/Services/Dp/DataService.php',
         'App\\Services\\ExcelService' => __DIR__ . '/../..' . '/app/Services/ExcelService.php',
@@ -1560,6 +1578,16 @@ class ComposerStaticInit3f4b12fb662278dd743668ba15b314d7
         'Egulias\\EmailValidator\\Warning\\QuotedString' => __DIR__ . '/..' . '/egulias/email-validator/src/Warning/QuotedString.php',
         'Egulias\\EmailValidator\\Warning\\TLD' => __DIR__ . '/..' . '/egulias/email-validator/src/Warning/TLD.php',
         'Egulias\\EmailValidator\\Warning\\Warning' => __DIR__ . '/..' . '/egulias/email-validator/src/Warning/Warning.php',
+        'ExcelMerge\\ExcelMerge' => __DIR__ . '/..' . '/infostreams/excel-merge/ExcelMerge.php',
+        'ExcelMerge\\Tasks\\App' => __DIR__ . '/..' . '/infostreams/excel-merge/Tasks/App.php',
+        'ExcelMerge\\Tasks\\ContentTypes' => __DIR__ . '/..' . '/infostreams/excel-merge/Tasks/ContentTypes.php',
+        'ExcelMerge\\Tasks\\MergeTask' => __DIR__ . '/..' . '/infostreams/excel-merge/Tasks/MergeTask.php',
+        'ExcelMerge\\Tasks\\SharedStrings' => __DIR__ . '/..' . '/infostreams/excel-merge/Tasks/SharedStrings.php',
+        'ExcelMerge\\Tasks\\Styles' => __DIR__ . '/..' . '/infostreams/excel-merge/Tasks/Styles.php',
+        'ExcelMerge\\Tasks\\Vba' => __DIR__ . '/..' . '/infostreams/excel-merge/Tasks/Vba.php',
+        'ExcelMerge\\Tasks\\Workbook' => __DIR__ . '/..' . '/infostreams/excel-merge/Tasks/Workbook.php',
+        'ExcelMerge\\Tasks\\WorkbookRels' => __DIR__ . '/..' . '/infostreams/excel-merge/Tasks/WorkbookRels.php',
+        'ExcelMerge\\Tasks\\Worksheet' => __DIR__ . '/..' . '/infostreams/excel-merge/Tasks/Worksheet.php',
         'Facade\\FlareClient\\Api' => __DIR__ . '/..' . '/facade/flare-client-php/src/Api.php',
         'Facade\\FlareClient\\Concerns\\HasContext' => __DIR__ . '/..' . '/facade/flare-client-php/src/Concerns/HasContext.php',
         'Facade\\FlareClient\\Concerns\\UsesTime' => __DIR__ . '/..' . '/facade/flare-client-php/src/Concerns/UsesTime.php',
@@ -3412,6 +3440,10 @@ class ComposerStaticInit3f4b12fb662278dd743668ba15b314d7
         'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => __DIR__ . '/..' . '/php-parallel-lint/php-console-color/src/InvalidStyleException.php',
         'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => __DIR__ . '/..' . '/php-parallel-lint/php-console-highlighter/src/Highlighter.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
+        'Jupitern\\Docx\\Docx' => __DIR__ . '/..' . '/jupitern/docx/src/Docx.php',
+        'Jupitern\\Docx\\DocxMerge' => __DIR__ . '/..' . '/jupitern/docx/src/DocxMerge.php',
+        'Jupitern\\Docx\\Lib\\Docx' => __DIR__ . '/..' . '/jupitern/docx/src/Lib/Docx.php',
+        'Jupitern\\Docx\\Lib\\TbsZip' => __DIR__ . '/..' . '/jupitern/docx/src/Lib/TbsZip.php',
         'Laminas\\Escaper\\Escaper' => __DIR__ . '/..' . '/laminas/laminas-escaper/src/Escaper.php',
         'Laminas\\Escaper\\Exception\\ExceptionInterface' => __DIR__ . '/..' . '/laminas/laminas-escaper/src/Exception/ExceptionInterface.php',
         'Laminas\\Escaper\\Exception\\InvalidArgumentException' => __DIR__ . '/..' . '/laminas/laminas-escaper/src/Exception/InvalidArgumentException.php',

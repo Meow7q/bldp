@@ -1380,6 +1380,57 @@
             "install-path": "../hamcrest/hamcrest-php"
         },
         {
+            "name": "infostreams/excel-merge",
+            "version": "0.8.5",
+            "version_normalized": "0.8.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/infostreams/excel-merge.git",
+                "reference": "02c894d7d244c29d5e86e521d9031376a8bb1432"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/infostreams/excel-merge/zipball/02c894d7d244c29d5e86e521d9031376a8bb1432",
+                "reference": "02c894d7d244c29d5e86e521d9031376a8bb1432",
+                "shasum": ""
+            },
+            "time": "2017-08-30T10:13:27+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "ExcelMerge\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Edward Akerboom",
+                    "email": "github@infostreams.net",
+                    "homepage": "https://www.infostreams.net/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A PHP library to merge two or more Excel files into one",
+            "keywords": [
+                "PHPExcel",
+                "combine",
+                "excel",
+                "merge",
+                "xls",
+                "xlsm",
+                "xlsx"
+            ],
+            "support": {
+                "issues": "https://github.com/infostreams/excel-merge/issues",
+                "source": "https://github.com/infostreams/excel-merge/tree/0.8.5"
+            },
+            "install-path": "../infostreams/excel-merge"
+        },
+        {
             "name": "ixudra/curl",
             "version": "6.21.0",
             "version_normalized": "6.21.0.0",
@@ -1439,6 +1490,57 @@
                 "source": "https://github.com/ixudra/curl/tree/6.21.0"
             },
             "install-path": "../ixudra/curl"
+        },
+        {
+            "name": "jupitern/docx",
+            "version": "1.0.2",
+            "version_normalized": "1.0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jupitern/docx.git",
+                "reference": "74e6be374fa321fc250f5241371ac53f187de083"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jupitern/docx/zipball/74e6be374fa321fc250f5241371ac53f187de083",
+                "reference": "74e6be374fa321fc250f5241371ac53f187de083",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "time": "2016-12-16T10:18:05+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Jupitern\\Docx\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nuno Chaves",
+                    "email": "nunochaves@sapo.pt",
+                    "role": "Developer"
+                }
+            ],
+            "description": "docx tools - template engine, merge docx files",
+            "homepage": "https://github.com/jupitern/docx",
+            "keywords": [
+                "docx",
+                "docx merge",
+                "docx template",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/jupitern/docx/issues",
+                "source": "https://github.com/jupitern/docx"
+            },
+            "install-path": "../jupitern/docx"
         },
         {
             "name": "laminas/laminas-escaper",

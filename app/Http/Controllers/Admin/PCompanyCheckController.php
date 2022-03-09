@@ -62,9 +62,11 @@ class PCompanyCheckController extends Controller
             return $this->fail('不允许的文件类型!');
         }
 
+        $origin_name = $file->getClientOriginalName();
+        $origin_name = explode('.',$origin_name)[0];
         $path = $file->storeAs(
             date('Y-m-d', time()),
-            md5(bcrypt(time().uniqid())).'.'.$ext,
+            $origin_name.uniqid().'.'.$ext,
             'public'
         );
 
