@@ -19,6 +19,8 @@ Route::namespace('Admin')->group(function (){
 });
 Route::namespace('Admin')->group(function (){
     Route::get('pcheck/dataStatistics1', 'PCompanyCheckController@statisticsData');
+    Route::get('pcheck/downlist', 'PCompanyCheckController@getDownloadList');
+    Route::get('pcheck/file_list', 'PCompanyCheckController@getFileList');
 });
 
 //Route::namespace('Admin')->group(function (){
