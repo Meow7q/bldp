@@ -21,21 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3e08bbc1-bad0-47d5-9c0a-6d50afee08ce" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Commands/Test.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/Test.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Services/Admin/PCompanyDatastaticsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Admin/PCompanyDatastaticsService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/rap2hpoutre/fast-excel/.scrutinizer.yml" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/rap2hpoutre/fast-excel/.scrutinizer.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/rap2hpoutre/fast-excel/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/rap2hpoutre/fast-excel/.travis.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/rap2hpoutre/fast-excel/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/rap2hpoutre/fast-excel/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/rap2hpoutre/fast-excel/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/rap2hpoutre/fast-excel/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/rap2hpoutre/fast-excel/src/Exportable.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/rap2hpoutre/fast-excel/src/Exportable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/rap2hpoutre/fast-excel/src/FastExcel.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/rap2hpoutre/fast-excel/src/FastExcel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/rap2hpoutre/fast-excel/src/Importable.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/rap2hpoutre/fast-excel/src/Importable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/rap2hpoutre/fast-excel/tests/FastExcelTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/rap2hpoutre/fast-excel/tests/FastExcelTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,24 +184,24 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/static/template" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/public/static/template" />
-      <recent name="$PROJECT_DIR$/routes" />
-      <recent name="$PROJECT_DIR$/public/static" />
-      <recent name="$PROJECT_DIR$/app" />
-      <recent name="$PROJECT_DIR$/database/migrations" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/database/migrations/mgsjdb" />
       <recent name="$PROJECT_DIR$/public/static/template" />
       <recent name="$PROJECT_DIR$/database/migrations/api" />
       <recent name="$PROJECT_DIR$/public/static" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public" />
+      <recent name="$PROJECT_DIR$/public/static/template" />
+      <recent name="$PROJECT_DIR$/routes" />
+      <recent name="$PROJECT_DIR$/public/static" />
+      <recent name="$PROJECT_DIR$/app" />
     </key>
   </component>
   <component name="RunManager">
@@ -295,7 +281,7 @@
       <workItem from="1646727035669" duration="249000" />
       <workItem from="1646729529946" duration="178000" />
       <workItem from="1646792547613" duration="609000" />
-      <workItem from="1646794588168" duration="4546000" />
+      <workItem from="1646794588168" duration="6294000" />
     </task>
     <servers />
   </component>
@@ -315,6 +301,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="427" y="260" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1646809760197">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="427" y="260" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900@0.0.1440.900" timestamp="1646809760197" />
     <state x="458" y="212" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1646809212729">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

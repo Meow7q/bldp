@@ -498,7 +498,7 @@ class PCompanyDatastaticsService
             //array_push($file_list, $data['docx_path']);
         }
         $table_list = ['lnzc', 'zbqk', 'kjbb', 'srhz', 'fhmx', 'ysbmb', 'ysjlcb', 'dwtzqk', 'xjlbsj', 'xjlbyg'];
-        foreach ($table_list as $table_name) {
+        foreach ($table_list as $k => $table_name) {
             $info = TableList::where('table_name', $table_name)
                 ->when(!empty($month), function ($query) use ($month) {
                     $query->where('month', $month)
@@ -510,15 +510,47 @@ class PCompanyDatastaticsService
                 array_push($file_list, $info->file_path);
             }
         }
-        return $file_list;
+       return $file_list;
+    }
+
+    /**
+     * 下载列表2
+     * @return array
+     */
+    public function downlistNew()
+    {
+        $data = Redis::get($this->key);
+        $data = json_decode($data, true);
+        $month = $data['data_source_month'] ?? null;
+        $month = 12;
+        $file_list = [];
+        if (!empty($data['docx_path'])) {
+            //array_push($file_list, $data['docx_path']);
+        }
+        $table_list = ['lnzc', 'zbqk', 'kjbb', 'srhz', 'fhmx', 'ysbmb', 'ysjlcb', 'dwtzqk', 'xjlbsj', 'xjlbyg'];
+        $table_name_list = ['历年资产', '资本情况', '会计报表', '收入汇总', '分红明细', '预算部门表', '预算经理层表', '对外投资情况', '现金流表实际', '现金流表预估'];
         $sheets = [];
-        collect($file_list)->map(function ($table) {
-            $collection = (new FastExcel())->import(public_path($table));
-            array_push($sheets,$collection );
-        });
+        foreach ($table_list as $k => $table_name) {
+            $info = TableList::where('table_name', $table_name)
+                ->when(!empty($month), function ($query) use ($month) {
+                    $query->where('month', $month)
+                        ->where('status', FinalizeStatus::YES);
+                })
+                ->orderBy('created_at', 'desc')
+                ->first();
+            //if ($info) {
+            //    array_push($file_list, $info->file_path);
+            //}
+            if(!$info){
+                continue;
+            }
+            $collection = (new FastExcel())->import(public_path($info->file_path));
+            $sheets[$table_name_list[$k]] = $collection;
+        }
         $sheets = new SheetCollection($sheets);
-        (new FastExcel($sheets))->export(public_path('/static/template/母公司点检表数据.xlsx'));
-        //return $file_list;
-        return ["/static/template/母公司点检表数据.xlsx"];
+        (new FastExcel($sheets))
+            ->withSheetsNames()
+            ->export(public_path("/static/template/母公司点检表{$month}月数据.xlsx"));
+        return ["/static/template/母公司点检表{$month}月数据.xlsx"];
     }
 }
