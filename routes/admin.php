@@ -21,6 +21,8 @@ Route::namespace('Admin')->group(function (){
     Route::get('pcheck/dataStatistics1', 'PCompanyCheckController@statisticsData');
     Route::get('pcheck/downlist', 'PCompanyCheckController@getDownloadList');
     Route::get('pcheck/file_list', 'PCompanyCheckController@getFileList');
+    Route::get('pcheck/datasource', 'PCompanyCheckController@switchDataSourceByMonth');
+
 });
 
 //Route::namespace('Admin')->group(function (){
@@ -38,6 +40,5 @@ Route::namespace('Admin')->middleware('auth.admin')->group(function (){
     Route::get('pcheck/file_list', 'PCompanyCheckController@getFileList');
     Route::post('pcheck/file_list/finalize', 'PCompanyCheckController@finalize');
     Route::post('pcheck/file_list/finalize/cancel', 'PCompanyCheckController@cancelFinalize');
-    Route::get('pcheck/datasource', 'PCompanyCheckController@switchDataSourceByMonth');
     Route::get('pcheck/downlist', 'PCompanyCheckController@getDownloadList');
 });
