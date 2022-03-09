@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '1a9e8eb07b3c03d2c861b8e5933e0d7ff576d4ca',
+        'reference' => '1e1ac0a0725a320de6df624d0222eaaa4a91b73c',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -439,7 +439,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '1a9e8eb07b3c03d2c861b8e5933e0d7ff576d4ca',
+            'reference' => '1e1ac0a0725a320de6df624d0222eaaa4a91b73c',
             'dev_requirement' => false,
         ),
         'laravel/tinker' => array(
@@ -969,12 +969,12 @@
             'dev_requirement' => false,
         ),
         'rap2hpoutre/fast-excel' => array(
-            'pretty_version' => 'v3.0.0',
-            'version' => '3.0.0.0',
+            'pretty_version' => 'v3.2.0',
+            'version' => '3.2.0.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../rap2hpoutre/fast-excel',
             'aliases' => array(),
-            'reference' => 'e7633e58d695e29669ecbb08aeffbbbcb2738925',
+            'reference' => '28183f3a90179386bfadcd0083129c247ce49fbe',
             'dev_requirement' => false,
         ),
         'rhumsaa/uuid' => array(

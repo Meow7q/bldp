@@ -6,6 +6,7 @@ use Box\Spout\Reader\CSV\Reader as CSVReader;
 use Box\Spout\Reader\ReaderInterface;
 use Box\Spout\Writer\CSV\Writer as CSVWriter;
 use Box\Spout\Writer\WriterInterface;
+use Generator;
 use Illuminate\Support\Collection;
 
 /**
@@ -16,7 +17,7 @@ class FastExcel
     use Importable;
     use Exportable;
     /**
-     * @var Collection
+     * @var Collection|Generator|array
      */
     protected $data;
 
@@ -24,6 +25,11 @@ class FastExcel
      * @var bool
      */
     private $with_header = true;
+
+    /**
+     * @var bool
+     */
+    private $with_sheets_names = false;
 
     /**
      * @var int
@@ -58,7 +64,7 @@ class FastExcel
     /**
      * FastExcel constructor.
      *
-     * @param Collection $data
+     * @param Collection|Generator|array|null $data
      */
     public function __construct($data = null)
     {
@@ -68,7 +74,7 @@ class FastExcel
     /**
      * Manually set data apart from the constructor.
      *
-     * @param Collection $data
+     * @param Collection|Generator|array $data
      *
      * @return FastExcel
      */
@@ -97,6 +103,16 @@ class FastExcel
     public function withoutHeaders()
     {
         $this->with_header = false;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function withSheetsNames()
+    {
+        $this->with_sheets_names = true;
 
         return $this;
     }

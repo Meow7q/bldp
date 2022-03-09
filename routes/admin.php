@@ -36,7 +36,6 @@ Route::namespace('Admin')->middleware('auth.admin')->group(function (){
     Route::post('file/audit_status', 'FileController@updateAuditStatus');
 
 
-
     //更新文档
     Route::post('pcheck/text', 'PCompanyCheckController@updateText');
     //导入

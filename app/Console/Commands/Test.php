@@ -2,8 +2,13 @@
 
 namespace App\Console\Commands;
 
+use App\Models\PCompanyCheck\FhmxNew;
+use App\Models\PCompanyCheck\LnzcNew;
+use App\Models\PCompanyCheck\TableList;
 use ExcelMerge\ExcelMerge;
 use Illuminate\Console\Command;
+use Rap2hpoutre\FastExcel\FastExcel;
+use Rap2hpoutre\FastExcel\SheetCollection;
 
 class Test extends Command
 {
@@ -38,9 +43,6 @@ class Test extends Command
      */
     public function handle()
     {
-        $files = array(public_path('/static/template/lnzc.xlsx'), public_path('/static/template/zbqk.xlsx'));
 
-        $merged = new ExcelMerge($files);
-        $merged->download(public_path("/static/template/aaa.xlsm"));
     }
 }

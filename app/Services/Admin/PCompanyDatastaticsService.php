@@ -26,6 +26,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 use PhpOffice\PhpWord\TemplateProcessor;
+use Rap2hpoutre\FastExcel\FastExcel;
+use Rap2hpoutre\FastExcel\SheetCollection;
 
 class PCompanyDatastaticsService
 {
@@ -508,6 +510,14 @@ class PCompanyDatastaticsService
                 array_push($file_list, $info->file_path);
             }
         }
-        return $file_list;
+        $sheets = [];
+        collect($file_list)->map(function ($table) {
+            $collection = (new FastExcel())->import(public_path($table));
+            array_push($sheets,$collection );
+        });
+        $sheets = new SheetCollection($sheets);
+        (new FastExcel($sheets))->export(public_path('/static/template/母公司点检表数据.xlsx'));
+        //return $file_list;
+        return ["/static/template/母公司点检表数据.xlsx"];
     }
 }

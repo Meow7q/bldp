@@ -70,7 +70,11 @@ trait Importable
 
         $collections = [];
         foreach ($reader->getSheetIterator() as $key => $sheet) {
-            $collections[] = $this->importSheet($sheet, $callback);
+            if ($this->with_sheets_names) {
+                $collections[$sheet->getName()] = $this->importSheet($sheet, $callback);
+            } else {
+                $collections[] = $this->importSheet($sheet, $callback);
+            }
         }
         $reader->close();
 
@@ -174,7 +178,7 @@ trait Importable
     private function toStrings($values)
     {
         foreach ($values as &$value) {
-            if ($value instanceof \Datetime) {
+            if ($value instanceof \DateTime) {
                 $value = $value->format('Y-m-d H:i:s');
             } elseif ($value) {
                 $value = (string) $value;
