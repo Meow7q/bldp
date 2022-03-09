@@ -22,7 +22,9 @@ Route::namespace('Admin')->group(function (){
     Route::get('pcheck/downlist', 'PCompanyCheckController@getDownloadList');
     Route::get('pcheck/file_list', 'PCompanyCheckController@getFileList');
     Route::get('pcheck/datasource', 'PCompanyCheckController@switchDataSourceByMonth');
-
+    Route::get('pcheck/show', 'PCompanyCheckController@show');
+    Route::get('pcheck/dataStatistics', 'PCompanyCheckController@statisticsData');
+    Route::get('pcheck/file_list', 'PCompanyCheckController@getFileList');
 });
 
 //Route::namespace('Admin')->group(function (){
@@ -33,12 +35,14 @@ Route::namespace('Admin')->middleware('auth.admin')->group(function (){
     Route::get('file/list', 'FileController@fileList');
     Route::post('file/audit_status', 'FileController@updateAuditStatus');
 
-    Route::post('pcheck/import', 'PCompanyCheckController@import');
-    Route::get('pcheck/show', 'PCompanyCheckController@show');
-    Route::get('pcheck/dataStatistics', 'PCompanyCheckController@statisticsData');
+
+
+    //更新文档
     Route::post('pcheck/text', 'PCompanyCheckController@updateText');
-    Route::get('pcheck/file_list', 'PCompanyCheckController@getFileList');
+    //导入
+    Route::post('pcheck/import', 'PCompanyCheckController@import');
+    //定稿
     Route::post('pcheck/file_list/finalize', 'PCompanyCheckController@finalize');
+    //取消定稿
     Route::post('pcheck/file_list/finalize/cancel', 'PCompanyCheckController@cancelFinalize');
-    Route::get('pcheck/downlist', 'PCompanyCheckController@getDownloadList');
 });
