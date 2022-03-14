@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Enum\UserPermission;
 use App\Services\ApiResponse;
 use Closure;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -30,7 +31,6 @@ class AuthAdmin
      */
     public function handle($request, Closure $next)
     {
-
         if (! $this->auth->parser()->setRequest($request)->hasToken()) {
             return $this->fail('Unauthorized!！', 401);
         }
@@ -38,6 +38,9 @@ class AuthAdmin
             $user = $this->auth->user();
             if(!$user){
                 return $this->fail('Unauthorized!！', 401);
+            }
+            if($request->isMethod('post') && $user->permission == UserPermission::VISITOR){
+                return $this->fail('权限不足');
             }
             $request->mini_user = $user;
         } catch (TokenExpiredException $e) {

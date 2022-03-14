@@ -20,8 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e08bbc1-bad0-47d5-9c0a-6d50afee08ce" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Enum/UserPermission.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Admin/PCompanyDatastaticsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Admin/PCompanyDatastaticsService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Console/Commands/Test.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/Test.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/AuthAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/AuthAdmin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/mgsjdb/2022_02_25_063147_create_user_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/mgsjdb/2022_02_25_063147_create_user_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -281,7 +285,10 @@
       <workItem from="1646727035669" duration="249000" />
       <workItem from="1646729529946" duration="178000" />
       <workItem from="1646792547613" duration="609000" />
-      <workItem from="1646794588168" duration="6294000" />
+      <workItem from="1646794588168" duration="6565000" />
+      <workItem from="1646905127389" duration="1008000" />
+      <workItem from="1646979236590" duration="69000" />
+      <workItem from="1647238293507" duration="1819000" />
     </task>
     <servers />
   </component>
@@ -305,15 +312,15 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="427" y="260" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900@0.0.1440.900" timestamp="1646809760197" />
-    <state x="458" y="212" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1646809212729">
+    <state x="458" y="212" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1647238323921">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="458" y="212" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.900@0.0.1440.900" timestamp="1646809212729" />
+    <state x="458" y="212" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.900@0.0.1440.900" timestamp="1647238323921" />
     <state x="458" y="210" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.795@0.23.1440.795" timestamp="1645724818308" />
-    <state x="379" y="176" key="NewPhpClassDialog" timestamp="1646619113133">
+    <state x="379" y="176" key="NewPhpClassDialog" timestamp="1647239424392">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="379" y="176" key="NewPhpClassDialog/0.0.1440.900@0.0.1440.900" timestamp="1646619113133" />
+    <state x="379" y="176" key="NewPhpClassDialog/0.0.1440.900@0.0.1440.900" timestamp="1647239424392" />
     <state x="892" y="182" key="NewPhpClassDialog/0.23.1440.795@0.23.1440.795" timestamp="1645668704377" />
     <state x="221" y="89" key="SettingsEditor" timestamp="1646806706755">
       <screen x="0" y="0" width="1440" height="900" />
@@ -325,10 +332,10 @@
     <state x="450" y="153" width="555" height="593" key="StructurePopup/0.0.1440.900@0.0.1440.900" timestamp="1646809190918" />
     <state x="450" y="158" width="549" height="523" key="StructurePopup/0.23.1440.795@0.23.1440.795" timestamp="1645683622291" />
     <state x="450" y="159" width="549" height="524" key="StructurePopup/0.23.1440.798@0.23.1440.798" timestamp="1645610242593" />
-    <state width="520" height="445" key="SwitcherDM" timestamp="1646808808914">
+    <state width="520" height="445" key="SwitcherDM" timestamp="1647239348919">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="520" height="445" key="SwitcherDM/0.0.1440.900@0.0.1440.900" timestamp="1646808808914" />
+    <state width="520" height="445" key="SwitcherDM/0.0.1440.900@0.0.1440.900" timestamp="1647239348919" />
     <state width="520" height="400" key="SwitcherDM/0.23.1440.795@0.23.1440.795" timestamp="1646015884704" />
     <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1646809195406">
       <screen x="0" y="0" width="1440" height="900" />
