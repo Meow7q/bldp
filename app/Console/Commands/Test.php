@@ -57,15 +57,15 @@ class Test extends Command
 
     protected function initUser(){
         $users = [
-            ['name' => '王露红', 'usercode' => '1831268', 'password' =>'123456', 'permission' => 1],
-            ['name' => '杨颖', 'usercode' => '10009405', 'password' =>'123456', 'permission' => 1],
-            ['name' => '张瑜斐', 'usercode' => '10003384', 'password' =>'123456', 'permission' => 1],
-            ['name' => '江翔', 'usercode' => '10002438', 'password' =>'123456', 'permission' => 2],
-            ['name' => '沈莉莉', 'usercode' => '2038987', 'password' =>'123456', 'permission' => 1],
+            ['username' => '王露红', 'usercode' => '1831268', 'password' =>'123456', 'permission' => 1],
+            ['username' => '杨颖', 'usercode' => '10009405', 'password' =>'123456', 'permission' => 1],
+            ['username' => '张瑜斐', 'usercode' => '10003384', 'password' =>'123456', 'permission' => 1],
+            ['username' => '江翔', 'usercode' => '10002438', 'password' =>'123456', 'permission' => 2],
+            ['username' => '沈莉莉', 'usercode' => '2038987', 'password' =>'123456', 'permission' => 1],
         ];
         foreach ($users as $user){
             User::firstOrCreate(['usercode' => $user['usercode']],[
-                'name' => $user['name'],
+                'username' => $user['username'],
                 'usercode' => $user['usercode'],
                 'password' => $user['password'],
                 'permission' => $user['permission'],
