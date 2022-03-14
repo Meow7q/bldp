@@ -45,6 +45,8 @@ Route::namespace('Admin')->middleware('auth.admin')->group(function (){
     Route::post('pcheck/file_list/finalize', 'PCompanyCheckController@finalize');
     //取消定稿
     Route::post('pcheck/file_list/finalize/cancel', 'PCompanyCheckController@cancelFinalize');
+    //更改密码
+    Route::post('pcheck/password', 'AuthController@updatePassword');
 
 
     Route::get('pcheck/dataStatistics1', 'PCompanyCheckController@statisticsData');

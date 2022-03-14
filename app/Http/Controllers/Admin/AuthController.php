@@ -26,10 +26,31 @@ class AuthController extends Controller
         $token = auth('backend')->login($user);
         return $this->success([
             'uid' => $user->id,
+            'username' => $user->username,
+            'usercode' => $user->usercode,
+            'permission' => $user->permission,
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth('backend')->factory()->getTTL() * 60
         ]);
+    }
+
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function updatePassword(Request $request){
+        $validated = $this->validate($request, ['password' => 'required|min:6'], [
+            'password.min' => '密码最低6位'
+        ]);
+        $user = $request->user;
+        User::where('id', $user->id)
+            ->update([
+                'password' => $validated['password']
+            ]);
+        return $this->message('ok');
     }
 
     /**
