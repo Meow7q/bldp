@@ -42,7 +42,7 @@ class AuthAdmin
             if($request->isMethod('post') && $user->permission == UserPermission::VISITOR){
                 return $this->fail('权限不足');
             }
-            $request->mini_user = $user;
+            $request->user = $user;
         } catch (TokenExpiredException $e) {
             return $this->fail('Unauthorized!！', 401);
         } catch (JWTException $e) {
