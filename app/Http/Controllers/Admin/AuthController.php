@@ -15,11 +15,19 @@ use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 class AuthController extends Controller
 {
     public function auth(Request $request){
-        $validated = $this->validate($request, ['username' => 'required', 'password' => 'required']);
-        $user = User::where('username', $validated['username'])
-            ->where('password', $validated['password'])
-            ->select(['*'])
-            ->first();
+        $validated = $this->validate($request, ['username' => '', 'usercode' => '','password' => '', 'type' => 'required']);
+        //管理员
+        if($validated['type'] == '1'){
+            $user = User::where('username', $validated['username'])
+                ->where('password', $validated['password'])
+                ->select(['*'])
+                ->first();
+        //游客
+        }else{
+            $user = User::where('usercode', $validated['usercode'])
+                ->select(['*'])
+                ->first();
+        }
         if(!$user){
             throw new UnauthorizedHttpException('未授权！');
         }

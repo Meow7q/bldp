@@ -62,6 +62,11 @@ class Test extends Command
             ['username' => '张瑜斐', 'usercode' => '10003384', 'password' =>'123456', 'permission' => 1],
             ['username' => '江翔', 'usercode' => '10002438', 'password' =>'123456', 'permission' => 2],
             ['username' => '沈莉莉', 'usercode' => '2038987', 'password' =>'123456', 'permission' => 1],
+
+            ['username' => '陈锦石', 'usercode' => '1000001', 'password' =>'123456', 'permission' => 2],
+            ['username' => '孟小军', 'usercode' => '1006329', 'password' =>'123456', 'permission' => 2],
+            ['username' => '孟东阳', 'usercode' => '2039630', 'password' =>'123456', 'permission' => 2],
+            ['username' => '郑伟', 'usercode' => '10008529', 'password' =>'123456', 'permission' => 2],
         ];
         foreach ($users as $user){
             User::firstOrCreate(['usercode' => $user['usercode']],[
