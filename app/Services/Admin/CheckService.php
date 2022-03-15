@@ -82,14 +82,14 @@ class CheckService
                 break;
             case 'ysbmb':
                 if($line_count != 20){
-                    throw new \Exception('模版错误');
+                    //throw new \Exception('模版错误');
                 }
                 $this->ysbmb($collection);
                 $this->data_service->statisticsBmysqk();
                 break;
             case 'ysjlcb':
                 if($line_count != 16){
-                    throw new \Exception('模版错误');
+                    //throw new \Exception('模版错误');
                 }
                 $this->ysjlcb($collection);
                 $this->data_service->statisticsJlcysqk();
