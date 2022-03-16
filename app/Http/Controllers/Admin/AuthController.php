@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Carbon\Carbon;
 use EasySwoole\VerifyCode\Conf;
 use EasySwoole\VerifyCode\VerifyCode;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 class AuthController extends Controller
 {
     public function auth(Request $request){
-        $validated = $this->validate($request, ['username' => '', 'usercode' => '','password' => '', 'type' => 'required']);
+        $validated = $this->validate($request, ['username' => '', 'token' => '','password' => '', 'type' => 'required']);
         //管理员
         if($validated['type'] == '1'){
             $user = User::where('username', $validated['username'])
@@ -24,7 +25,11 @@ class AuthController extends Controller
                 ->first();
         //游客
         }else{
-            $user = User::where('usercode', $validated['usercode'])
+            $isvalid = $this->verifyCustomToken($validated['token']);
+            if(!$isvalid){
+                throw new UnauthorizedHttpException('未授权！');
+            }
+            $user = User::where('usercode', '999999')
                 ->select(['*'])
                 ->first();
         }
@@ -41,6 +46,26 @@ class AuthController extends Controller
             'token_type' => 'bearer',
             'expires_in' => auth('backend')->factory()->getTTL() * 60
         ]);
+    }
+
+    /**
+     * @param $token
+     * @return bool
+     */
+    protected function verifyCustomToken($token){
+        if(empty($token)){
+            return false;
+        }
+        [$usercode, $cipher] = explode('_', $token);
+        $year = Carbon::now()->year;
+        $month = Carbon::now()->month;
+        $day = Carbon::now()->day;
+        $salt = 'kgdjb';
+        $calc_cipher = md5($year.$salt.$month.$salt.$day.md5($usercode));
+        if($calc_cipher != $cipher){
+            return false;
+        }
+        return true;
     }
 
 

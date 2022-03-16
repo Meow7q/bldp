@@ -14,6 +14,7 @@ use App\Models\PCompanyCheck\Ysbmb;
 use App\Models\PCompanyCheck\Ysjlcb;
 use App\Models\PCompanyCheck\Zbqk;
 use App\Models\User;
+use Carbon\Carbon;
 use ExcelMerge\ExcelMerge;
 use Illuminate\Console\Command;
 use Rap2hpoutre\FastExcel\FastExcel;
@@ -67,6 +68,8 @@ class Test extends Command
             ['username' => '孟小军', 'usercode' => '1006329', 'password' =>'123456', 'permission' => 2],
             ['username' => '孟东阳', 'usercode' => '2039630', 'password' =>'123456', 'permission' => 2],
             ['username' => '郑伟', 'usercode' => '10008529', 'password' =>'123456', 'permission' => 2],
+
+            ['username' => '游客', 'usercode' => '999999', 'password' =>'123456', 'permission' => 2],
         ];
         foreach ($users as $user){
             User::firstOrCreate(['usercode' => $user['usercode']],[
