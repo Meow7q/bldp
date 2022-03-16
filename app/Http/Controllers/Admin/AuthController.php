@@ -58,8 +58,8 @@ class AuthController extends Controller
         }
         [$usercode, $cipher] = explode('_', $token);
         $year = Carbon::now()->year;
-        $month = Carbon::now()->month;
-        $day = Carbon::now()->day;
+        $month = Carbon::now()->format('m');
+        $day = Carbon::now()->format('d');
         $salt = 'kgdjb';
         $calc_cipher = md5($year.$salt.$month.$salt.$day.md5($usercode));
         if($calc_cipher != $cipher){

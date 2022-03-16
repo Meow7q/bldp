@@ -21,8 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3e08bbc1-bad0-47d5-9c0a-6d50afee08ce" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Commands/Test.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/Test.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/AuthController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -292,7 +290,8 @@
       <workItem from="1647332540741" duration="3055000" />
       <workItem from="1647342943589" duration="397000" />
       <workItem from="1647343510874" duration="57000" />
-      <workItem from="1647396230242" duration="622000" />
+      <workItem from="1647396230242" duration="838000" />
+      <workItem from="1647397746992" duration="325000" />
     </task>
     <servers />
   </component>
@@ -316,10 +315,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="427" y="260" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900@0.0.1440.900" timestamp="1646809760197" />
-    <state x="458" y="212" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1647238323921">
+    <state x="458" y="212" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1647396725311">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="458" y="212" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.900@0.0.1440.900" timestamp="1647238323921" />
+    <state x="458" y="212" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.900@0.0.1440.900" timestamp="1647396725311" />
     <state x="458" y="210" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.795@0.23.1440.795" timestamp="1645724818308" />
     <state x="379" y="176" key="NewPhpClassDialog" timestamp="1647239424392">
       <screen x="0" y="0" width="1440" height="900" />
@@ -336,10 +335,10 @@
     <state x="450" y="153" width="555" height="593" key="StructurePopup/0.0.1440.900@0.0.1440.900" timestamp="1646809190918" />
     <state x="450" y="158" width="549" height="523" key="StructurePopup/0.23.1440.795@0.23.1440.795" timestamp="1645683622291" />
     <state x="450" y="159" width="549" height="524" key="StructurePopup/0.23.1440.798@0.23.1440.798" timestamp="1645610242593" />
-    <state width="520" height="445" key="SwitcherDM" timestamp="1647330541895">
+    <state width="520" height="445" key="SwitcherDM" timestamp="1647397757436">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="520" height="445" key="SwitcherDM/0.0.1440.900@0.0.1440.900" timestamp="1647330541895" />
+    <state width="520" height="445" key="SwitcherDM/0.0.1440.900@0.0.1440.900" timestamp="1647397757436" />
     <state width="520" height="400" key="SwitcherDM/0.23.1440.795@0.23.1440.795" timestamp="1646015884704" />
     <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1646809195406">
       <screen x="0" y="0" width="1440" height="900" />
