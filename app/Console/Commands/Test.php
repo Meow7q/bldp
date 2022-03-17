@@ -61,13 +61,16 @@ class Test extends Command
             ['username' => '王露红', 'usercode' => '1831268', 'password' =>'123456', 'permission' => 1],
             ['username' => '杨颖', 'usercode' => '10009405', 'password' =>'123456', 'permission' => 1],
             ['username' => '张瑜斐', 'usercode' => '10003384', 'password' =>'123456', 'permission' => 1],
-            ['username' => '江翔', 'usercode' => '10002438', 'password' =>'123456', 'permission' => 2],
             ['username' => '沈莉莉', 'usercode' => '2038987', 'password' =>'123456', 'permission' => 1],
+            ['username' => '陈龚花', 'usercode' => '1002180', 'password' =>'123456', 'permission' => 1],
+            ['username' => '顾佳璐', 'usercode' => '1702389', 'password' =>'123456', 'permission' => 1],
 
             ['username' => '陈锦石', 'usercode' => '1000001', 'password' =>'123456', 'permission' => 2],
             ['username' => '孟小军', 'usercode' => '1006329', 'password' =>'123456', 'permission' => 2],
             ['username' => '孟东阳', 'usercode' => '2039630', 'password' =>'123456', 'permission' => 2],
             ['username' => '郑伟', 'usercode' => '10008529', 'password' =>'123456', 'permission' => 2],
+            ['username' => '江翔', 'usercode' => '10002438', 'password' =>'123456', 'permission' => 2],
+
 
             ['username' => '游客', 'usercode' => '999999', 'password' =>'123456', 'permission' => 2],
         ];
