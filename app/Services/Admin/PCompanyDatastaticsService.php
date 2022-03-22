@@ -68,7 +68,7 @@ class PCompanyDatastaticsService
         if(empty($current_month)){
             return [];
         }
-        $key = $this->key.':'.$this->month;
+        $key = $this->key.':'.$current_month;
         //$cace_data = Redis::get($this->key);
         $cace_data = Redis::get($key);
         $cace_data = empty($cace_data) ? [] : json_decode($cace_data, true);
