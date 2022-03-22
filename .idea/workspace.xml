@@ -23,6 +23,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PCompanyCheckController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/PCompanyCheckController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Services/Admin/CheckService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Admin/CheckService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/Admin/PCompanyDatastaticsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Admin/PCompanyDatastaticsService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -297,7 +298,7 @@
       <workItem from="1647397746992" duration="325000" />
       <workItem from="1647432427531" duration="881000" />
       <workItem from="1647495780307" duration="595000" />
-      <workItem from="1647928047672" duration="4829000" />
+      <workItem from="1647928047672" duration="5490000" />
     </task>
     <servers />
   </component>
