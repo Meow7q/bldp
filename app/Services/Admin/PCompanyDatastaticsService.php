@@ -527,6 +527,11 @@ class PCompanyDatastaticsService
         //$this->saveDocx($data);
         $key = $this->key.':'.$month;
         //Redis::set($this->key, json_encode($data, JSON_UNESCAPED_UNICODE));
+        $cache_data = Redis::get($key);
+        $cache_data = json_decode($cache_data, true);
+        for ($i=1; $i<11; $i++){
+            $data['text'.$i] = $cache_data['text'.$i]??'';
+        }
         Redis::set($key, json_encode($data, JSON_UNESCAPED_UNICODE));
     }
 
