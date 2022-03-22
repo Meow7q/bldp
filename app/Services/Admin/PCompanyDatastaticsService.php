@@ -82,7 +82,11 @@ class PCompanyDatastaticsService
      */
     public function exportDocx()
     {
-        $key = $this->key.':'.$this->month;
+        $month = $this->getCurrentMonth();
+        if(empty($month)){
+            return;
+        }
+        $key = $this->key.':'.$month;
         //$cache_data = Redis::get($this->key);
         $cache_data = Redis::get($key);
         $cache_data = empty($cache_data) ? [] : json_decode($cache_data, true);
@@ -90,7 +94,7 @@ class PCompanyDatastaticsService
         $file_name = '母公司经营管理指标成果点检表' . uniqid();
         $path = '/static/docx/' . $file_name . '.docx';
         //$cache_data['current_month'] = $cache_data['data_source_month'] ?? Carbon::now()->month;
-        $cache_data['current_month'] = Redis::get($this->key_month) ?: Carbon::now()->month;
+        $cache_data['current_month'] = $this->month ?: Carbon::now()->month;
         $cache_data['docx_path'] = $path;
         //Redis::set($this->key, json_encode($cache_data, JSON_UNESCAPED_UNICODE));
         Redis::set($key, json_encode($cache_data, JSON_UNESCAPED_UNICODE));
@@ -102,10 +106,11 @@ class PCompanyDatastaticsService
      */
     public function saveDocxData($data)
     {
-        if(empty($this->month)){
+        $month = $this->getCurrentMonth();
+        if($month){
             return;
         }
-        $key = $this->key.':'.$this->month;
+        $key = $this->key.':'.$month;
         //$cache_data = Redis::get($this->key);
         $cache_data = Redis::get($key);
         $cache_data = empty($cache_data) ? [] : json_decode($cache_data, true);
@@ -440,8 +445,7 @@ class PCompanyDatastaticsService
         if(empty($current_month)){
             throw new \Exception('请选择月份');
         }
-        $this->month = $current_month;
-        $key = $this->key.':'.$this->month;
+        $key = $this->key.':'.$current_month;
 
         //$cache_data = Redis::get($this->key);
         $cache_data = Redis::get($key);
