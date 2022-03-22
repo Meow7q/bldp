@@ -72,7 +72,7 @@ class PCompanyCheckController extends Controller
 
         try{
             $this->service->importExcel('upload/'.$path, $validated['table_name'],$file->getClientOriginalName());
-            $this->data_service->exportDocx();
+            //$this->data_service->exportDocx();
         }catch (\Exception $e){
             return $this->fail('模版错误');
         }
@@ -191,6 +191,7 @@ class PCompanyCheckController extends Controller
         $validated = $this->validate($request, ['month' => 'required']);
         $table_list = ['lnzc', 'zbqk', 'kjbb', 'srhz', 'fhmx', 'ysbmb', 'ysjlcb', 'dwtzqk', 'xjlbsj', 'xjlbyg'];
         $this->data_service->resetStatisticsData($validated['month']);
+        $this->data_service->month = $validated['month'];
         foreach ($table_list as $table){
             $info = TableList::where('table_name', $table)
                 ->where('month', $validated['month'])
