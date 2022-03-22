@@ -107,7 +107,7 @@ class PCompanyDatastaticsService
     public function saveDocxData($data)
     {
         $month = $this->getCurrentMonth();
-        if($month){
+        if(empty($month)){
             return;
         }
         $key = $this->key.':'.$month;
