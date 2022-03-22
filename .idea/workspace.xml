@@ -20,11 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e08bbc1-bad0-47d5-9c0a-6d50afee08ce" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PCompanyCheckController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/PCompanyCheckController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Admin/CheckService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Admin/CheckService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Services/Admin/PCompanyDatastaticsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Admin/PCompanyDatastaticsService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -298,7 +294,7 @@
       <workItem from="1647397746992" duration="325000" />
       <workItem from="1647432427531" duration="881000" />
       <workItem from="1647495780307" duration="595000" />
-      <workItem from="1647928047672" duration="5490000" />
+      <workItem from="1647928047672" duration="5845000" />
     </task>
     <servers />
   </component>
@@ -336,10 +332,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="221" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1646806706755" />
-    <state x="450" y="153" width="555" height="593" key="StructurePopup" timestamp="1647932816099">
+    <state x="450" y="153" width="555" height="593" key="StructurePopup" timestamp="1647934590433">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="450" y="153" width="555" height="593" key="StructurePopup/0.0.1440.900@0.0.1440.900" timestamp="1647932816099" />
+    <state x="450" y="153" width="555" height="593" key="StructurePopup/0.0.1440.900@0.0.1440.900" timestamp="1647934590433" />
     <state x="450" y="158" width="549" height="523" key="StructurePopup/0.23.1440.795@0.23.1440.795" timestamp="1645683622291" />
     <state x="450" y="159" width="549" height="524" key="StructurePopup/0.23.1440.798@0.23.1440.798" timestamp="1645610242593" />
     <state width="520" height="445" key="SwitcherDM" timestamp="1647932857045">

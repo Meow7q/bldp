@@ -72,6 +72,7 @@ class PCompanyDatastaticsService
         //$cace_data = Redis::get($this->key);
         $cace_data = Redis::get($key);
         $cace_data = empty($cace_data) ? [] : json_decode($cace_data, true);
+        $cace_data['current_month'] = $current_month;
         return $cace_data;
     }
 
