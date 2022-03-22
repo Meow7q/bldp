@@ -469,16 +469,16 @@ class PCompanyDatastaticsService
             'fee_ct_hjtr' => '',
             'fee_ct_lnfyzc' => '',
             'fee_ct_xczc' => '',
-            'text1' => '',
-            'text2' => '',
-            'text3' => '',
-            'text4' => '',
-            'text5' => '',
-            'text6' => '',
-            'text7' => '',
-            'text8' => '',
-            'text9' => '',
-            'text10' => ''
+//            'text1' => '',
+//            'text2' => '',
+//            'text3' => '',
+//            'text4' => '',
+//            'text5' => '',
+//            'text6' => '',
+//            'text7' => '',
+//            'text8' => '',
+//            'text9' => '',
+//            'text10' => ''
         ];
         //$this->saveDocx($data);
         Redis::set($this->key, json_encode($data, JSON_UNESCAPED_UNICODE));
