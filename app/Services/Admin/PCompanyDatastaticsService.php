@@ -44,6 +44,21 @@ class PCompanyDatastaticsService
     }
 
     /**
+     * 设置当前月
+     * @param $month
+     */
+    public function setCurrentMonth($month){
+        Redis::set($this->key_month, $month);
+    }
+
+    /**
+     * 获取当前月
+     */
+    public function getCurrentMonth(){
+        return Redis::get($this->key_month);
+    }
+
+    /**
      * 获取首页数据统计
      * @return array|mixed
      */
@@ -90,7 +105,6 @@ class PCompanyDatastaticsService
             return;
         }
         $key = $this->key.':'.$this->month;
-        Redis::set($this->key_month, $this->month);
         //$cache_data = Redis::get($this->key);
         $cache_data = Redis::get($key);
         $cache_data = empty($cache_data) ? [] : json_decode($cache_data, true);
@@ -417,13 +431,15 @@ class PCompanyDatastaticsService
 
     /**
      * @param $data
+     * @throws \Exception
      */
     public function updateText($data)
     {
-        $current_month = Redis::get($this->key_month);
+        $current_month = $this->getCurrentMonth();
         if(empty($current_month)){
             throw new \Exception('请选择月份');
         }
+        $this->month = $current_month;
         $key = $this->key.':'.$this->month;
 
         //$cache_data = Redis::get($this->key);
@@ -508,7 +524,7 @@ class PCompanyDatastaticsService
 //            'text10' => ''
         ];
         //$this->saveDocx($data);
-        $key = $this->key.':'.$this->month;
+        $key = $this->key.':'.$month;
         //Redis::set($this->key, json_encode($data, JSON_UNESCAPED_UNICODE));
         Redis::set($key, json_encode($data, JSON_UNESCAPED_UNICODE));
     }

@@ -110,8 +110,12 @@ class PCompanyCheckController extends Controller
      */
     public function updateText(Request $request){
         $validated = $this->validate($request, ['text_arr' => 'required']);
-        $this->data_service->updateText($validated['text_arr']);
-        return $this->message('ok');
+        try{
+            $this->data_service->updateText($validated['text_arr']);
+            return $this->message('ok');
+        }catch (\Exception $e){
+            return $this->fail($e->getMessage());
+        }
     }
 
     /**
@@ -191,14 +195,14 @@ class PCompanyCheckController extends Controller
         $validated = $this->validate($request, ['month' => 'required']);
         $table_list = ['lnzc', 'zbqk', 'kjbb', 'srhz', 'fhmx', 'ysbmb', 'ysjlcb', 'dwtzqk', 'xjlbsj', 'xjlbyg'];
         $this->data_service->resetStatisticsData($validated['month']);
-        $this->data_service->month = $validated['month'];
+        $this->data_service->setCurrentMonth($validated['month']);
         foreach ($table_list as $table){
             $info = TableList::where('table_name', $table)
                 ->where('month', $validated['month'])
                 ->where('status', FinalizeStatus::YES)
                 ->first();
             if($info){
-                $this->service->importExcel($info->file_path, $table, null);
+                $this->service->importExcel($info->file_path, $table, null, $validated['month']);
                 continue;
             }
             $this->truncateTable($table);

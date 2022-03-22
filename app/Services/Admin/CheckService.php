@@ -36,15 +36,16 @@ class CheckService
      * @param $path
      * @param $table_name
      * @param $file_name
-     * @param $month
+     * @param null $month
      * @throws \Box\Spout\Common\Exception\IOException
      * @throws \Box\Spout\Common\Exception\UnsupportedTypeException
      * @throws \Box\Spout\Reader\Exception\ReaderNotOpenedException
      */
-    public function importExcel($path, $table_name, $file_name)
+    public function importExcel($path, $table_name, $file_name, $month = null)
     {
         $collection = (new FastExcel())->import(public_path($path));
         $line_count = count($collection);
+        $this->data_service->month = $month;
         switch ($table_name) {
             case 'lnzc':
                 if($line_count != 18){
