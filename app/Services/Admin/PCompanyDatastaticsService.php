@@ -545,9 +545,7 @@ class PCompanyDatastaticsService
      */
     public function downlist()
     {
-        $data = Redis::get($this->key);
-        $data = json_decode($data, true);
-        $month = $data['data_source_month'] ?? null;
+        $month = $this->getCurrentMonth();
         $file_list = [];
         if (!empty($data['docx_path'])) {
             //array_push($file_list, $data['docx_path']);
