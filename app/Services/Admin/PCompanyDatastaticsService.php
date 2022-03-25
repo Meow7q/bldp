@@ -132,16 +132,26 @@ class PCompanyDatastaticsService
             ->where('project', '小计')
             ->where('unit', '控股')
             ->first();
+        $fee_kg_2022 = LnzcNew::select(DB::raw("fee_2022 as fee"))
+            ->where('project', '小计')
+            ->where('unit', '控股')
+            ->first();
         $fee_ct = LnzcNew::select(DB::raw("hj as fee"))
             ->where('project', '小计')
             ->where('unit', '城投 ')
+            ->first();
+        $fee_ct_2022 = LnzcNew::select(DB::raw("fee_2022 as fee"))
+            ->where('project', '小计')
+            ->where('unit', '城投')
             ->first();
         $fee_total = LnzcNew::select(DB::raw("hj as fee"))
             ->where('unit', '合计')
             ->first();
         $data = [
             'fee_kg' => bcdiv($fee_kg->fee, 10000, 4),
+            'fee_kg_2022' => bcdiv($fee_kg_2022->fee, 10000, 4),
             'fee_ct' => bcdiv($fee_ct->fee, 10000, 4),
+            'fee_ct_2022' => bcdiv($fee_ct_2022->fee, 10000, 4),
             'fee_total' => bcdiv($fee_total->fee, 10000, 4),
         ];
         $this->saveDocxData($data);
