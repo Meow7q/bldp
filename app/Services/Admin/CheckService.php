@@ -67,7 +67,7 @@ class CheckService
                 $this->data_service->statisticsKjbbqk();
                 break;
             case 'srhz':
-                if($line_count != 30){
+                if($line_count != 30 || $line_count != 29){
                     throw new \Exception('模版错误');
                 }
                 $this->srhz($collection);
@@ -280,8 +280,13 @@ class CheckService
                 $fee_2015 = array_shift($line);
                 $fee_2014 = array_shift($line);
                 $fee_2013 = array_shift($line);
+                if(count($data) ==  30){
+                    $unit = $k1<10?'合计':($k1<20?'控股':'城投');
+                }else{
+                    $unit = $k1<9?'合计':($k1<19?'控股':'城投');
+                }
                 SrhzNew::create([
-                    'unit' => $k1<10?'合计':($k1<20?'控股':'城投'),
+                    'unit' => $unit,
                     'type' => $type,
                     'hz' => is_numeric($hz)?$hz:0,
                     'fee_2022' => is_numeric($fee_2022) ? $fee_2022 : 0,
