@@ -17,6 +17,7 @@ use App\Models\PCompanyCheck\Xjlbyg;
 use App\Models\PCompanyCheck\Ysbmb;
 use App\Models\PCompanyCheck\Ysjlcb;
 use App\Models\PCompanyCheck\Zbqk;
+use App\Models\PCompanyCheck\ZbqkNew;
 use App\Services\Admin\CheckService;
 use App\Services\Admin\PCompanyDatastaticsService;
 use Illuminate\Http\Request;
@@ -221,7 +222,7 @@ class PCompanyCheckController extends Controller
                 LnzcNew::truncate();
                 break;
             case 'zbqk':
-                Zbqk::truncate();
+                ZbqkNew::truncate();
                 break;
             case 'kjbb':
                 KjbbNew::truncate();
