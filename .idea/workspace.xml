@@ -19,7 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e08bbc1-bad0-47d5-9c0a-6d50afee08ce" name="Default Changelist" comment="" />
+    <list default="true" id="3e08bbc1-bad0-47d5-9c0a-6d50afee08ce" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PCompanyCheckController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/PCompanyCheckController.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -181,24 +184,24 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/static/template" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/static/template" />
+      <recent name="$PROJECT_DIR$/public" />
+      <recent name="$PROJECT_DIR$/routes" />
+      <recent name="$PROJECT_DIR$/public/static" />
+      <recent name="$PROJECT_DIR$/app" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/database/migrations/mgsjdb" />
       <recent name="$PROJECT_DIR$/public/static/template" />
       <recent name="$PROJECT_DIR$/database/migrations/api" />
       <recent name="$PROJECT_DIR$/public/static" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/public" />
-      <recent name="$PROJECT_DIR$/public/static/template" />
-      <recent name="$PROJECT_DIR$/routes" />
-      <recent name="$PROJECT_DIR$/public/static" />
-      <recent name="$PROJECT_DIR$/app" />
     </key>
   </component>
   <component name="RunManager">
@@ -301,6 +304,8 @@
       <workItem from="1649298064048" duration="54000" />
       <workItem from="1649314241140" duration="48000" />
       <workItem from="1649483448649" duration="1579000" />
+      <workItem from="1649488156807" duration="324000" />
+      <workItem from="1649666299784" duration="355000" />
     </task>
     <servers />
   </component>
@@ -338,10 +343,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="221" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1646806706755" />
-    <state x="450" y="153" width="555" height="593" key="StructurePopup" timestamp="1649483513164">
+    <state x="450" y="153" width="555" height="593" key="StructurePopup" timestamp="1649666311279">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="450" y="153" width="555" height="593" key="StructurePopup/0.0.1440.900@0.0.1440.900" timestamp="1649483513164" />
+    <state x="450" y="153" width="555" height="593" key="StructurePopup/0.0.1440.900@0.0.1440.900" timestamp="1649666311279" />
     <state x="450" y="158" width="549" height="523" key="StructurePopup/0.23.1440.795@0.23.1440.795" timestamp="1645683622291" />
     <state x="450" y="159" width="549" height="524" key="StructurePopup/0.23.1440.798@0.23.1440.798" timestamp="1645610242593" />
     <state width="520" height="445" key="SwitcherDM" timestamp="1647932857045">

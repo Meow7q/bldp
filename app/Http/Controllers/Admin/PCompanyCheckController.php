@@ -197,6 +197,7 @@ class PCompanyCheckController extends Controller
         $this->data_service->resetStatisticsData($validated['month']);
         $this->data_service->setCurrentMonth($validated['month']);
         foreach ($table_list as $table){
+            $this->truncateTable($table);
             $info = TableList::where('table_name', $table)
                 ->where('month', $validated['month'])
                 ->where('status', FinalizeStatus::YES)
@@ -205,7 +206,6 @@ class PCompanyCheckController extends Controller
                 $this->service->importExcel($info->file_path, $table, null, $validated['month']);
                 continue;
             }
-            $this->truncateTable($table);
         }
         $this->data_service->exportDocx();
 
